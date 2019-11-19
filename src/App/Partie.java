@@ -1,6 +1,10 @@
 package App;
 import java.util.Scanner;
 
+//pour les accents 
+import java.awt.*;
+
+
 public class Partie {
 
 	protected Joueur[] joueurs = new Joueur[5];
@@ -25,7 +29,7 @@ public class Partie {
 		//Création des joueurs 
 		Scanner sc = new Scanner(System.in);
 		Scanner scannerPseudo = new Scanner(System.in);
-		System.out.println("A combien de joueurs allez vous jouer la partie ?");
+		System.out.println("À combien de joueurs allez vous jouer la partie ?");
 		int nombreJoueur = sc.nextInt();
 		System.out.println("Combien de joueurs humains serez-vous ? (Il doit être inférieur ou égal au nombre de joueurs totals");
 		int nombreJoueurReel = sc.nextInt();
@@ -35,7 +39,8 @@ public class Partie {
 			joueurs[i] = new Joueur(pseudo);
 			System.out.println(joueurs[i].getPseudo());
 		}
-
+		sc.close();
+		scannerPseudo.close();
 		for (int i = nombreJoueurReel + 1;i<=nombreJoueur;i++) {
 			joueurs[i] = new JoueurVirtuel("Bot#" + i);
 			System.out.println("Cr�ation du " + joueurs[i].getPseudo());
@@ -53,8 +58,7 @@ public class Partie {
 		else if (extension == false) {
 			System.out.println("Okay tu ne veux pas jouer à l'extension. J'en prends note ! \n") ; 
 		}	
-		sc.close();
-		scannerPseudo.close();
+		
 
 	}
 }
