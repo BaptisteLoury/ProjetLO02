@@ -23,20 +23,27 @@ public class Partie {
 	public void creerPartie() {
 	
 		Scanner sc = new Scanner(System.in);
+
+		Scanner scannerPseudo = new Scanner(System.in);
 		System.out.println("� combien de joueurs allez vous jouer la partie ?");
+
 		int nombreJoueur = sc.nextInt();
 		System.out.println("Combien de joueurs humains serez-vous ?");
 		int nombreJoueurReel = sc.nextInt();
 		for (int i = 1;i<=nombreJoueurReel;i++) {
-			Scanner sc2 = new Scanner(System.in);
 			System.out.println("Donner le pseudo du joueur "+ i +" :");
-			String pseudo = sc2.nextLine();
+			String pseudo = scannerPseudo.nextLine();
 			joueurs[i] = new Joueur(pseudo);
 			System.out.println(joueurs[i].getPseudo());
 		}
+
 		boolean extension ; 
 		Scanner scextension = new Scanner(System.in);
 		System.out.println("Voulez vous jouer à l'extension? (boolean)");
 		
+
+		sc.close();
+		scannerPseudo.close();
+
 	}
 }
