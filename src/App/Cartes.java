@@ -5,7 +5,6 @@ public class Cartes {
 	private EnumTrophee trophee;
 	private Couleur couleur;
 	private Valeur valeur;
-	private String auRevoir ; 
 	
 	
 	public Cartes(EnumTrophee trophee, Couleur couleur, Valeur valeur) {
