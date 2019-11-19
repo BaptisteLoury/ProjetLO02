@@ -11,6 +11,10 @@ public class Deck {
 	
 	public Deck() {
 		deckDeCartes = new HashSet<Cartes>();
+		for (int indice = 0; indice<=jeuDeCartes.length; indice++) {
+			Cartes carte = new Cartes ;
+			deckDeCartes.add(carte) ;
+		}
 		//A FINIR : METTRE CARTES CRÉES DANS PARTIE DANS HASSET DECK
 	}
 	
