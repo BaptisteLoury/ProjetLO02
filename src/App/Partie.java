@@ -22,8 +22,8 @@ public class Partie {
 	}
 	public void creerPartie() {
 	
+		//Création des joueurs 
 		Scanner sc = new Scanner(System.in);
-
 		Scanner scannerPseudo = new Scanner(System.in);
 		System.out.println("� combien de joueurs allez vous jouer la partie ?");
 
@@ -37,11 +37,13 @@ public class Partie {
 			System.out.println(joueurs[i].getPseudo());
 		}
 		
+		
 		//Paragraphe pour déterminer si oui ou non on joue à l'extension
 		boolean extension ; 
 		Scanner scextension = new Scanner(System.in);
 		System.out.println("Voulez vous jouer à l'extension? (boolean)");
 		extension = scextension.nextBoolean() ; 
+		scextension.close();
 		if (extension == true) {
 			ajouterExtension();
 		}
