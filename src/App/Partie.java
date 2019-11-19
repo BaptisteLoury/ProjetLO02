@@ -23,7 +23,7 @@ public class Partie {
 	public void creerPartie() {
 	
 		Scanner sc = new Scanner(System.in);
-		System.out.println("À combien de joueurs allez vous jouer la partie ?");
+		System.out.println("ï¿½ combien de joueurs allez vous jouer la partie ?");
 		int nombreJoueur = sc.nextInt();
 		System.out.println("Combien de joueurs humains serez-vous ?");
 		int nombreJoueurReel = sc.nextInt();
@@ -34,5 +34,9 @@ public class Partie {
 			joueurs[i] = new Joueur(pseudo);
 			System.out.println(joueurs[i].getPseudo());
 		}
+		boolean extension ; 
+		Scanner scextension = new Scanner(System.in);
+		System.out.println("Voulez vous jouer Ã  l'extension? (boolean)");
+		
 	}
 }
