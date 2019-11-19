@@ -15,7 +15,7 @@ public class Partie {
 		Cartes pique4 = new Cartes(EnumTrophee.LowestTrefle,Couleur.PIQUE,Valeur.QUATRE);
 	}
 	public void ajouterExtension() {
-	
+	//rien
 	}
 	public void classerLesJoueurs() {
 	
