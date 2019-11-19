@@ -9,10 +9,18 @@ public class Partie {
 		
 	}
 	public void creerJeuDeBase() {
-		Cartes carreau1 = new Cartes(EnumTrophee.MajorityQuatre,Couleur.CARREAU,Valeur.AS);
-		Cartes joker = new Cartes(EnumTrophee.BestJest,Couleur.JOKER,Valeur.JOKER);
+		Cartes[] jeuDeBase = new Cartes[32];
+		int ordreTrophee = 0;
+		for (int ind1 = 0;ind1<=3;ind1++) {
+			for (int ind2 = 0;ind2<=3;ind2++) {
+				jeuDeBase[ordreTrophee] = new Cartes(EnumTrophee.values()[ordreTrophee],Couleur.values()[ind1],Valeur.values()[ind2]);
+				System.out.println(jeuDeBase[ordreTrophee].getCouleur() +" "+ jeuDeBase[ordreTrophee].getTrophee() +" "+ jeuDeBase[ordreTrophee].getValeur());
+				ordreTrophee++;
+			}
+		}
+		/*Cartes joker = new Cartes(EnumTrophee.BestJest,Couleur.JOKER,Valeur.JOKER);
 		Cartes coeur1 = new Cartes(EnumTrophee.Joker,Couleur.COEUR,Valeur.AS);
-		Cartes pique4 = new Cartes(EnumTrophee.LowestTrefle,Couleur.PIQUE,Valeur.QUATRE);
+		Cartes pique4 = new Cartes(EnumTrophee.LowestTrefle,Couleur.PIQUE,Valeur.QUATRE);*/
 	}
 	public void ajouterExtension() {
 	
