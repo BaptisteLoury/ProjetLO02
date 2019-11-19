@@ -5,6 +5,7 @@ public class Cartes {
 	private EnumTrophee trophee;
 	private Couleur couleur;
 	private Valeur valeur;
+	private String bonjour;
 	
 	public Cartes(EnumTrophee trophee, Couleur couleur, Valeur valeur) {
 		this.couleur = couleur;
