@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Partie {
 
-	protected Joueur[] joueurs = new Joueur[4];
+	protected Joueur[] joueurs = new Joueur[5];
 	
 	public Partie() {
 		
@@ -23,10 +23,8 @@ public class Partie {
 	public void creerPartie() {
 	
 		Scanner sc = new Scanner(System.in);
-
 		Scanner scannerPseudo = new Scanner(System.in);
-		System.out.println("ï¿½ combien de joueurs allez vous jouer la partie ?");
-
+		System.out.println("A combien de joueurs allez vous jouer la partie ?");
 		int nombreJoueur = sc.nextInt();
 		System.out.println("Combien de joueurs humains serez-vous ?");
 		int nombreJoueurReel = sc.nextInt();
@@ -36,10 +34,10 @@ public class Partie {
 			joueurs[i] = new Joueur(pseudo);
 			System.out.println(joueurs[i].getPseudo());
 		}
-
-		boolean extension ; 
-		Scanner scextension = new Scanner(System.in);
-		System.out.println("Voulez vous jouer Ã  l'extension? (boolean)");
+		for (int i = nombreJoueurReel + 1;i<=nombreJoueur;i++) {
+			joueurs[i] = new JoueurVirtuel("Bot#" + i);
+			System.out.println("Création du " + joueurs[i].getPseudo());
+		}
 		
 
 		sc.close();
