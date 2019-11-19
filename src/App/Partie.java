@@ -28,8 +28,9 @@ public class Partie {
 		System.out.println("Combien de joueurs humains serez-vous ?");
 		int nombreJoueurReel = sc.nextInt();
 		for (int i = 1;i<=nombreJoueurReel;i++) {
+			Scanner sc2 = new Scanner(System.in);
 			System.out.println("Donner le pseudo du joueur "+ i +" :");
-			String pseudo = sc.nextLine();
+			String pseudo = sc2.nextLine();
 			joueurs[i] = new Joueur(pseudo);
 			System.out.println(joueurs[i].getPseudo());
 		}
