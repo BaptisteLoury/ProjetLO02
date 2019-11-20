@@ -9,6 +9,16 @@ public class Deck {
 	//Declaration de la collection Deck
 	private HashSet <Cartes> deckDeCartes ; 
 	
+	public void creerJeuDeBase() {
+		Cartes carreau1 = new Cartes(EnumTrophee.MajorityQuatre,Couleur.CARREAU,Valeur.AS);
+		Cartes joker = new Cartes(EnumTrophee.BestJest,Couleur.JOKER,Valeur.JOKER);
+		Cartes coeur1 = new Cartes(EnumTrophee.Joker,Couleur.COEUR,Valeur.AS);
+		Cartes pique4 = new Cartes(EnumTrophee.LowestTrefle,Couleur.PIQUE,Valeur.QUATRE);
+	}
+	public void ajouterExtension() {
+	
+	}
+	
 	public Deck() {
 		deckDeCartes = new HashSet<Cartes>();
 		for (int indice = 0; indice<=jeuDeCartes.length; indice++) {

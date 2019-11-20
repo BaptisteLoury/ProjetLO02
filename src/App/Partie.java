@@ -12,6 +12,7 @@ public class Partie {
 	public Partie() {
 		
 	}
+
 	public void creerJeuDeBase() {
 		Cartes[] jeuDeBase = new Cartes[32];
 		int ordreTrophee = 0;
@@ -26,9 +27,9 @@ public class Partie {
 		Cartes coeur1 = new Cartes(EnumTrophee.Joker,Couleur.COEUR,Valeur.AS);
 		Cartes pique4 = new Cartes(EnumTrophee.LowestTrefle,Couleur.PIQUE,Valeur.QUATRE);*/
 	}
-	public void ajouterExtension() {
+	public void ajouterExtension() {}
+
 	
-	}
 	public void classerLesJoueurs() {
 	
 	}
