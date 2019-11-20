@@ -12,15 +12,7 @@ public class Partie {
 	public Partie() {
 		
 	}
-	public void creerJeuDeBase() {
-		Cartes carreau1 = new Cartes(EnumTrophee.MajorityQuatre,Couleur.CARREAU,Valeur.AS);
-		Cartes joker = new Cartes(EnumTrophee.BestJest,Couleur.JOKER,Valeur.JOKER);
-		Cartes coeur1 = new Cartes(EnumTrophee.Joker,Couleur.COEUR,Valeur.AS);
-		Cartes pique4 = new Cartes(EnumTrophee.LowestTrefle,Couleur.PIQUE,Valeur.QUATRE);
-	}
-	public void ajouterExtension() {
 	
-	}
 	public void classerLesJoueurs() {
 	
 	}
