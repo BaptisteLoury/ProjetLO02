@@ -1,32 +1,57 @@
 package App;
-import java.util.LinkedList;;
+import java.util.LinkedList;
+import java.util.Iterator;
 
 public class Deck {
-
-	private int nombreCartes;
 	
 	private LinkedList<Cartes> deckCartes;
+	private int nombreCartes;
 	
 	public Deck() {
 		
 	}
 	public void creerJeuDeBase() {
 		int trophee = 0;
-		for (Couleur ind1 : Couleur.values()) {
-			for (Valeur ind2 : Valeur.values()) {
-				Cartes carte = new Cartes(EnumTrophee.values()[trophee],ind1,ind2);
-				deckCartes.add(carte);
-				trophee++;
+		deckCartes = new LinkedList<Cartes>();
+		for (Couleur c : Couleur.values()) {
+			for (Valeur v : Valeur.values()) {
+				if (c != Couleur.JOKER && v != Valeur.JOKER) {
+					Cartes carte = new Cartes(EnumTrophee.values()[trophee],c,v);
+					deckCartes.add(carte);
+					if (c != Couleur.COEUR) {
+						trophee++;
+					}
+				}
 			}
 		}
 		Cartes joker = new Cartes(EnumTrophee.BestJest,Couleur.JOKER,Valeur.JOKER);
 		deckCartes.add(joker);
+		nombreCartes = deckCartes.size();
 	}
 
-	public void remplirDeck() {
+	public void ajouterExtension() {
+		
 		
 	}
-
+	
+	public void melanger() {
+		for (int i = 0;i < nombreCartes; i++) {
+			int position = (int) (Math.round(nombreCartes)*Math.random());
+			Cartes carte = deckCartes.pop();
+			deckCartes.add(position, carte);
+		}
+		//Verification creation cartes et melange
+			/*	Iterator<Cartes> it  = deckCartes.iterator();
+				while (it.hasNext()) {
+					Cartes carte = (Cartes) it.next();
+					System.out.println(carte.toString());
+				}
+			*/
+	}
+	public Boolean isEmpty() {
+		return deckCartes.isEmpty();
+	}
+	
 	public int getNombreCartes() {
 		return nombreCartes;
 	}
@@ -34,5 +59,8 @@ public class Deck {
 	public void setNombreCartes(int nombreCartes) {
 		this.nombreCartes = nombreCartes;
 	}
-	
+
+	public String toString() {
+		return deckCartes.toString();
+	}
 }

@@ -1,9 +1,11 @@
 package App;
+import java.util.LinkedList;
 
 public class Joueur {
 
 	private String pseudo;
-	public static int nbJoueurs = 0;
+	private static int nbJoueurs = 0;
+	private LinkedList<Cartes> main;
 	
 	public Joueur() {
 		
@@ -30,5 +32,12 @@ public class Joueur {
 	}
 	public static void setNbJoueurs(int nbJoueurs) {
 		Joueur.nbJoueurs = nbJoueurs;
+	}
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		sb.append(pseudo);
+		sb.append(" : ");
+		sb.append(main);
+		return sb.toString();
 	}
 }

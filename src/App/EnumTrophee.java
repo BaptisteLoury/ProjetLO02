@@ -2,18 +2,28 @@ package App;
 
 public enum EnumTrophee {
 
-	BestJest,
-	Joker,
-	LowestTrefle,
-	LowestPique,
+	MajorityQuatre,
+	HighestCarreau,
+	LowestCarreau,
 	BestJestNoJoke,
 	HighestTrefle,
-	HighestPique,
-	MajorityQuatre,
 	MajorityTrois,
-	HighestCarreau,
 	MajorityDeux,
-	HighestCoeur,
-	LowestCarreau,
+	LowestTrefle,
+	HighestPique,
 	LowestCoeur,
+	HighestCoeur,
+	LowestPique,
+	Joker,
+	BestJest,
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
 }
