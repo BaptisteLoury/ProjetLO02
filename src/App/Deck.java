@@ -18,6 +18,7 @@ public class Deck {
 				if (c != Couleur.JOKER && v != Valeur.JOKER) {
 					Cartes carte = new Cartes(EnumTrophee.values()[trophee],c,v);
 					deckCartes.add(carte);
+					//Je ne comprends pas ça
 					if (c != Couleur.COEUR) {
 						trophee++;
 					}
@@ -40,13 +41,14 @@ public class Deck {
 			Cartes carte = deckCartes.pop();
 			deckCartes.add(position, carte);
 		}
+		//Pourquoi avoir mis ça sous commentaire ? 
 		//Verification creation cartes et melange
-			/*	Iterator<Cartes> it  = deckCartes.iterator();
-				while (it.hasNext()) {
-					Cartes carte = (Cartes) it.next();
-					System.out.println(carte.toString());
-				}
-			*/
+		Iterator<Cartes> it  = deckCartes.iterator();
+		while (it.hasNext()) {
+			Cartes carte = (Cartes) it.next();
+			System.out.println(carte.toString());
+			}
+			
 	}
 	public Boolean isEmpty() {
 		return deckCartes.isEmpty();

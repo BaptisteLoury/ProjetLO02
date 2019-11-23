@@ -13,13 +13,15 @@ public class Joueur {
 	public Joueur(String pseudo) {
 		nbJoueurs++;
 		this.pseudo = pseudo;
+		main = new LinkedList<Cartes>();
 	}
 
 	public void faireOffre()  {
 		
 	}
 	public void choisirCarte()  {
-		
+		//cartesProposees a definir dans faireOffre
+		main.add(cartesProposees);
 	}	
 	public String getPseudo() {
 		return pseudo;
