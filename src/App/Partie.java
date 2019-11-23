@@ -30,13 +30,13 @@ public class Partie {
 		}
 		for (int i = nombreJoueurReel + 1;i<=nombreJoueur;i++) {
 			joueurs[i] = new JoueurVirtuel("Bot#" + i);
-			System.out.println("Cr�ation du " + joueurs[i].getPseudo());
+			System.out.println("Cr�ation du " + joueurs[i].getPseudo());
 		}
 		//Paragraphe pour déterminer si oui ou non on joue à l'extension
-		boolean extension ; 
+		 
 		Scanner scextension = new Scanner(System.in);
 		System.out.println("Voulez vous jouer à l'extension? (boolean)");
-		extension = scextension.nextBoolean() ; 
+		boolean extension = scextension.nextBoolean() ; 
 		if (extension == true) {
 			ajouterExtension();
 		}
