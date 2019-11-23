@@ -37,5 +37,12 @@ public class Cartes {
 		this.valeur = valeur;
 	}
 
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		sb.append(this.valeur.toString());
+		sb.append(" de ");
+		sb.append(this.couleur.toString());
+		return sb.toString();
+	}
 
 }

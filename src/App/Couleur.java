@@ -4,7 +4,7 @@ public enum Couleur {
 
 	CARREAU,
 	PIQUE,
-	COEUR,
 	TREFLE,
+	COEUR,
 	JOKER,
 }

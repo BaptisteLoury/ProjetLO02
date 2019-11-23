@@ -1,37 +1,57 @@
 package App;
-
-import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Iterator;
 
 public class Deck {
-
+	
+	private LinkedList<Cartes> deckCartes;
 	private int nombreCartes;
 	
-	//Declaration de la collection Deck
-	private HashSet <Cartes> deckDeCartes ; 
-	
-	public void creerJeuDeBase() {
-		Cartes carreau1 = new Cartes(EnumTrophee.MajorityQuatre,Couleur.CARREAU,Valeur.AS);
-		Cartes joker = new Cartes(EnumTrophee.BestJest,Couleur.JOKER,Valeur.JOKER);
-		Cartes coeur1 = new Cartes(EnumTrophee.Joker,Couleur.COEUR,Valeur.AS);
-		Cartes pique4 = new Cartes(EnumTrophee.LowestTrefle,Couleur.PIQUE,Valeur.QUATRE);
-	}
-	public void ajouterExtension() {
-	
-	}
-	
 	public Deck() {
-		deckDeCartes = new HashSet<Cartes>();
-		for (int indice = 0; indice<=jeuDeCartes.length; indice++) {
-			Cartes carte = new Cartes ;
-			deckDeCartes.add(carte) ;
-		}
-		//A FINIR : METTRE CARTES CRÉES DANS PARTIE DANS HASSET DECK
-	}
-	
-	public void remplirDeck() {
 		
 	}
+	public void creerJeuDeBase() {
+		int trophee = 0;
+		deckCartes = new LinkedList<Cartes>();
+		for (Couleur c : Couleur.values()) {
+			for (Valeur v : Valeur.values()) {
+				if (c != Couleur.JOKER && v != Valeur.JOKER) {
+					Cartes carte = new Cartes(EnumTrophee.values()[trophee],c,v);
+					deckCartes.add(carte);
+					if (c != Couleur.COEUR) {
+						trophee++;
+					}
+				}
+			}
+		}
+		Cartes joker = new Cartes(EnumTrophee.BestJest,Couleur.JOKER,Valeur.JOKER);
+		deckCartes.add(joker);
+		nombreCartes = deckCartes.size();
+	}
 
+	public void ajouterExtension() {
+		
+		
+	}
+	
+	public void melanger() {
+		for (int i = 0;i < nombreCartes; i++) {
+			int position = (int) (Math.round(nombreCartes)*Math.random());
+			Cartes carte = deckCartes.pop();
+			deckCartes.add(position, carte);
+		}
+		//Verification creation cartes et melange
+			/*	Iterator<Cartes> it  = deckCartes.iterator();
+				while (it.hasNext()) {
+					Cartes carte = (Cartes) it.next();
+					System.out.println(carte.toString());
+				}
+			*/
+	}
+	public Boolean isEmpty() {
+		return deckCartes.isEmpty();
+	}
+	
 	public int getNombreCartes() {
 		return nombreCartes;
 	}
@@ -39,5 +59,8 @@ public class Deck {
 	public void setNombreCartes(int nombreCartes) {
 		this.nombreCartes = nombreCartes;
 	}
-	
+
+	public String toString() {
+		return deckCartes.toString();
+	}
 }
