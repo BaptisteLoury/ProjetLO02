@@ -65,6 +65,9 @@ public class Deck {
 			}*/
 			
 	}
+	public void distribuer() {
+		
+	}
 	public Boolean isEmpty() {
 		return deckCartes.isEmpty();
 	}
