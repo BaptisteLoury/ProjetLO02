@@ -6,5 +6,6 @@ public enum Valeur {
 	DEUX,
 	TROIS,
 	QUATRE,
+	CINQ,
 	JOKER,
 }
