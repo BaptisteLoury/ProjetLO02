@@ -1,5 +1,7 @@
 package App;
 
+import java.util.HashSet;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -8,15 +10,16 @@ public class Main {
 		partie.creerPartie();
 		Deck deck = new Deck();
 		deck.creerJeuDeBase();
-		deck.ajouterExtension();
 		deck.melanger();
-		System.out.println(deck.toString());
-		System.out.println(deck.getNombreCartes());
 		
 		
-		PotCommun pot = new PotCommun();
+		
+		
+		
+		//HashSet<Joueur> joueurs.toString();
+		/*PotCommun pot = new PotCommun();
 		pot.remplirPot();
-		
+		*/
 		
 	}
 

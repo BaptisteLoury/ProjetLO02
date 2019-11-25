@@ -6,6 +6,7 @@ import java.util.Iterator;
 public class Joueur {
 
 	private String pseudo;
+	//Etrange d'avoir deux attributs nombreJoueurs
 	private static int nbJoueurs = 0;
 	private LinkedList<Cartes> main;
 	private Offre offre;

@@ -69,9 +69,13 @@ public class Partie {
 		case "O":
 			deck.ajouterExtension();
 			System.out.println("Okay, tu as décidé de jouer à l'extension. \n") ; 
+			System.out.println(deck.toString());
+			System.out.println(deck.getNombreCartes());
 			break;
 		case "N":
 			System.out.println("Okay tu ne veux pas jouer à l'extension. J'en prends note ! \n") ; 
+			System.out.println(deck.toString());
+			System.out.println(deck.getNombreCartes());
 			break;
 		default:
 			System.out.println("La syntaxe de la r�ponse n'est pas correcte. Je pars du principe que tu ne veux pas ajouter l'extension !") ; 
