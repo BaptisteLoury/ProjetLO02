@@ -6,9 +6,20 @@ public class Partie {
 
 	private HashSet<Joueur> joueurs;
 	private Deck deck;
-	
-	public Partie() {
+	private int nombreJoueur;
+	private Partie() {
 		
+	}
+	//Singleton
+	private Partie INSTANCE= null; 
+	public Partie getInstance () {
+		if (this.INSTANCE== null) {
+			this.INSTANCE = new Partie(); 
+		}
+		else {
+			return this.INSTANCE;
+		}
+		return this.INSTANCE ;
 	}
 	public void classerLesJoueurs() {
 	
@@ -18,7 +29,18 @@ public class Partie {
 		Scanner sc = new Scanner(System.in);
 		Scanner scannerPseudo = new Scanner(System.in);
 		System.out.println("A combien de joueurs allez vous jouer la partie ?");
-		int nombreJoueur = sc.nextInt();
+		nombreJoueur = sc.nextInt();
+		switch (nombreJoueur) {
+		case 3:
+			System.out.println("parfait");
+			break;
+		case 4:
+			System.out.println("parfait");
+			break;
+		default:
+			System.out.println("Il y'a un probleme avec le nombre de joueurs. relance le programme. \n");
+	
+		}
 		System.out.println("Combien de joueurs humains serez-vous ? (Il doit Ãªtre infÃ©rieur ou Ã©gal au nombre de joueurs totals");
 		int nombreJoueurReel = sc.nextInt();
 		joueurs = new HashSet<Joueur>();
@@ -27,40 +49,36 @@ public class Partie {
 			String pseudo = scannerPseudo.nextLine();
 			Joueur j = new Joueur(pseudo);
 			joueurs.add(j);
-			System.out.println("Le joueur " + j.getPseudo() + " a été ajouté à la partie !");
+			System.out.println("Le joueur " + j.getPseudo() + " a ï¿½tï¿½ ajoutï¿½ ï¿½ la partie !");
 		}
 		
 		for (int i = nombreJoueurReel + 1;i<=nombreJoueur;i++) {
 			Joueur jv = new JoueurVirtuel("Joueur Virtuel " + i);
 			joueurs.add(jv);
-			System.out.println("Le Joueur Virtuel " + i + " a bien été ajouté à la partie !");
+			System.out.println("Le Joueur Virtuel " + i + " a bien ï¿½tï¿½ ajoutï¿½ ï¿½ la partie !");
 		}
-		// Création du jeu de cartes de base + mélange automatique
+		// Crï¿½ation du jeu de cartes de base + mï¿½lange automatique
 		deck = new Deck();
 		//Paragraphe pour dÃ©terminer si oui ou non on joue Ã  l'extension
 		 
 		Scanner scExtension = new Scanner(System.in);
 		System.out.println("Voulez vous jouer Ã  l'extension? (O/N)");
 		String extension = scExtension.nextLine();
-		// La réponse d'un joueur suite à la question n'est généralement pas un booléen, il est plus instinctif de répondre par oui/o ou non/n
+		// La rï¿½ponse d'un joueur suite ï¿½ la question n'est gï¿½nï¿½ralement pas un boolï¿½en, il est plus instinctif de rï¿½pondre par oui/o ou non/n
 		switch(extension) {
 		case "O":
 			deck.ajouterExtension();
+			System.out.println("Okay, tu as dÃ©cidÃ© de jouer Ã  l'extension. \n") ; 
 			break;
 		case "N":
 			System.out.println("Okay tu ne veux pas jouer Ã  l'extension. J'en prends note ! \n") ; 
 			break;
 		default:
-			System.out.println("La syntaxe de la réponse n'est pas correcte. Je pars du principe que tu ne veux pas ajouter l'extension !") ; 
+			System.out.println("La syntaxe de la rï¿½ponse n'est pas correcte. Je pars du principe que tu ne veux pas ajouter l'extension !") ; 
 			
 		}
-		/*boolean extension = scExtension.nextBoolean() ;
-		if (extension == true) {
-			deck.ajouterExtension();
-		}
-		else if (extension == false) {
-			System.out.println("Okay tu ne veux pas jouer Ã  l'extension. J'en prends note ! \n") ; 
-		}	*/
+		
+
 		scannerPseudo.close();
 		sc.close();
 		scExtension.close();
@@ -71,4 +89,8 @@ public class Partie {
 	public void setDeck(Deck deck) {
 		this.deck = deck;
 	}
+	public int getNombreJoueurs() {
+		return nombreJoueur;
+	}
+	
 }

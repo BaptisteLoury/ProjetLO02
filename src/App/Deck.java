@@ -4,7 +4,9 @@ import java.util.Iterator;
 
 public class Deck {
 	
-	private LinkedList<Cartes> deckCartes;
+	protected LinkedList<Cartes> deckCartes;
+
+
 	private int nombreCartes;
 	
 	public Deck() {
@@ -19,9 +21,9 @@ public class Deck {
 				if (c != Couleur.JOKER && v != Valeur.JOKER && v !=Valeur.CINQ) {
 					Cartes carte = new Cartes(EnumTrophee.values()[trophee],c,v);
 					deckCartes.add(carte);
-					//Comme un terme ne peut etre présent qu'une seule fois dans une énumération et que les Cartes coeurs ont toutes le même trophée,
-					// à savoir Joker, lorsque la boucle arrive à la création des cartes coeurs il ne fait plus avancer le trophée et toutes les cartes coeurs
-					// ont pour trophée joker
+					//Comme un terme ne peut etre prï¿½sent qu'une seule fois dans une ï¿½numï¿½ration et que les Cartes coeurs ont toutes le mï¿½me trophï¿½e,
+					// ï¿½ savoir Joker, lorsque la boucle arrive ï¿½ la crï¿½ation des cartes coeurs il ne fait plus avancer le trophï¿½e et toutes les cartes coeurs
+					// ont pour trophï¿½e joker
 					if (c != Couleur.COEUR) {
 						trophee++;
 					}
@@ -57,7 +59,7 @@ public class Deck {
 		}
 		//Pourquoi avoir mis Ã§a sous commentaire ? 
 		//Verification creation cartes et melange
-		// Cette boucle équivaut à un this.toString() - Elle ne sera pas dans l'algo final
+		// Cette boucle ï¿½quivaut ï¿½ un this.toString() - Elle ne sera pas dans l'algo final
 		/*Iterator<Cartes> it  = deckCartes.iterator();
 		while (it.hasNext()) {
 			Cartes carte = (Cartes) it.next();
