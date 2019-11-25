@@ -11,15 +11,15 @@ public class Partie {
 		
 	}
 	//Singleton
-	private Partie INSTANCE= null; 
-	public Partie getInstance () {
-		if (this.INSTANCE== null) {
-			this.INSTANCE = new Partie(); 
+	private static Partie INSTANCE= null; 
+	public static Partie  getInstance () {
+		if (INSTANCE== null) {
+			INSTANCE = new Partie(); 
 		}
 		else {
-			return this.INSTANCE;
+			return INSTANCE;
 		}
-		return this.INSTANCE ;
+		return INSTANCE ;
 	}
 	public void classerLesJoueurs() {
 	
