@@ -11,6 +11,7 @@ public class Joueur {
 	private LinkedList<Cartes> main;
 	private LinkedList<Cartes> stack;
 	private Offre offre;
+	private Offre offreChoisie;
 	
 	public Joueur() {
 		
@@ -29,14 +30,12 @@ public class Joueur {
 		Scanner scCarteOffre = new Scanner(System.in);
 		int indiceRecto = scCarteOffre.nextInt();
 		if (indiceRecto ==0){
-			offre = new Offre(stack.get(0),stack.get(1),this);
-			main.remove(stack.getFirst());
-			main.remove(stack.getLast());
+			offre = new Offre(main.get(0),main.get(1),this);
+			main.clear();
 		}
 		else if (indiceRecto==1){
-			offre = new Offre(stack.get(1),stack.get(0),this);
-			main.remove(stack.getFirst());
-			main.remove(stack.getLast());
+			offre = new Offre(main.get(1),main.get(0),this);
+			main.clear();
 		}
 		else {
 			System.out.println("Les indices renseignés ne sont pas correctes, veuillez à nouveau compléter votre offre.");
@@ -44,7 +43,7 @@ public class Joueur {
 		}
 		
 	}
-	public void choisirOffre(LinkedList<Joueur> joueurs) {
+	public Joueur choisirOffre(LinkedList<Joueur> joueurs) {
 		Scanner scOffre = new Scanner(System.in);
 		Iterator<Joueur> itj = joueurs.iterator();
 		int nombreOffreSuffisante = 0;
@@ -58,6 +57,8 @@ public class Joueur {
 		if (nombreOffreSuffisante == 0) {
 			System.out.println("Vous devez récupérer une carte de votre offre.");
 			this.choisirCarte(this);
+			return this;
+			//this.setOffreChoisie(this.getOffre());
 		}
 		else {
 			System.out.println("Quelle offre avez vous choisi ? (indice du joueur)");
@@ -65,16 +66,18 @@ public class Joueur {
 			if(choixOffre<=joueurs.size() && choixOffre != joueurs.indexOf(this)) {
 				System.out.println("Vous avez choisi l'offre de "+ joueurs.get(choixOffre).getPseudo());
 				this.choisirCarte(joueurs.get(choixOffre));
-				scOffre.close();
+				return joueurs.get(choixOffre);
+				//this.setOffreChoisie(joueurs.get(choixOffre).getOffre());
 			}
 			else {
 				System.out.println("Mauvais indice entré.");
 				this.choisirOffre(joueurs);
+				return this.choisirOffre(joueurs);
 			}
 		}
 	}
 	
-	public Cartes choisirCarte(Joueur joueur) {
+	public void choisirCarte(Joueur joueur) {
 		Cartes carteRestante = new Cartes();
 		Scanner scCarte = new Scanner(System.in);
 		System.out.println(joueur.getOffre().toString());
@@ -88,17 +91,13 @@ public class Joueur {
 			
 			if (choixCartes ==1) {
 				stack.add(joueur.getOffre().getRecto());
-				carteRestante = joueur.getOffre().getVerso();
 			}
 			else {
 				stack.add(joueur.getOffre().getVerso());
-				carteRestante = joueur.getOffre().getRecto();
 			}
-			scCarte.close();
 			
 		}
 		joueur.getOffre().setOffreSuffisante(false);
-		return carteRestante;
 	}
 	
 	public Offre getOffre() {
@@ -117,10 +116,10 @@ public class Joueur {
 		StringBuffer sb = new StringBuffer();
 		sb.append("0");
 		sb.append(" : ");
-		sb.append(stack.getFirst().toString());
+		sb.append(main.getFirst().toString());
 		sb.append(" | 1");
 		sb.append(" : ");
-		sb.append(stack.getLast().toString());
+		sb.append(main.getLast().toString());
 		return sb.toString();
 	}
 	public void setPseudo(String pseudo) {
@@ -128,6 +127,13 @@ public class Joueur {
 	}
 	public static int getNbJoueurs() {
 		return nbJoueurs;
+	}
+	
+	public Offre getOffreChoisie() {
+		return offreChoisie;
+	}
+	public void setOffreChoisie(Offre offreChoisie) {
+		this.offreChoisie = offreChoisie;
 	}
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
