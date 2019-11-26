@@ -12,10 +12,8 @@ public class Main {
 			partie.tour();
 		}
 		partie.distribuer();
-		/*PotCommun pot = new PotCommun();
-		pot.remplirPot();*/
 
-		
+
 	}
 
 }

@@ -31,12 +31,12 @@ public class Partie {
 		if (!deck.isEmpty()) {
 			while (itj.hasNext()) {
 				Joueur j = (Joueur) itj.next();
-				j.getMain().add(deck.getDeckCartes().pop());
+				j.getStack().add(deck.getDeckCartes().pop());
 				if(deck.getStackIntermediaire().isEmpty()) {
-					j.getMain().add(deck.getDeckCartes().pop());
+					j.getStack().add(deck.getDeckCartes().pop());
 				}
 				else {
-					j.getMain().add(deck.getStackIntermediaire().pop());
+					j.getStack().add(deck.getStackIntermediaire().pop());
 				}
 			}
 		}
@@ -114,9 +114,12 @@ public class Partie {
 			
 		}
 		
-		scannerPseudo.close();
+
+
+		/*scannerPseudo.close();
+
 		sc.close();
-		scExtension.close();
+		scExtension.close();*/
 	}
 	public Deck getDeck() {
 		return deck;
