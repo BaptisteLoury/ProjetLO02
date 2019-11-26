@@ -13,13 +13,9 @@ public class Main {
 		deck.melanger();
 		
 		
-		
-		
-		
-		//HashSet<Joueur> joueurs.toString();
-		/*PotCommun pot = new PotCommun();
+		PotCommun pot = new PotCommun();
 		pot.remplirPot();
-		*/
+		
 		
 	}
 
