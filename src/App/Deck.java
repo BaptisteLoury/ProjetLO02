@@ -1,12 +1,16 @@
 package App;
 import java.util.LinkedList;
+
 import java.util.HashSet;
 import java.util.Iterator;
+
 
 public class Deck {
 	
 	protected LinkedList<Cartes> deckCartes;
-	private HashSet<Joueur> joueurs;
+
+	protected LinkedList<Cartes> stackIntermediaire;
+
 
 	private int nombreCartes;
 	
@@ -59,22 +63,21 @@ public class Deck {
 			Cartes carte = deckCartes.pop();
 			deckCartes.add(position, carte);
 		}
-		//Pourquoi avoir mis ça sous commentaire ? 
-		//Verification creation cartes et melange
-		// Cette boucle �quivaut � un this.toString() - Elle ne sera pas dans l'algo final
-		/*Iterator<Cartes> it  = deckCartes.iterator();
-		while (it.hasNext()) {
-			Cartes carte = (Cartes) it.next();
-			System.out.println(carte.toString());
-			}*/
-			
 	}
+
 	public void distribuer() {
 		/*joueurs = new HashSet<Joueur>();
 		
 		for (int i=1; i<= joueurs.size() ;i++) {
 			main  =deckCartes.pop();
-		}*/
+		*/}
+
+	public void recupererCarteRestante(Cartes carteRestante) {
+		stackIntermediaire.add(carteRestante);
+	}
+	public LinkedList<Cartes> getDeckCartes() {
+		return deckCartes;
+
 	}
 	public Boolean isEmpty() {
 		return deckCartes.isEmpty();
@@ -86,6 +89,9 @@ public class Deck {
 
 	public void setNombreCartes(int nombreCartes) {
 		this.nombreCartes = nombreCartes;
+	}
+	public LinkedList<Cartes> getStackIntermediaire() {
+		return stackIntermediaire;
 	}
 
 	public String toString() {

@@ -6,7 +6,9 @@ public class Cartes {
 	private Couleur couleur;
 	private Valeur valeur;
 	
-	
+	public Cartes() {
+		
+	}
 	public Cartes(EnumTrophee trophee, Couleur couleur, Valeur valeur) {
 		this.couleur = couleur;
 		this.trophee = trophee;
