@@ -82,7 +82,6 @@ public class Partie {
 			
 		}
 		
-
 		scannerPseudo.close();
 		sc.close();
 		scExtension.close();

@@ -1,11 +1,12 @@
 package App;
 import java.util.LinkedList;
+import java.util.HashSet;
 import java.util.Iterator;
 
 public class Deck {
 	
 	protected LinkedList<Cartes> deckCartes;
-
+	private HashSet<Joueur> joueurs;
 
 	private int nombreCartes;
 	
@@ -69,7 +70,11 @@ public class Deck {
 			
 	}
 	public void distribuer() {
+		/*joueurs = new HashSet<Joueur>();
 		
+		for (int i=1; i<= joueurs.size() ;i++) {
+			main  =deckCartes.pop();
+		}*/
 	}
 	public Boolean isEmpty() {
 		return deckCartes.isEmpty();

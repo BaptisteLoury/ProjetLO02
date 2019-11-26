@@ -12,9 +12,10 @@ public class Main {
 		deck.creerJeuDeBase();
 		deck.melanger();
 		
-		
 		PotCommun pot = new PotCommun();
 		pot.remplirPot();
+		
+		partie.getNombreJoueurs();
 		
 		
 	}

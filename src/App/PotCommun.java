@@ -9,8 +9,6 @@ public class PotCommun extends Deck {
 	
 	private ArrayDeque<Cartes> potCommun;
 	
-	//protected Joueur[] joueurs = new Joueur[5];
-	
 	public PotCommun() {
 		
 	}

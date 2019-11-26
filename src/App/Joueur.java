@@ -18,6 +18,7 @@ public class Joueur {
 		nbJoueurs++;
 		this.pseudo = pseudo;
 		main = new LinkedList<Cartes>();
+		System.out.println("test");
 	}
 
 	public void faireOffre()  {
@@ -36,7 +37,7 @@ public class Joueur {
 		//main.add(cartesProposees);
 	}	
 	public String getPseudo() {
-		return pseudo;
+		return this.pseudo;
 	}
 	public String toStringMain() {
 		Iterator<Cartes> it = main.iterator();
