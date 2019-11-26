@@ -35,6 +35,12 @@ public class Offre {
 		
 		return offreSuffisante;
 	}
-	
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		sb.append(offrant.getPseudo());
+		sb.append(" - Carte recto : ");
+		sb.append(recto.toString());
+		return sb.toString();
+	}
 	
 }

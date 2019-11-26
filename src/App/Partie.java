@@ -63,16 +63,16 @@ public class Partie {
 		 
 		Scanner scExtension = new Scanner(System.in);
 		System.out.println("Voulez vous jouer à l'extension? (O/N)");
-		String extension = scExtension.nextLine();
+		char extension = scExtension.nextLine().charAt(0);
 		// La r�ponse d'un joueur suite � la question n'est g�n�ralement pas un bool�en, il est plus instinctif de r�pondre par oui/o ou non/n
 		switch(extension) {
-		case "O":
+		case 'O':
 			deck.ajouterExtension();
 			System.out.println("Okay, tu as décidé de jouer à l'extension. \n") ; 
 			System.out.println(deck.toString());
 			System.out.println(deck.getNombreCartes());
 			break;
-		case "N":
+		case 'N':
 			System.out.println("Okay tu ne veux pas jouer à l'extension. J'en prends note ! \n") ; 
 			System.out.println(deck.toString());
 			System.out.println(deck.getNombreCartes());

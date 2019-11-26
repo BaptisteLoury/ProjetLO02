@@ -16,7 +16,6 @@ public class Main {
 		PotCommun pot = new PotCommun();
 		pot.remplirPot();
 		
-		
 	}
 
 }
