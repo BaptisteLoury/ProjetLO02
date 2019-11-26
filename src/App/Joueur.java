@@ -46,7 +46,7 @@ public class Joueur {
 		int nombreOffreSuffisante = 0;
 		while (itj.hasNext()) {
 			Joueur j = (Joueur) itj.next();
-			if (j.getOffre().isOffreSuffisante() == true && j != this) {
+			if (j.getOffre().estOffreSuffisante() == true && j != this) {
 				System.out.println(joueurs.indexOf(j) +" : " +j.getOffre().toString());
 				nombreOffreSuffisante++;
 			}
@@ -70,7 +70,8 @@ public class Joueur {
 		}
 	}
 	
-	public void choisirCarte(Joueur joueur) {
+	public Cartes choisirCarte(Joueur joueur) {
+		Cartes carteRestante = new Cartes();
 		Scanner scCarte = new Scanner(System.in);
 		System.out.println(joueur.getOffre().toString());
 		System.out.println("Tapez 1 pour récupérer la carte recto et 2 pour la carte verso.");
@@ -80,14 +81,20 @@ public class Joueur {
 			this.choisirCarte(joueur);
 		}
 		else {
+			
 			if (choixCartes ==1) {
 				main.add(joueur.getOffre().getRecto());
+				carteRestante = joueur.getOffre().getVerso();
 			}
 			else {
 				main.add(joueur.getOffre().getVerso());
+				carteRestante = joueur.getOffre().getRecto();
 			}
 			scCarte.close();
+			
 		}
+		joueur.getOffre().setOffreSuffisante(false);
+		return carteRestante;
 	}
 	
 	public Offre getOffre() {

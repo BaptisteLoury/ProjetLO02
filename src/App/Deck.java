@@ -4,6 +4,7 @@ import java.util.LinkedList;
 public class Deck {
 	
 	protected LinkedList<Cartes> deckCartes;
+	protected LinkedList<Cartes> stackIntermediaire;
 
 
 	private int nombreCartes;
@@ -57,18 +58,12 @@ public class Deck {
 			Cartes carte = deckCartes.pop();
 			deckCartes.add(position, carte);
 		}
-		//Pourquoi avoir mis ça sous commentaire ? 
-		//Verification creation cartes et melange
-		// Cette boucle �quivaut � un this.toString() - Elle ne sera pas dans l'algo final
-		/*Iterator<Cartes> it  = deckCartes.iterator();
-		while (it.hasNext()) {
-			Cartes carte = (Cartes) it.next();
-			System.out.println(carte.toString());
-			}*/
-			
 	}
-	public void distribuer() {
-		
+	public void recupererCarteRestante(Cartes carteRestante) {
+		stackIntermediaire.add(carteRestante);
+	}
+	public LinkedList<Cartes> getDeckCartes() {
+		return deckCartes;
 	}
 	public Boolean isEmpty() {
 		return deckCartes.isEmpty();
@@ -80,6 +75,9 @@ public class Deck {
 
 	public void setNombreCartes(int nombreCartes) {
 		this.nombreCartes = nombreCartes;
+	}
+	public LinkedList<Cartes> getStackIntermediaire() {
+		return stackIntermediaire;
 	}
 
 	public String toString() {

@@ -1,13 +1,14 @@
 package App;
 import java.util.Scanner;
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class Partie {
 
 	private HashSet<Joueur> joueurs;
 	private Deck deck;
-	private int nombreJoueur;
-	private Partie() {
+	
+	public Partie() {
 		
 	}
 	//Singleton
@@ -24,12 +25,42 @@ public class Partie {
 	public void classerLesJoueurs() {
 	
 	}
+	public void distribuer() {
+		Iterator<Joueur> itj = joueurs.iterator();
+		if (!deck.isEmpty()) {
+			while (itj.hasNext()) {
+				Joueur j = (Joueur) itj.next();
+				j.getMain().add(deck.getDeckCartes().pop());
+				if(deck.getStackIntermediaire().isEmpty()) {
+					j.getMain().add(deck.getDeckCartes().pop());
+				}
+				else {
+					j.getMain().add(deck.getStackIntermediaire().pop());
+				}
+			}
+		}
+		else {
+			while (itj.hasNext()) {
+				Joueur j = (Joueur) itj.next();
+				j.getMain().add(deck.getStackIntermediaire().pop());
+			}
+		}
+	}
+	public void tour() {
+		this.distribuer();
+		//Dans l'ordre, les joueurs font leur offre
+		Iterator<Joueur> itj = joueurs.iterator();
+		while (itj.hasNext()) {
+			Joueur j = (Joueur) itj.next();
+			j.faireOffre();
+		}
+	}
 	public void creerPartie() {
 	
 		Scanner sc = new Scanner(System.in);
 		Scanner scannerPseudo = new Scanner(System.in);
 		System.out.println("A combien de joueurs allez vous jouer la partie ?");
-		nombreJoueur = sc.nextInt();
+		int nombreJoueur = sc.nextInt();
 		switch (nombreJoueur) {
 		case 3:
 			System.out.println("parfait");
@@ -93,8 +124,4 @@ public class Partie {
 	public void setDeck(Deck deck) {
 		this.deck = deck;
 	}
-	public int getNombreJoueurs() {
-		return nombreJoueur;
-	}
-	
 }

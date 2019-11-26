@@ -31,9 +31,11 @@ public class Offre {
 	public void setOffrant(Joueur offrant) {
 		this.offrant = offrant;
 	}
-	public boolean isOffreSuffisante() {
-		
+	public boolean estOffreSuffisante() {
 		return offreSuffisante;
+	}
+	public void setOffreSuffisante(Boolean offreSuffisante) {
+		this.offreSuffisante = offreSuffisante;
 	}
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
