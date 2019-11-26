@@ -12,6 +12,7 @@ public class Deck {
 	public Deck() {
 		this.creerJeuDeBase();
 		this.melanger();
+		stackIntermediaire = new LinkedList<Cartes>();
 	}
 	public void creerJeuDeBase() {
 		int trophee = 0;

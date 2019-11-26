@@ -9,6 +9,7 @@ public class Joueur {
 	//Etrange d'avoir deux attributs nombreJoueurs
 	private static int nbJoueurs = 0;
 	private LinkedList<Cartes> main;
+	private LinkedList<Cartes> stack;
 	private Offre offre;
 	
 	public Joueur() {
@@ -18,21 +19,24 @@ public class Joueur {
 		nbJoueurs++;
 		this.pseudo = pseudo;
 		main = new LinkedList<Cartes>();
+		stack = new LinkedList<Cartes>();
 	}
 
 	public void faireOffre()  {
-		Scanner scCarteOffre = new Scanner(System.in);
 		System.out.println("Au tour de "+ this.getPseudo() +" de proposer une offre.");
-		this.afficherIndiceCartes();
-		System.out.println("Donner l'indice de la carte à mettre en recto. (1 ou 2)");
+		System.out.println(this.afficherIndiceCartes());
+		System.out.println("Donner l'indice de la carte à mettre en recto. (0 ou 1)");
+		Scanner scCarteOffre = new Scanner(System.in);
 		int indiceRecto = scCarteOffre.nextInt();
-		System.out.println("Donner l'indice de la carte à mettre en verso. (1 ou 2 mais différent de la réponse précédente)");
-		int indiceVerso = scCarteOffre.nextInt();
-		scCarteOffre.close();
-		if ((indiceVerso != indiceRecto) && (indiceVerso ==1 || indiceVerso ==2) && (indiceRecto ==1 || indiceVerso ==2)) {
-			offre = new Offre(main.get(main.size()-2+indiceRecto),main.get(main.size()-2+indiceVerso),this);
-			main.remove(main.get(main.size()-2+indiceRecto));
-			main.remove(main.get(main.size()-2+indiceVerso));
+		if (indiceRecto ==0){
+			offre = new Offre(stack.get(0),stack.get(1),this);
+			main.remove(stack.getFirst());
+			main.remove(stack.getLast());
+		}
+		else if (indiceRecto==1){
+			offre = new Offre(stack.get(1),stack.get(0),this);
+			main.remove(stack.getFirst());
+			main.remove(stack.getLast());
 		}
 		else {
 			System.out.println("Les indices renseignés ne sont pas correctes, veuillez à nouveau compléter votre offre.");
@@ -83,11 +87,11 @@ public class Joueur {
 		else {
 			
 			if (choixCartes ==1) {
-				main.add(joueur.getOffre().getRecto());
+				stack.add(joueur.getOffre().getRecto());
 				carteRestante = joueur.getOffre().getVerso();
 			}
 			else {
-				main.add(joueur.getOffre().getVerso());
+				stack.add(joueur.getOffre().getVerso());
 				carteRestante = joueur.getOffre().getRecto();
 			}
 			scCarte.close();
@@ -111,12 +115,12 @@ public class Joueur {
 	}
 	public String afficherIndiceCartes() {
 		StringBuffer sb = new StringBuffer();
-		sb.append("1");
+		sb.append("0");
 		sb.append(" : ");
-		sb.append(main.get(main.size()-1).toString());
-		sb.append(" - 2");
+		sb.append(stack.getFirst().toString());
+		sb.append(" | 1");
 		sb.append(" : ");
-		sb.append(main.getLast().toString());
+		sb.append(stack.getLast().toString());
 		return sb.toString();
 	}
 	public void setPseudo(String pseudo) {
@@ -132,4 +136,8 @@ public class Joueur {
 		sb.append(main.toString());
 		return sb.toString();
 	}
+	public LinkedList<Cartes> getStack() {
+		return stack;
+	}
+	
 }
