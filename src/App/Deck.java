@@ -8,15 +8,14 @@ import java.util.Iterator;
 public class Deck {
 	
 	protected LinkedList<Cartes> deckCartes;
-
 	protected LinkedList<Cartes> stackIntermediaire;
-
 
 	private int nombreCartes;
 	
 	public Deck() {
 		this.creerJeuDeBase();
 		this.melanger();
+		stackIntermediaire = new LinkedList<Cartes>();
 	}
 	public void creerJeuDeBase() {
 		int trophee = 0;

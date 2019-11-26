@@ -25,6 +25,7 @@ public class Partie {
 	public void classerLesJoueurs() {
 	
 	}
+	
 	public void distribuer() {
 		Iterator<Joueur> itj = joueurs.iterator();
 		if (!deck.isEmpty()) {
@@ -90,12 +91,12 @@ public class Partie {
 		}
 		// Cr�ation du jeu de cartes de base + m�lange automatique
 		deck = new Deck();
+		
 		//Paragraphe pour déterminer si oui ou non on joue à l'extension
 		 
 		Scanner scExtension = new Scanner(System.in);
 		System.out.println("Voulez vous jouer à l'extension? (O/N)");
 		char extension = scExtension.nextLine().charAt(0);
-		// La r�ponse d'un joueur suite � la question n'est g�n�ralement pas un bool�en, il est plus instinctif de r�pondre par oui/o ou non/n
 		switch(extension) {
 		case 'O':
 			deck.ajouterExtension();

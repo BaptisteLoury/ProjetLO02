@@ -7,17 +7,7 @@ public class Main {
 		Partie partie = Partie.getInstance(); 
 		partie.creerPartie();
 
-		Deck deck = new Deck();
-		deck.creerJeuDeBase();
-		deck.melanger();
 		
-		PotCommun pot = new PotCommun();
-		pot.remplirPot();
-		
-		
-		
-
-		//Tour
 		while (!partie.getDeck().isEmpty()) {
 			partie.tour();
 		}

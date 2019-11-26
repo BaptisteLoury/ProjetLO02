@@ -6,7 +6,7 @@ import java.util.Iterator;
 public class Joueur {
 
 	private String pseudo;
-	//Etrange d'avoir deux attributs nombreJoueurs
+
 	private static int nbJoueurs = 0;
 	private LinkedList<Cartes> main;
 	private Offre offre;
@@ -25,9 +25,9 @@ public class Joueur {
 		Scanner scCarteOffre = new Scanner(System.in);
 		System.out.println("Au tour de "+ this.getPseudo() +" de proposer une offre.");
 		this.afficherIndiceCartes();
-		System.out.println("Donner l'indice de la carte à mettre en recto. (1 ou 2)");
+		System.out.println("Donner l'indice de la carte ï¿½ mettre en recto. (1 ou 2)");
 		int indiceRecto = scCarteOffre.nextInt();
-		System.out.println("Donner l'indice de la carte à mettre en verso. (1 ou 2 mais différent de la réponse précédente)");
+		System.out.println("Donner l'indice de la carte ï¿½ mettre en verso. (1 ou 2 mais diffï¿½rent de la rï¿½ponse prï¿½cï¿½dente)");
 		int indiceVerso = scCarteOffre.nextInt();
 		scCarteOffre.close();
 		if ((indiceVerso != indiceRecto) && (indiceVerso ==1 || indiceVerso ==2) && (indiceRecto ==1 || indiceVerso ==2)) {
@@ -36,7 +36,7 @@ public class Joueur {
 			main.remove(main.get(main.size()-2+indiceVerso));
 		}
 		else {
-			System.out.println("Les indices renseignés ne sont pas correctes, veuillez à nouveau compléter votre offre.");
+			System.out.println("Les indices renseignï¿½s ne sont pas correctes, veuillez ï¿½ nouveau complï¿½ter votre offre.");
 			this.faireOffre();
 		}
 		
@@ -53,7 +53,7 @@ public class Joueur {
 			}
 		}
 		if (nombreOffreSuffisante == 0) {
-			System.out.println("Vous devez récupérer une carte de votre offre.");
+			System.out.println("Vous devez rï¿½cupï¿½rer une carte de votre offre.");
 			this.choisirCarte(this);
 		}
 		else {
@@ -65,7 +65,7 @@ public class Joueur {
 				scOffre.close();
 			}
 			else {
-				System.out.println("Mauvais indice entré.");
+				System.out.println("Mauvais indice entrï¿½.");
 				this.choisirOffre(joueurs);
 			}
 		}
@@ -75,10 +75,10 @@ public class Joueur {
 		Cartes carteRestante = new Cartes();
 		Scanner scCarte = new Scanner(System.in);
 		System.out.println(joueur.getOffre().toString());
-		System.out.println("Tapez 1 pour récupérer la carte recto et 2 pour la carte verso.");
+		System.out.println("Tapez 1 pour rï¿½cupï¿½rer la carte recto et 2 pour la carte verso.");
 		int choixCartes = scCarte.nextInt();
 		if (choixCartes != 1 && choixCartes != 2) {
-			System.out.println("Mauvais indice entré.");
+			System.out.println("Mauvais indice entrï¿½.");
 			this.choisirCarte(joueur);
 		}
 		else {
