@@ -5,6 +5,7 @@ public class Offre {
 	private Cartes recto;
 	private Cartes verso;
 	private Joueur offrant;
+	//private Joueur preneur;
 	private boolean offreSuffisante;
 	
 	public Offre(Cartes recto, Cartes verso , Joueur offrant) {
@@ -37,6 +38,12 @@ public class Offre {
 	public void setOffreSuffisante(Boolean offreSuffisante) {
 		this.offreSuffisante = offreSuffisante;
 	}
+	/*public Joueur getPreneur() {
+		return preneur;
+	}
+	public void setPreneur(Joueur preneur) {
+		this.preneur = preneur;
+	}*/
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		sb.append(offrant.getPseudo());

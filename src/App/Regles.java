@@ -11,4 +11,5 @@ public class Regles {
 	 public void calculerLesPoints() {
 	 
 	 }
+
 }

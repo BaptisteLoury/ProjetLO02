@@ -1,11 +1,11 @@
 package App;
 import java.util.Scanner;
-import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Iterator;
 
 public class Partie {
 
-	private HashSet<Joueur> joueurs;
+	private LinkedList<Joueur> joueurs;
 	private Deck deck;
 	
 	public Partie() {
@@ -22,8 +22,25 @@ public class Partie {
 		}
 		return INSTANCE ;
 	}
-	public void classerLesJoueurs() {
-		
+
+	public Joueur recupererPlusForteOffre() {
+		Iterator<Joueur> itj = joueurs.iterator();
+		Offre plusForteOffre = joueurs.getFirst().getOffre(); 
+		while (itj.hasNext()) {
+			Joueur j = itj.next();
+			if (j.getOffre().estOffreSuffisante())
+				if (j.getOffre().getRecto().getValeur().ordinal() > plusForteOffre.getRecto().getValeur().ordinal()) {
+					plusForteOffre = j.getOffre();
+				}
+				else if (j.getOffre().getRecto().getValeur().ordinal() == plusForteOffre.getRecto().getValeur().ordinal()) {
+					// < parce que dans l'�num�ration Couleur, l'ordre va de la plus grand � la plus petite
+					if (j.getOffre().getRecto().getCouleur().ordinal() < plusForteOffre.getRecto().getCouleur().ordinal()) {
+						plusForteOffre = j.getOffre();
+					}
+				}
+		}
+		return plusForteOffre.getOffrant();
+
 	}
 	
 	public void distribuer() {
@@ -31,12 +48,12 @@ public class Partie {
 		if (!deck.isEmpty()) {
 			while (itj.hasNext()) {
 				Joueur j = (Joueur) itj.next();
-				j.getStack().add(deck.getDeckCartes().pop());
+				j.getMain().add(deck.getDeckCartes().pop());
 				if(deck.getStackIntermediaire().isEmpty()) {
-					j.getStack().add(deck.getDeckCartes().pop());
+					j.getMain().add(deck.getDeckCartes().pop());
 				}
 				else {
-					j.getStack().add(deck.getStackIntermediaire().pop());
+					j.getMain().add(deck.getStackIntermediaire().pop());
 				}
 			}
 		}
@@ -55,6 +72,16 @@ public class Partie {
 			Joueur j = (Joueur) itj.next();
 			j.faireOffre();
 		}
+		Joueur joueurPlusFort = this.recupererPlusForteOffre();
+		Joueur joueurSuivant = joueurPlusFort.choisirOffre(joueurs);
+		for (int i=2;i<=joueurs.size();i++) {
+			joueurSuivant = joueurSuivant.choisirOffre(joueurs);
+			if (joueurSuivant == joueurPlusFort) {
+				joueurSuivant = this.recupererPlusForteOffre();
+			}
+			
+		}
+		
 	}
 	public void creerPartie() {
 	
@@ -75,7 +102,7 @@ public class Partie {
 		}
 		System.out.println("Combien de joueurs humains serez-vous ? (Il doit être inférieur ou égal au nombre de joueurs totals");
 		int nombreJoueurReel = sc.nextInt();
-		joueurs = new HashSet<Joueur>();
+		joueurs = new LinkedList<Joueur>();
 		for (int i = 1;i<=nombreJoueurReel;i++) {
 			System.out.println("Donner le pseudo du joueur "+ i +" :");
 			String pseudo = scannerPseudo.nextLine();
