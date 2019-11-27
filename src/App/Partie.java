@@ -23,7 +23,7 @@ public class Partie {
 		return INSTANCE ;
 	}
 	public void classerLesJoueurs() {
-	
+		
 	}
 	
 	public void distribuer() {
