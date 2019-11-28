@@ -45,6 +45,7 @@ public class Partie {
 	
 	public void distribuer() {
 		Iterator<Joueur> itj = joueurs.iterator();
+		//Cas o√π ce n'est pas le dernier tour 
 		if (!deck.isEmpty()) {
 			while (itj.hasNext()) {
 				Joueur j = (Joueur) itj.next();
@@ -57,6 +58,7 @@ public class Partie {
 				}
 			}
 		}
+		//Cas ou c'est le dernier tour 
 		else {
 			while (itj.hasNext()) {
 				Joueur j = (Joueur) itj.next();
@@ -80,6 +82,29 @@ public class Partie {
 				joueurSuivant = this.recupererPlusForteOffre();
 			}
 			
+		}
+		
+	}
+	public void dernierTour() {
+		Iterator<Joueur> itj = joueurs.iterator();
+		while (itj.hasNext()) {
+			Joueur j = (Joueur) itj.next();
+			//Il y a surement une maniere plus simple mais pour l instant j ai pas trouve
+			Cartes derniereCarte = new Cartes();
+			derniereCarte = getDeck().getStackIntermediaire().pop();
+			j.getStack().add(derniereCarte);
+		}
+	}
+	public void attribuerTrophees() {
+		//stocker deux dernieres cartes dans deux variables (ou une seule si 4 joueurs).
+		//pour chaque trophee if (trophee == ...) alors donner ‡ celui qui repond aux criteres
+		// faire iterator pour toutes les cartes qui vont etre donnees en trophee
+		if (joueurs.size()==4) {
+			Cartes carteTrophee = new Cartes();
+		}
+		if (joueurs.size()==3) {
+			Cartes carteTrophee1 = new Cartes();
+			Cartes carteTrophee2 = new Cartes();
 		}
 		
 	}

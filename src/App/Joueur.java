@@ -26,6 +26,8 @@ public class Joueur {
 	}
 
 	public void faireOffre()  {
+		//Pour ne pas voir les cartes des autres
+		System.out.println("\n\n\n\n\n\n\n\n");
 		System.out.println("Au tour de "+ this.getPseudo() +" de proposer une offre.");
 
 		System.out.println(this.afficherIndiceCartes());
@@ -66,6 +68,7 @@ public class Joueur {
 			//this.setOffreChoisie(this.getOffre());
 		}
 		else {
+			
 			System.out.println("Quelle offre avez vous choisi ? (indice du joueur)");
 			int choixOffre = scOffre.nextInt();
 			if(choixOffre<=joueurs.size() && choixOffre != joueurs.indexOf(this)) {
