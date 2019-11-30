@@ -96,17 +96,87 @@ public class Partie {
 		}
 	}
 	public void attribuerTrophees() {
-		//stocker deux dernieres cartes dans deux variables (ou une seule si 4 joueurs).
-		//pour chaque trophee if (trophee == ...) alors donner à celui qui repond aux criteres
-		// faire iterator pour toutes les cartes qui vont etre donnees en trophee
-		if (joueurs.size()==4) {
-			Cartes carteTrophee = new Cartes();
-		}
-		if (joueurs.size()==3) {
-			Cartes carteTrophee1 = new Cartes();
-			Cartes carteTrophee2 = new Cartes();
-		}
 		
+		
+		//faire iterator sur stackintermediaire. Tant que pas empty, on continue
+		
+		Iterator<Cartes> itc = getDeck().getStackIntermediaire().iterator();
+		while (itc.hasNext()) {
+			
+			Cartes carteTrophee = (Cartes) itc.next();
+			
+		switch(carteTrophee.getTrophee()) {
+		case MajorityQuatre :
+			//iterator sur chaque joueur. On compte pour chacun nombre de 4 dans leur stack.
+			//CarteTrophee va vers ce joueur 
+			Joueur joueurQuiALePlusDePoints = new Joueur();
+			joueurQuiALePlusDePoints = joueurs.getFirst();
+			Iterator<Joueur> itj = joueurs.iterator();
+			while(itj.hasNext()) {
+				Joueur j = (Joueur) itj.next();
+				Iterator<Cartes> itcj = j.getStack().iterator();
+				while(itcj.hasNext()) {
+					Cartes carteSuivante = (Cartes) itcj.next();
+					//Initialisation des points. Le joueur ayant le plus de points recupere ce trophee
+					j.setPointsPourRecupererTrophee(0);
+					if(carteSuivante.getValeur() == Valeur.QUATRE) {
+						j.setPointsPourRecupererTrophee(j.getPointsPourRecupererTrophee() + 1);
+					}
+				}
+			if (joueurQuiALePlusDePoints.getPointsPourRecupererTrophee()<j.getPointsPourRecupererTrophee()) {}
+			joueurQuiALePlusDePoints = j;
+			}
+			//cas ou deux joueurs ont meme nombre de quatre  
+			/*if (joueurQuiALePlusDePoints.getPointsPourRecupererTrophee()>0 &&
+				joueurQuiALePlusDePoints.getPointsPourRecupererTrophee() == j.getPointsPourRecupererTrophee() &&
+				joueurQuiALePlusDePoints.getStack().getCouleur(getValeur()== Valeur.QUATRE) = j;) {
+				joueurQuiALePlusDePoints = j;
+			}*/
+		}
+			break;
+		case HighestCarreau :
+			//Mon code
+			break;
+		case LowestCarreau :
+			//Mon code
+			break;
+		case BestJestNoJoke :
+			//Mon code
+			break;
+		case HighestTrefle :
+			//Mon code
+			break;
+		case MajorityTrois :
+			//Mon code
+			break;
+		case MajorityDeux :
+			//Mon code
+			break;
+		case LowestTrefle :
+			//Mon code
+			break;
+		case HighestPique :
+			//Mon code
+			break;
+		case LowestCoeur :
+			//Mon code
+			break;
+		case HighestCoeur :
+			//Mon code
+			break;
+		case LowestPique :
+			//Mon code
+			break;
+		case Joker :
+			//Mon code
+			break;
+		case BestJest :
+			//Mon code
+			break;
+		default:
+		System.out.println("je n'ai pas trouvé le trophée de la derniere carte");
+		}
+		}
 	}
 	public void creerPartie() {
 	

@@ -12,6 +12,7 @@ public class Joueur {
 	private LinkedList<Cartes> stack;
 	private Offre offre;
 	private Offre offreChoisie;
+	private int pointsPourRecupererTrophee;
 	
 	public Joueur() {
 		
@@ -152,6 +153,12 @@ public class Joueur {
 	}
 	public LinkedList<Cartes> getStack() {
 		return stack;
+	}
+	public int getPointsPourRecupererTrophee() {
+		return pointsPourRecupererTrophee;
+	}
+	public void setPointsPourRecupererTrophee(int pointsPourRecupererTrophee) {
+		this.pointsPourRecupererTrophee = pointsPourRecupererTrophee;
 	}
 	
 }
