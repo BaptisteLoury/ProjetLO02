@@ -46,7 +46,6 @@ public class Deck {
 		for (Couleur c : Couleur.values()) {
 			if (c != Couleur.JOKER) {
 				Cartes carte = new Cartes(EnumTrophee.Joker,c,Valeur.CINQ);
-				System.out.println("test");
 				deckCartes.push(carte);
 				nombreCartes = deckCartes.size();
 			}

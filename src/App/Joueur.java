@@ -55,6 +55,7 @@ public class Joueur {
 		Scanner scOffre = new Scanner(System.in);
 		Iterator<Joueur> itj = joueurs.iterator();
 		int nombreOffreSuffisante = 0;
+		System.out.println("Le joueur "+this.getPseudo()+" doit choisir une offre.");
 		while (itj.hasNext()) {
 			Joueur j = (Joueur) itj.next();
 			if (j.getOffre().estOffreSuffisante() == true && j != this) {
@@ -63,7 +64,7 @@ public class Joueur {
 			}
 		}
 		if (nombreOffreSuffisante == 0) {
-			System.out.println("Vous devez r�cup�rer une carte de votre offre.");
+			System.out.println("Le joueur "+this.getPseudo()+" doit r�cup�rer une carte de sa propre offre.");
 			this.choisirCarte(this);
 			return this;
 			//this.setOffreChoisie(this.getOffre());
@@ -100,9 +101,11 @@ public class Joueur {
 			
 			if (choixCartes ==1) {
 				stack.add(joueur.getOffre().getRecto());
+				joueur.getOffre().setRecto(null);
 			}
 			else {
 				stack.add(joueur.getOffre().getVerso());
+				joueur.getOffre().setVerso(null);
 			}
 			
 		}

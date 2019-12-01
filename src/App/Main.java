@@ -5,15 +5,15 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Partie partie = Partie.getInstance(); 
-		partie.creerPartie();
-
-		//partie ne s arrete pas quand deck empty !  
-		
-		while (partie.getDeck().getNombreCartes()>3) {
+		//partie ne s arrete pas quand deck empty ! Ni lorsqu il reste plus de 3 cartes, cela depend du nombre de joueur.  
+		int nbTour = 1;
+		while (partie.getDeck().getNombreCartes()>=Joueur.getNbJoueurs()) {
+			System.out.println("TOUR # "+ nbTour);
 			partie.tour();
+			nbTour++;
 		}
 		partie.dernierTour();
-		partie.attribuerTrophees();
+		//partie.attribuerTrophees();
 		//Ne sert a rien car est appele par partie.tour();
 		//partie.distribuer();
 

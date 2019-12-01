@@ -1,19 +1,21 @@
 package App;
 import java.util.Scanner;
 import java.util.LinkedList;
+import java.util.HashSet;
 import java.util.Iterator;
 
 public class Partie {
 
 	private LinkedList<Joueur> joueurs;
+	private HashSet<Cartes> trophees;
 	private Deck deck;
 	
 	public Partie() {
-		
+		this.creerPartie();
 	}
 	//Singleton
 	private static Partie INSTANCE= null; 
-	public static Partie  getInstance () {
+	public static Partie  getInstance() {
 		if (INSTANCE== null) {
 			INSTANCE = new Partie(); 
 		}
@@ -25,24 +27,37 @@ public class Partie {
 
 	public Joueur recupererPlusForteOffre() {
 		Iterator<Joueur> itj = joueurs.iterator();
-		Offre plusForteOffre = joueurs.getFirst().getOffre(); 
+		Offre plusForteOffre = joueurs.getFirst().getOffre();
+		Cartes plusForteRecto = new Cartes(EnumTrophee.Joker,Couleur.JOKER,Valeur.JOKER);
 		while (itj.hasNext()) {
 			Joueur j = itj.next();
 			if (j.getOffre().estOffreSuffisante())
-				if (j.getOffre().getRecto().getValeur().ordinal() > plusForteOffre.getRecto().getValeur().ordinal()) {
+				if (j.getOffre().getRecto().getValeur().ordinal() > plusForteRecto.getValeur().ordinal()) {
 					plusForteOffre = j.getOffre();
 				}
-				else if (j.getOffre().getRecto().getValeur().ordinal() == plusForteOffre.getRecto().getValeur().ordinal()) {
+				else if (j.getOffre().getRecto().getValeur().ordinal() == plusForteRecto.getValeur().ordinal()) {
 					// < parce que dans l'ï¿½numï¿½ration Couleur, l'ordre va de la plus grand ï¿½ la plus petite
-					if (j.getOffre().getRecto().getCouleur().ordinal() < plusForteOffre.getRecto().getCouleur().ordinal()) {
+					if (j.getOffre().getRecto().getCouleur().ordinal() < plusForteRecto.getCouleur().ordinal()) {
 						plusForteOffre = j.getOffre();
+						plusForteRecto = plusForteOffre.getRecto();
 					}
 				}
 		}
 		return plusForteOffre.getOffrant();
 
 	}
-	
+	public void remettreEnJeuCarteOffre() {
+		Iterator<Joueur> itj = joueurs.iterator();
+		while (itj.hasNext()) {
+			Joueur j = itj.next();
+			if (j.getOffre().getRecto()==null ) {
+				deck.recupererCarteRestante(j.getOffre().getVerso());
+			}
+			else {
+				deck.recupererCarteRestante(j.getOffre().getRecto());
+			}
+		}
+	}
 	public void distribuer() {
 		Iterator<Joueur> itj = joueurs.iterator();
 		//Cas oÃ¹ ce n'est pas le dernier tour 
@@ -74,6 +89,7 @@ public class Partie {
 			Joueur j = (Joueur) itj.next();
 			j.faireOffre();
 		}
+		System.out.println("\n\n\n\n\n\n\n\n");
 		Joueur joueurPlusFort = this.recupererPlusForteOffre();
 		Joueur joueurSuivant = joueurPlusFort.choisirOffre(joueurs);
 		for (int i=2;i<=joueurs.size();i++) {
@@ -83,6 +99,7 @@ public class Partie {
 			}
 			
 		}
+		this.remettreEnJeuCarteOffre();
 		
 	}
 	public void dernierTour() {
@@ -95,7 +112,7 @@ public class Partie {
 			j.getStack().add(derniereCarte);
 		}
 	}
-	public void attribuerTrophees() {
+	/*public void attribuerTrophees() {
 		
 		
 		//faire iterator sur stackintermediaire. Tant que pas empty, on continue
@@ -132,7 +149,7 @@ public class Partie {
 				joueurQuiALePlusDePoints.getStack().getCouleur(getValeur()== Valeur.QUATRE) = j;) {
 				joueurQuiALePlusDePoints = j;
 			}*/
-		}
+		/*}
 			break;
 		case HighestCarreau :
 			//Mon code
@@ -177,7 +194,7 @@ public class Partie {
 		System.out.println("je n'ai pas trouvé le trophée de la derniere carte");
 		}
 		}
-	}
+	}*/
 	public void creerPartie() {
 	
 		Scanner sc = new Scanner(System.in);
@@ -235,7 +252,8 @@ public class Partie {
 			System.out.println("La syntaxe de la rï¿½ponse n'est pas correcte. Je pars du principe que tu ne veux pas ajouter l'extension !") ; 
 			
 		}
-		
+		this.constituerTrophee();
+			
 
 
 		/*scannerPseudo.close();
@@ -243,10 +261,40 @@ public class Partie {
 		sc.close();
 		scExtension.close();*/
 	}
+	public void constituerTrophee() {
+		trophees = new HashSet<Cartes>();
+		// Le nombre de trophee depend du nombre de joueurs
+		if (Joueur.getNbJoueurs()==3) {
+			// Il change egalement si l extension est utilisee
+			if (deck.getNombreCartes()==17) {
+				trophees.add(deck.getDeckCartes().pop());
+				trophees.add(deck.getDeckCartes().pop());
+			}
+			else {
+				trophees.add(deck.getDeckCartes().pop());
+				trophees.add(deck.getDeckCartes().pop());
+				trophees.add(deck.getDeckCartes().pop());
+			}
+		}
+		else {
+			trophees.add(deck.getDeckCartes().pop());
+		}
+		Iterator<Cartes> itTrophee = trophees.iterator();
+		System.out.print("Les trophées de la partie seront : ");
+		while (itTrophee.hasNext()) {
+			Cartes t = itTrophee.next();
+			System.out.print(t.getTrophee().toString()+"  ");
+		}
+		System.out.println();
+	}
 	public Deck getDeck() {
 		return deck;
 	}
 	public void setDeck(Deck deck) {
 		this.deck = deck;
 	}
+	public HashSet<Cartes> getTrophees() {
+		return trophees;
+	}
+	
 }
