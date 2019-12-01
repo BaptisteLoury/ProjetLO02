@@ -1,5 +1,5 @@
 package App;
 
-public class Variante1 extends Regles{
+public class Variante1 extends Partie{
 
 }
