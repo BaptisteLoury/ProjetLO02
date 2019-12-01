@@ -99,17 +99,20 @@ public class Partie {
 			}
 			
 		}
-		this.remettreEnJeuCarteOffre();
 		
 	}
 	public void dernierTour() {
+		//Les cartes du stack intermediaire sont redistribuees en debut de tour, au dernier tour il reste donc les cartes non choisie
+		//Ces cartes sont rendues a l offrant s il n y a plus de carte dans le deck
 		Iterator<Joueur> itj = joueurs.iterator();
 		while (itj.hasNext()) {
-			Joueur j = (Joueur) itj.next();
-			//Il y a surement une maniere plus simple mais pour l instant j ai pas trouve
-			Cartes derniereCarte = new Cartes();
-			derniereCarte = getDeck().getStackIntermediaire().pop();
-			j.getStack().add(derniereCarte);
+			Joueur j = itj.next();
+			if (j.getOffre().getRecto()==null ) {
+				j.getStack().add(j.getOffre().getVerso());
+			}
+			else {
+				j.getStack().add(j.getOffre().getRecto());
+			}
 		}
 	}
 	/*public void attribuerTrophees() {
