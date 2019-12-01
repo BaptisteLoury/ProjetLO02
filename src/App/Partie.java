@@ -65,14 +65,11 @@ public class Partie {
 			while (itj.hasNext()) {
 				Joueur j = (Joueur) itj.next();
 				j.getMain().add(deck.getDeckCartes().pop());
-				System.out.println("compteur1");
 				if(deck.getStackIntermediaire().isEmpty()) {
 					j.getMain().add(deck.getDeckCartes().pop());
-					System.out.println("compteur2");
 				}
 				else {
 					j.getMain().add(deck.getStackIntermediaire().pop());
-					System.out.println("compteur3");
 				}
 			}
 		}
@@ -97,13 +94,8 @@ public class Partie {
 		Joueur joueurSuivant = joueurPlusFort.choisirOffre(joueurs);
 		for (int i=2;i<=joueurs.size();i++) {
 			joueurSuivant = joueurSuivant.choisirOffre(joueurs);
-			//Je ne suis pas sur que ce if serve à quelque chose. 
-			//Comment le joueur suivant pourrait etre en meme temps le joueur le plus fort
-			//Alors que la methode getPlusFort n'est meme pas rappele
-			
 			if (joueurSuivant == joueurPlusFort) {
 				joueurSuivant = this.recupererPlusForteOffre();
-				System.out.println("test");
 			}
 			
 		}
@@ -123,25 +115,25 @@ public class Partie {
 			}
 		}
 	}
-	public void attribuerTrophees() {
+	/*public void attribuerTrophees() {
 		
 		
 		//faire iterator sur stackintermediaire. Tant que pas empty, on continue
 		
 		Iterator<Cartes> itc = getDeck().getStackIntermediaire().iterator();
 		while (itc.hasNext()) {
-		
+			
 			Cartes carteTrophee = (Cartes) itc.next();
 			
 		switch(carteTrophee.getTrophee()) {
 		case MajorityQuatre :
 			//iterator sur chaque joueur. On compte pour chacun nombre de 4 dans leur stack.
 			//CarteTrophee va vers ce joueur 
-			Joueur joueurQuiALePlusDeQuatre = new Joueur();
-			joueurQuiALePlusDeQuatre = joueurs.getFirst();
-			Iterator<Joueur> itj4 = joueurs.iterator();
-			while(itj4.hasNext()) {
-				Joueur j = (Joueur) itj4.next();
+			Joueur joueurQuiALePlusDePoints = new Joueur();
+			joueurQuiALePlusDePoints = joueurs.getFirst();
+			Iterator<Joueur> itj = joueurs.iterator();
+			while(itj.hasNext()) {
+				Joueur j = (Joueur) itj.next();
 				Iterator<Cartes> itcj = j.getStack().iterator();
 				while(itcj.hasNext()) {
 					Cartes carteSuivante = (Cartes) itcj.next();
@@ -151,21 +143,9 @@ public class Partie {
 						j.setPointsPourRecupererTrophee(j.getPointsPourRecupererTrophee() + 1);
 					}
 				}
-				
-				if (joueurQuiALePlusDeQuatre.getPointsPourRecupererTrophee()<j.getPointsPourRecupererTrophee()) {
-				joueurQuiALePlusDeQuatre = j;	
-				}
-				//cas ou deux joueurs ont meme nombre de quatre  
-				/*
-				 * if (joueurQuiALePlusDeQuatre.getPointsPourRecupererTrophee()>0 &&
-					joueurQuiALePlusDeQuatre.getPointsPourRecupererTrophee() == j.getPointsPourRecupererTrophee()) {
-					//Boucle pour trouver qui a highest 
-					j.getStack().equals(Couleur.PIQUE && Valeur.QUATRE);
-					joueurQuiALePlusDeQuatre = j;
-				}
-				*/
+			if (joueurQuiALePlusDePoints.getPointsPourRecupererTrophee()<j.getPointsPourRecupererTrophee()) {}
+			joueurQuiALePlusDePoints = j;
 			}
-
 			//cas ou deux joueurs ont meme nombre de quatre  
 			/*if (joueurQuiALePlusDePoints.getPointsPourRecupererTrophee()>0 &&
 				joueurQuiALePlusDePoints.getPointsPourRecupererTrophee() == j.getPointsPourRecupererTrophee() &&
@@ -173,39 +153,9 @@ public class Partie {
 				joueurQuiALePlusDePoints = j;
 			}*/
 		/*}
-
-			joueurQuiALePlusDeQuatre.getStack().add(carteTrophee);
-			
-		
-
 			break;
 		case HighestCarreau :
-			//gagnat est celui qui a as de carreau seulement 
-			//sinon gagnant est celui qui a quatre de carreau
-			Joueur JoueurQuiALePlusHautCarreau = new Joueur();
-			JoueurQuiALePlusHautCarreau = joueurs.getFirst();
-			Iterator<Joueur> itjhc = joueurs.iterator();
-			while(itjhc.hasNext()) {
-				Joueur j = (Joueur) itjhc.next();
-				Iterator<Cartes> itchc = j.getStack().iterator();
-				while (itchc.hasNext()) {
-					Cartes carteSuivante = (Cartes) itchc.next();
-					j.setPointsPourRecupererTrophee(0);
-					if(carteSuivante.getCouleur() == Couleur.CARREAU) {
-						j.setPointsPourRecupererTrophee(j.getPointsPourRecupererTrophee() + 1);
-					}
-				}
-				//if joueur a as et seulement as 
-				if (j.getStack().contains(Valeur.AS) && j.getPointsPourRecupererTrophee()==1) {
-					JoueurQuiALePlusHautCarreau = j;
-				}
-				//sinon on donne à celui qui a quatre de carreau automatiquement
-				else if (j.getStack().equals(Valeur.QUATRE) && equals(Couleur.CARREAU)) {
-					JoueurQuiALePlusHautCarreau = j;
-				}
-			}
-			JoueurQuiALePlusHautCarreau.getStack().add(carteTrophee);
-			
+			//Mon code
 			break;
 		case LowestCarreau :
 			//Mon code
@@ -217,34 +167,7 @@ public class Partie {
 			//Mon code
 			break;
 		case MajorityTrois :
-			Joueur joueurQuiALePlusDeTrois = new Joueur();
-			joueurQuiALePlusDeTrois = joueurs.getFirst();
-			Iterator<Joueur> itj3 = joueurs.iterator();
-			while(itj3.hasNext()) {
-				Joueur j = (Joueur) itj3.next();
-				Iterator<Cartes> itcj = j.getStack().iterator();
-				while(itcj.hasNext()) {
-					Cartes carteSuivante = (Cartes) itcj.next();
-					//Initialisation des points. Le joueur ayant le plus de points recupere ce trophee
-					j.setPointsPourRecupererTrophee(0);
-					if(carteSuivante.getValeur() == Valeur.TROIS) {
-						j.setPointsPourRecupererTrophee(j.getPointsPourRecupererTrophee() + 1);
-					}
-				}
-				
-				if (joueurQuiALePlusDeTrois.getPointsPourRecupererTrophee()<j.getPointsPourRecupererTrophee()) {
-				joueurQuiALePlusDeTrois = j;	
-				}
-				//cas ou deux joueurs ont meme nombre de trois  
-				/*
-				 * if (joueurQuiALePlusDeTrois.getPointsPourRecupererTrophee()>0 &&
-					joueurQuiALePlusDeTrois.getPointsPourRecupererTrophee() == j.getPointsPourRecupererTrophee() &&
-					joueurQuiALePlusDeTrois.getStack().get(Valeur.TROIS). == Valeur.TROIS) = j) {
-					joueurQuiALePlusDeTrois = j;
-				}
-				*/
-			} 
-			joueurQuiALePlusDeTrois.getStack().add(carteTrophee);
+			//Mon code
 			break;
 		case MajorityDeux :
 			//Mon code
@@ -270,8 +193,7 @@ public class Partie {
 		case BestJest :
 			//Mon code
 			break;
-			
-		default :
+		default:
 		System.out.println("je n'ai pas trouvé le trophée de la derniere carte");
 		}
 		}
