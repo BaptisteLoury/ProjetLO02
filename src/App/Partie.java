@@ -188,8 +188,8 @@ public class Partie {
 					}
 				}
 				JoueurQuiALePlusHautCarreau.getStack().add(carteTrophee);
+				System.out.println("Le joueur "+JoueurQuiALePlusHautCarreau.getPseudo()+"remporte le trophee MajorityQuatre");
 				
-				//Mon code
 				break;
 			case LowestCarreau :
 				//Mon code

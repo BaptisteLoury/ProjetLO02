@@ -16,7 +16,7 @@ public class Main {
 			nbTour++;
 		}
 		partie.dernierTour();
-		//partie.attribuerTrophees();
+		partie.attribuerTrophees();
 
 
 	}
