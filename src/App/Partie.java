@@ -622,6 +622,7 @@ public class Partie {
 			Iterator<Cartes> itCalcul = j.getStack().iterator();
 			while (itCalcul.hasNext()) {
 				Cartes cj = itCalcul.next();
+				Cartes paire;
 				switch(cj.getCouleur()) {
 					case CARREAU:
 						if (cj.getValeur()==Valeur.AS) {
@@ -648,6 +649,18 @@ public class Partie {
 						else {
 							scoreJ = scoreJ+cj.getValeur().ordinal();
 						}
+						if (cj.getValeur()!=Valeur.CINQ) {
+							paire = new Cartes(EnumTrophee.values()[cj.getValeur().ordinal()+4],Couleur.TREFLE,cj.getValeur());
+							if (j.getStack().contains(paire)) {
+								scoreJ++;
+							}
+						}
+						else {
+							paire = new Cartes(EnumTrophee.Joker,Couleur.TREFLE,Valeur.CINQ);
+							if (j.getStack().contains(paire)) {
+								scoreJ++;
+							}
+						}
 					break;
 					case TREFLE:
 						if (cj.getValeur()==Valeur.AS) {
@@ -660,6 +673,18 @@ public class Partie {
 						}
 						else {
 							scoreJ = scoreJ+cj.getValeur().ordinal();
+						}
+						if (cj.getValeur()!=Valeur.CINQ) {
+							paire = new Cartes(EnumTrophee.values()[cj.getValeur().ordinal()],Couleur.PIQUE,cj.getValeur());
+							if (j.getStack().contains(paire)) {
+								scoreJ++;
+							}
+						}
+						else {
+							paire = new Cartes(EnumTrophee.Joker,Couleur.PIQUE,Valeur.CINQ);
+							if (j.getStack().contains(paire)) {
+								scoreJ++;
+							}
 						}
 					break;
 					case COEUR:
