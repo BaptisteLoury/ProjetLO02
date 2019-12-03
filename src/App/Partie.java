@@ -181,6 +181,9 @@ public class Partie {
 						if (carteSuivante.getCouleur()== Couleur.CARREAU && carteSuivante.getValeur()== Valeur.AS) {
 							j.setPossessionAs(true);
 						}
+						if (carteSuivante.getCouleur()== Couleur.CARREAU && carteSuivante.getValeur()== Valeur.QUATRE) {
+							j.setPossessionQuatre(true);
+						}
 					}
 					//if joueur a as et seulement as 
 					
@@ -190,53 +193,13 @@ public class Partie {
 						sortirhc = true;
 					}
 					//sinon on donne � celui qui a quatre de carreau automatiquement
-					
-					Cartes quatreDeCarreau = new Cartes (EnumTrophee.BestJestNoJoke, Couleur.CARREAU,Valeur.QUATRE);
-					if (j.getStack().contains(quatreDeCarreau)) {
+					if (j.isPossessionQuatre()==true) {
 						JoueurQuiALePlusHautCarreau = j;
 					}
 				}
 				JoueurQuiALePlusHautCarreau.getStack().add(carteTrophee);
 				System.out.println("Le joueur "+JoueurQuiALePlusHautCarreau.getPseudo()+" remporte le trophee HighestCarreau");
 				
-				break;
-			case LowestCarreau :
-				Joueur JoueurQuiALePlusBasCarreau = new Joueur();
-				JoueurQuiALePlusBasCarreau = joueurs.getFirst();
-				Iterator<Joueur> itjlc = joueurs.iterator();
-				boolean sortirlc = false;
-				while(itjlc.hasNext() && sortirlc ==false) {
-					Joueur j = (Joueur) itjlc.next();
-					j.setPointsPourRecupererTrophee(0);
-					Iterator<Cartes> itchc = j.getStack().iterator();
-					while (itchc.hasNext()) {
-						Cartes carteSuivante = (Cartes) itchc.next();
-						if(carteSuivante.getCouleur() == Couleur.CARREAU) {
-							j.setPointsPourRecupererTrophee(j.getPointsPourRecupererTrophee() + 1);
-						}
-					}
-					
-					Cartes asDeCarreau = new Cartes (EnumTrophee.MajorityQuatre, Couleur.CARREAU,Valeur.AS);
-					//boolean au cas ou pour ne pas rentrer dans deux if. 
-					
-					//Signifie que joueur a plusieurs carreaux et que as vaut donc 1. c est le plus petit 
-					if (j.getStack().contains(asDeCarreau) && j.getPointsPourRecupererTrophee()>1) {
-						JoueurQuiALePlusBasCarreau = j;
-						sortirlc = true; 
-					}
-					//sinon on donne � celui qui a deux de carreau automatiquement
-				
-					Cartes deuxDeCarreau = new Cartes (EnumTrophee.HighestTrefle, Couleur.CARREAU,Valeur.DEUX);
-					if (j.getStack().contains(deuxDeCarreau)) {
-						JoueurQuiALePlusBasCarreau = j;
-					}
-				}
-				JoueurQuiALePlusBasCarreau.getStack().add(carteTrophee);
-				System.out.println("Le joueur "+JoueurQuiALePlusBasCarreau.getPseudo()+" remporte le trophee LowestCarreau");
-				
-				break;
-			case BestJestNoJoke :
-				//Mon code
 				break;
 			case HighestTrefle :
 				Joueur JoueurQuiALePlusHautTrefle = new Joueur();
@@ -269,13 +232,90 @@ public class Partie {
 					}
 					//sinon on donne � celui qui a quatre de carreau automatiquement
 					
-					if (j.isPossessionQuatre()) {
+					if (j.isPossessionQuatre()==true) {
 						JoueurQuiALePlusHautTrefle = j;
 					}
 				}
 				JoueurQuiALePlusHautTrefle.getStack().add(carteTrophee);
 				System.out.println("Le joueur "+JoueurQuiALePlusHautTrefle.getPseudo()+" remporte le trophee HighestTrefle");
 				break;
+			
+			case HighestPique :
+				Joueur JoueurQuiALePlusHautPique = new Joueur();
+				JoueurQuiALePlusHautPique = joueurs.getFirst();
+				Iterator<Joueur> itjhp = joueurs.iterator();
+				boolean sortirhp = false;
+				while(itjhp.hasNext()&&sortirhp ==false) {
+					Joueur j = (Joueur) itjhp.next();
+					j.setPointsPourRecupererTrophee(0);
+					Iterator<Cartes> itchc = j.getStack().iterator();
+					while (itchc.hasNext()) {
+						Cartes carteSuivante = (Cartes) itchc.next();
+						if(carteSuivante.getCouleur() == Couleur.PIQUE) {
+							j.setPointsPourRecupererTrophee(j.getPointsPourRecupererTrophee() + 1);
+						}
+						if (carteSuivante.getCouleur()== Couleur.PIQUE && carteSuivante.getValeur()== Valeur.AS) {
+							j.setPossessionAs(true);
+						}
+						if (carteSuivante.getCouleur()== Couleur.PIQUE && carteSuivante.getValeur()== Valeur.QUATRE) {
+							j.setPossessionQuatre(true);
+						}
+					}
+					//if joueur a as et seulement as 
+					
+					if (j.isPossessionAs()==true && j.getPointsPourRecupererTrophee()==1) {
+						JoueurQuiALePlusHautPique = j;
+						sortirhp =true;
+					}
+					//sinon on donne � celui qui a quatre de carreau automatiquement
+					
+					if (j.isPossessionQuatre()==true) {
+						JoueurQuiALePlusHautPique = j;
+					}
+				}
+				JoueurQuiALePlusHautPique.getStack().add(carteTrophee);
+				System.out.println("Le joueur "+JoueurQuiALePlusHautPique.getPseudo()+" remporte le trophee HighestPique");
+				break;
+			case HighestCoeur :
+				Joueur JoueurQuiALePlusHautCoeur = new Joueur();
+				JoueurQuiALePlusHautCoeur = joueurs.getFirst();
+				Iterator<Joueur> itjhcoeur = joueurs.iterator();
+				boolean sortirhcoeur = false;
+				while(itjhcoeur.hasNext()&& sortirhcoeur==false) {
+					Joueur j = (Joueur) itjhcoeur.next();
+					j.setPointsPourRecupererTrophee(0);
+					Iterator<Cartes> itchc = j.getStack().iterator();
+					while (itchc.hasNext()) {
+						Cartes carteSuivante = (Cartes) itchc.next();
+						if(carteSuivante.getCouleur() == Couleur.COEUR) {
+							j.setPointsPourRecupererTrophee(j.getPointsPourRecupererTrophee() + 1);
+						}
+						if (carteSuivante.getCouleur()== Couleur.COEUR && carteSuivante.getValeur()== Valeur.AS) {
+							j.setPossessionAs(true);
+						}
+						if (carteSuivante.getCouleur()== Couleur.COEUR && carteSuivante.getValeur()== Valeur.QUATRE) {
+							j.setPossessionQuatre(true);
+						}
+					}
+					//if joueur a as et seulement as 
+					
+					if (j.isPossessionAs()==true && j.getPointsPourRecupererTrophee()==1) {
+						JoueurQuiALePlusHautCoeur = j;
+						sortirhcoeur = true;
+					}
+					//sinon on donne � celui qui a quatre de carreau automatiquement
+					
+					if (j.isPossessionQuatre()==true) {
+						JoueurQuiALePlusHautCoeur = j;
+					}
+				}
+				JoueurQuiALePlusHautCoeur.getStack().add(carteTrophee);
+				System.out.println("Le joueur "+JoueurQuiALePlusHautCoeur.getPseudo()+" remporte le trophee HighestCoeur");
+				break;
+			case BestJestNoJoke :
+				//Mon code
+				break;
+			
 			case MajorityTrois :
 				Joueur joueurQuiALePlusDeTrois= new Joueur();
 				joueurQuiALePlusDeTrois= joueurs.getFirst();
@@ -343,6 +383,47 @@ public class Partie {
 				System.out.println("Le joueur "+joueurQuiALePlusDeDeux.getPseudo()+"remporte le trophee MajorityDeux");
 				
 				break;
+			case LowestCarreau :
+				Joueur JoueurQuiALePlusBasCarreau = new Joueur();
+				JoueurQuiALePlusBasCarreau = joueurs.getFirst();
+				Iterator<Joueur> itjlc = joueurs.iterator();
+				boolean sortirlc = false;
+				while(itjlc.hasNext() && sortirlc ==false) {
+					Joueur j = (Joueur) itjlc.next();
+					j.setPointsPourRecupererTrophee(0);
+					Iterator<Cartes> itchc = j.getStack().iterator();
+					while (itchc.hasNext()) {
+						Cartes carteSuivante = (Cartes) itchc.next();
+						if(carteSuivante.getCouleur() == Couleur.CARREAU) {
+							j.setPointsPourRecupererTrophee(j.getPointsPourRecupererTrophee() + 1);
+						}
+						if (carteSuivante.getCouleur()== Couleur.CARREAU && carteSuivante.getValeur()== Valeur.AS) {
+							j.setPossessionAs(true);
+						}
+						if (carteSuivante.getCouleur()== Couleur.CARREAU && carteSuivante.getValeur()== Valeur.DEUX) {
+							j.setPossessionDeux(true);
+						}
+					}
+					
+					
+					//boolean au cas ou pour ne pas rentrer dans deux if. 
+					
+					//Signifie que joueur a plusieurs carreaux et que as vaut donc 1. c est le plus petit 
+					if (j.isPossessionAs()==true && j.getPointsPourRecupererTrophee()>1) {
+						JoueurQuiALePlusBasCarreau = j;
+						sortirlc = true; 
+					}
+					//sinon on donne � celui qui a deux de carreau automatiquement
+				
+					
+					if (j.isPossessionDeux()==true) {
+						JoueurQuiALePlusBasCarreau = j;
+					}
+				}
+				JoueurQuiALePlusBasCarreau.getStack().add(carteTrophee);
+				System.out.println("Le joueur "+JoueurQuiALePlusBasCarreau.getPseudo()+" remporte le trophee LowestCarreau");
+				
+				break;
 			case LowestTrefle :
 				Joueur JoueurQuiALePlusBasTrefle = new Joueur();
 				JoueurQuiALePlusBasTrefle = joueurs.getFirst();
@@ -357,20 +438,26 @@ public class Partie {
 						if(carteSuivante.getCouleur() == Couleur.TREFLE) {
 							j.setPointsPourRecupererTrophee(j.getPointsPourRecupererTrophee() + 1);
 						}
+						if (carteSuivante.getCouleur()== Couleur.TREFLE && carteSuivante.getValeur()== Valeur.AS) {
+							j.setPossessionAs(true);
+						}
+						if (carteSuivante.getCouleur()== Couleur.TREFLE && carteSuivante.getValeur()== Valeur.DEUX) {
+							j.setPossessionDeux(true);
+						}
 					}
 					
-					Cartes asDeTrefle = new Cartes (EnumTrophee.HighestPique, Couleur.TREFLE,Valeur.AS);
+					
 					//boolean au cas ou pour ne pas rentrer dans deux if. 
 					
 					//Signifie que joueur a plusieurs Treflex et que as vaut donc 1. c est le plus petit 
-					if (j.getStack().contains(asDeTrefle) && j.getPointsPourRecupererTrophee()>1) {
+					if (j.isPossessionAs()==true && j.getPointsPourRecupererTrophee()>1) {
 						JoueurQuiALePlusBasTrefle = j;
 						sortirlt = true; 
 					}
 					//sinon on donne � celui qui a deux de Trefle automatiquement
 				
-					Cartes deuxDeTrefle = new Cartes (EnumTrophee.LowestPique, Couleur.TREFLE,Valeur.DEUX);
-					if (j.getStack().contains(deuxDeTrefle)) {
+					
+					if (j.isPossessionDeux()==true) {
 						JoueurQuiALePlusBasTrefle = j;
 					}
 				}
@@ -378,42 +465,7 @@ public class Partie {
 				System.out.println("Le joueur "+JoueurQuiALePlusBasTrefle.getPseudo()+" remporte le trophee LowestTrefle");
 				
 				break;
-			case HighestPique :
-				Joueur JoueurQuiALePlusHautPique = new Joueur();
-				JoueurQuiALePlusHautPique = joueurs.getFirst();
-				Iterator<Joueur> itjhp = joueurs.iterator();
-				boolean sortirhp = false;
-				while(itjhp.hasNext()&&sortirhp ==false) {
-					Joueur j = (Joueur) itjhp.next();
-					j.setPointsPourRecupererTrophee(0);
-					Iterator<Cartes> itchc = j.getStack().iterator();
-					while (itchc.hasNext()) {
-						Cartes carteSuivante = (Cartes) itchc.next();
-						if(carteSuivante.getCouleur() == Couleur.PIQUE) {
-							j.setPointsPourRecupererTrophee(j.getPointsPourRecupererTrophee() + 1);
-						}
-						if (carteSuivante.getCouleur()== Couleur.PIQUE && carteSuivante.getValeur()== Valeur.AS) {
-							j.setPossessionAs(true);
-						}
-						if (carteSuivante.getCouleur()== Couleur.PIQUE && carteSuivante.getValeur()== Valeur.QUATRE) {
-							j.setPossessionQuatre(true);
-						}
-					}
-					//if joueur a as et seulement as 
-					
-					if (j.isPossessionAs()==true && j.getPointsPourRecupererTrophee()==1) {
-						JoueurQuiALePlusHautPique = j;
-						sortirhp =true;
-					}
-					//sinon on donne � celui qui a quatre de carreau automatiquement
-					
-					if (j.isPossessionQuatre()==true) {
-						JoueurQuiALePlusHautPique = j;
-					}
-				}
-				JoueurQuiALePlusHautPique.getStack().add(carteTrophee);
-				System.out.println("Le joueur "+JoueurQuiALePlusHautPique.getPseudo()+" remporte le trophee HighestPique");
-				break;
+			
 			case LowestCoeur :
 				Joueur JoueurQuiALePlusBasCoeur = new Joueur();
 				JoueurQuiALePlusBasCoeur = joueurs.getFirst();
@@ -428,20 +480,26 @@ public class Partie {
 						if(carteSuivante.getCouleur() == Couleur.COEUR) {
 							j.setPointsPourRecupererTrophee(j.getPointsPourRecupererTrophee() + 1);
 						}
+						if (carteSuivante.getCouleur()== Couleur.COEUR && carteSuivante.getValeur()== Valeur.AS) {
+							j.setPossessionAs(true);
+						}
+						if (carteSuivante.getCouleur()== Couleur.COEUR && carteSuivante.getValeur()== Valeur.DEUX) {
+							j.setPossessionDeux(true);
+						}
 					}
 					
-					Cartes asDeCoeur = new Cartes (EnumTrophee.Joker, Couleur.COEUR,Valeur.AS);
+					
 					//boolean au cas ou pour ne pas rentrer dans deux if. 
 					
 					//Signifie que joueur a plusieurs Coeurx et que as vaut donc 1. c est le plus petit 
-					if (j.getStack().contains(asDeCoeur) && j.getPointsPourRecupererTrophee()>1) {
+					if (j.isPossessionAs()==true && j.getPointsPourRecupererTrophee()>1) {
 						JoueurQuiALePlusBasCoeur = j;
 						sortirlcoeur = true; 
 					}
 					//sinon on donne � celui qui a deux de Coeur automatiquement
 				
-					Cartes deuxDeCoeur = new Cartes (EnumTrophee.Joker, Couleur.COEUR,Valeur.DEUX);
-					if (j.getStack().contains(deuxDeCoeur)) {
+					
+					if (j.isPossessionDeux()==true) {
 						JoueurQuiALePlusBasCoeur = j;
 					}
 				}
@@ -449,36 +507,7 @@ public class Partie {
 				System.out.println("Le joueur "+JoueurQuiALePlusBasCoeur.getPseudo()+" remporte le trophee LowestCoeur");
 				
 				break;
-			case HighestCoeur :
-				Joueur JoueurQuiALePlusHautCoeur = new Joueur();
-				JoueurQuiALePlusHautCoeur = joueurs.getFirst();
-				Iterator<Joueur> itjhcoeur = joueurs.iterator();
-				boolean sortirhcoeur = false;
-				while(itjhcoeur.hasNext()&& sortirhcoeur==false) {
-					Joueur j = (Joueur) itjhcoeur.next();
-					j.setPointsPourRecupererTrophee(0);
-					Iterator<Cartes> itchc = j.getStack().iterator();
-					while (itchc.hasNext()) {
-						Cartes carteSuivante = (Cartes) itchc.next();
-						if(carteSuivante.getCouleur() == Couleur.COEUR) {
-							j.setPointsPourRecupererTrophee(j.getPointsPourRecupererTrophee() + 1);
-						}
-					}
-					//if joueur a as et seulement as 
-					Cartes asDeCoeur = new Cartes (EnumTrophee.Joker, Couleur.COEUR,Valeur.AS);
-					if (j.getStack().contains(asDeCoeur) && j.getPointsPourRecupererTrophee()==1) {
-						JoueurQuiALePlusHautCoeur = j;
-						sortirhcoeur = true;
-					}
-					//sinon on donne � celui qui a quatre de carreau automatiquement
-					Cartes quatreDeCoeur = new Cartes (EnumTrophee.Joker, Couleur.COEUR,Valeur.QUATRE);
-					if (j.getStack().contains(quatreDeCoeur)) {
-						JoueurQuiALePlusHautCoeur = j;
-					}
-				}
-				JoueurQuiALePlusHautCoeur.getStack().add(carteTrophee);
-				System.out.println("Le joueur "+JoueurQuiALePlusHautCoeur.getPseudo()+" remporte le trophee HighestCoeur");
-				break;
+			
 			case LowestPique :
 				Joueur JoueurQuiALePlusBasPique = new Joueur();
 				JoueurQuiALePlusBasPique = joueurs.getFirst();
@@ -493,20 +522,26 @@ public class Partie {
 						if(carteSuivante.getCouleur() == Couleur.PIQUE) {
 							j.setPointsPourRecupererTrophee(j.getPointsPourRecupererTrophee() + 1);
 						}
+						if (carteSuivante.getCouleur()== Couleur.PIQUE && carteSuivante.getValeur()== Valeur.AS) {
+							j.setPossessionAs(true);
+						}
+						if (carteSuivante.getCouleur()== Couleur.PIQUE && carteSuivante.getValeur()== Valeur.DEUX) {
+							j.setPossessionDeux(true);
+						}
 					}
 					
-					Cartes asDePique = new Cartes (EnumTrophee.HighestTrefle, Couleur.PIQUE,Valeur.AS);
+					
 					//boolean au cas ou pour ne pas rentrer dans deux if. 
 					
 					//Signifie que joueur a plusieurs Piquex et que as vaut donc 1. c est le plus petit 
-					if (j.getStack().contains(asDePique) && j.getPointsPourRecupererTrophee()>1) {
+					if (j.isPossessionAs()==true && j.getPointsPourRecupererTrophee()>1) {
 						JoueurQuiALePlusBasPique = j;
 						sortirlp = true; 
 					}
 					//sinon on donne � celui qui a deux de Pique automatiquement
 				
-					Cartes deuxDePique = new Cartes (EnumTrophee.MajorityTrois, Couleur.PIQUE,Valeur.DEUX);
-					if (j.getStack().contains(deuxDePique)) {
+					
+					if (j.isPossessionDeux()==true) {
 						JoueurQuiALePlusBasPique = j;
 					}
 				}
