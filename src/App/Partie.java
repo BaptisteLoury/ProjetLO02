@@ -34,6 +34,7 @@ public class Partie {
 			if (j.getOffre().estOffreSuffisante())
 				if (j.getOffre().getRecto().getValeur().ordinal() > plusForteRecto.getValeur().ordinal()) {
 					plusForteOffre = j.getOffre();
+					plusForteRecto = plusForteOffre.getRecto();
 				}
 				else if (j.getOffre().getRecto().getValeur().ordinal() == plusForteRecto.getValeur().ordinal()) {
 					// < parce que dans l'ï¿½numï¿½ration Couleur, l'ordre va de la plus grand ï¿½ la plus petite
@@ -678,7 +679,7 @@ public class Partie {
 			Cartes t = itTrophee.next();
 			System.out.print(t.getTrophee().toString()+"  ");
 		}
-		//getTrophees().toString();
+		System.out.println();
 	}
 	
 	public Deck getDeck() {
