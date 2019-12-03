@@ -497,7 +497,26 @@ public class Partie {
 				
 				break;
 			case Joker :
-				//Mon code
+				Joueur joueurQuiALeJoker = new Joueur();
+				joueurQuiALeJoker = joueurs.getFirst();
+				Iterator<Joueur> itjJ = joueurs.iterator();
+				boolean sortieJoker = false ; 
+				while (itjJ.hasNext() && sortieJoker == false) {
+					Joueur j = (Joueur) itjJ.next();
+					Iterator<Cartes> itcJ = j.getStack().iterator();
+					while (itcJ.hasNext()) {
+						Cartes carteSuivante = itcJ.next();
+						if (carteSuivante.getTrophee()==EnumTrophee.BestJest && carteSuivante.getCouleur()==Couleur.JOKER 
+								&& carteSuivante.getValeur()==Valeur.JOKER) {
+							sortieJoker =true;
+							joueurQuiALeJoker = j; 
+						}
+					}	
+				}
+				joueurQuiALeJoker.getStack().add(carteTrophee);
+				System.out.println("Le joueur "+joueurQuiALeJoker.getPseudo()+" remporte le trophee Joker");
+				
+				
 				break;
 			case BestJest :
 				//Mon code
