@@ -553,7 +553,120 @@ public class Partie {
 			
 		}
 	}
-	
+	public void calculDesPoints() {
+		Iterator<Joueur> itj = joueurs.iterator();
+		while (itj.hasNext()) {
+			Joueur j = itj.next();
+			Iterator<Cartes> itCompter = j.getStack().iterator();
+			int scoreJ = j.getScoreFinal();
+			int nbCoeur =0;
+			int nbTrefle =0;
+			int nbCarreau =0;
+			int nbPique =0;
+			boolean possedeJoker =false;
+			while (itCompter.hasNext()) {
+				Cartes c = itCompter.next();
+				switch (c.getCouleur()) {
+					case CARREAU:
+						nbCarreau++;			
+					break;
+					case PIQUE:
+						nbPique++;
+					break;
+					case TREFLE:
+						nbTrefle++;
+					break;
+					case COEUR:
+						nbCoeur++;
+					break;
+					// Joker
+					case JOKER:
+						possedeJoker =true;
+					break;
+				}
+				Iterator<Cartes> itCalcul = j.getStack().iterator();
+				while (itCalcul.hasNext()) {
+					Cartes cj = itCalcul.next();
+					switch(cj.getCouleur()) {
+						case CARREAU:
+							if (cj.getValeur()==Valeur.AS) {
+								if (nbCarreau==1) {
+									scoreJ = -5;
+								}
+								else {
+									scoreJ--;
+								}
+							}
+							else {
+								scoreJ = -cj.getValeur().ordinal();
+							}
+						break;
+						case PIQUE:
+							if (cj.getValeur()==Valeur.AS) {
+								if (nbPique==1) {
+									scoreJ = +5;
+								}
+								else {
+									scoreJ++;
+								}
+							}
+							else {
+								scoreJ = +cj.getValeur().ordinal();
+							}
+							Cartes paire = cj.getPaire();
+							if (j.getStack().contains(paire)) {
+								scoreJ++;
+							}
+						break;
+						case TREFLE:
+							if (cj.getValeur()==Valeur.AS) {
+								if (nbTrefle==1) {
+									scoreJ = +5;
+								}
+								else {
+									scoreJ++;
+								}
+							}
+							else {
+								scoreJ = +cj.getValeur().ordinal();
+							}
+							Cartes pair = cj.getPaire();
+							if (j.getStack().contains(pair)) {
+								scoreJ++;
+							}
+						break;
+						case COEUR:
+							if (possedeJoker) {
+								if (nbCoeur>=4) {
+									scoreJ = +cj.getValeur().ordinal();
+								}
+								else {
+									if (cj.getValeur()==Valeur.AS) {
+										if (nbCoeur==1) {
+											scoreJ = -5;
+										}
+										else {
+											scoreJ--;
+										}
+									}
+									else {
+										scoreJ = -cj.getValeur().ordinal();
+									}
+								}
+							}
+							// Sinon une carte coeur ne vaut aucun point
+						break;
+						// Joker
+						case JOKER:
+							if (nbCoeur==0) {
+								scoreJ = +4;
+							}
+						break;
+					}
+				}
+			}
+		}
+	}
 	public void creerPartie() {
 	
 		Scanner sc = new Scanner(System.in);

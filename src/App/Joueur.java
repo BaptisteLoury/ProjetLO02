@@ -15,6 +15,7 @@ public class Joueur {
 	private int pointsPourRecupererTrophee;
 	private boolean possessionAs = false;
 	private boolean possessionQuatre = false;
+	private int scoreFinal = 0;
 	
 	public Joueur() {
 		
@@ -176,6 +177,12 @@ public class Joueur {
 	}
 	public void setPossessionQuatre(boolean possessionQuatre) {
 		this.possessionQuatre = possessionQuatre;
+	}
+	public int getScoreFinal() {
+		return scoreFinal;
+	}
+	public void setScoreFinal(int scoreFinal) {
+		this.scoreFinal = scoreFinal;
 	}
 	
 }
