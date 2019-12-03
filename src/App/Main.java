@@ -6,7 +6,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		Partie partie = Partie.getInstance(); 
 		//partie ne s arrete pas quand deck empty ! Ni lorsqu il reste plus de 3 cartes, cela depend du nombre de joueur.  
-		/*int nbTour = 1;
+		int nbTour = 1;
 		while (partie.getDeck().getDeckCartes().size()>=Joueur.getNbJoueurs()) {
 			System.out.println("TOUR # "+ nbTour);
 			if (nbTour!=1) {
@@ -15,7 +15,7 @@ public class Main {
 			partie.tour();
 			nbTour++;
 		}
-		partie.dernierTour();*/
+		partie.dernierTour();
 		partie.attribuerTrophees();
 		 
 
