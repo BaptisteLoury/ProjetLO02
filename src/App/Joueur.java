@@ -13,6 +13,8 @@ public class Joueur {
 	private Offre offre;
 	private Offre offreChoisie;
 	private int pointsPourRecupererTrophee;
+	private boolean possessionAs = false;
+	private boolean possessionQuatre = false;
 	
 	public Joueur() {
 		
@@ -162,6 +164,18 @@ public class Joueur {
 	}
 	public void setPointsPourRecupererTrophee(int pointsPourRecupererTrophee) {
 		this.pointsPourRecupererTrophee = pointsPourRecupererTrophee;
+	}
+	public boolean isPossessionAs() {
+		return possessionAs;
+	}
+	public void setPossessionAs(boolean possessionAs) {
+		this.possessionAs= possessionAs;
+	}
+	public boolean isPossessionQuatre() {
+		return possessionQuatre;
+	}
+	public void setPossessionQuatre(boolean possessionQuatre) {
+		this.possessionQuatre = possessionQuatre;
 	}
 	
 }

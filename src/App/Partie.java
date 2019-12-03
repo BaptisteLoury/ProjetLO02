@@ -170,6 +170,7 @@ public class Partie {
 				Iterator<Joueur> itjhc = joueurs.iterator();
 				boolean sortirhc = false;
 				while(itjhc.hasNext() && sortirhc == false) {
+					
 					Joueur j = (Joueur) itjhc.next();
 					j.setPointsPourRecupererTrophee(0);
 					Iterator<Cartes> itchc = j.getStack().iterator();
@@ -178,11 +179,14 @@ public class Partie {
 						if(carteSuivante.getCouleur() == Couleur.CARREAU) {
 							j.setPointsPourRecupererTrophee(j.getPointsPourRecupererTrophee() + 1);
 						}
+						if (carteSuivante.getCouleur()== Couleur.CARREAU && carteSuivante.getValeur()== Valeur.AS) {
+							j.setPossessionAs(true);
+						}
 					}
 					//if joueur a as et seulement as 
 					
-					Cartes asDeCarreau = new Cartes (EnumTrophee.MajorityQuatre, Couleur.CARREAU,Valeur.AS);
-					if (j.getStack().contains(asDeCarreau) && j.getPointsPourRecupererTrophee()==1) {
+					
+					if (j.isPossessionAs()==true && j.getPointsPourRecupererTrophee()==1) {
 						JoueurQuiALePlusHautCarreau = j;
 						sortirhc = true;
 					}
@@ -240,7 +244,9 @@ public class Partie {
 				JoueurQuiALePlusHautTrefle = joueurs.getFirst();
 				Iterator<Joueur> itjht = joueurs.iterator();
 				boolean sortirht =false ; 
+				
 				while(itjht.hasNext() && sortirht == false) {
+
 					Joueur j = (Joueur) itjht.next();
 					j.setPointsPourRecupererTrophee(0);
 					Iterator<Cartes> itchc = j.getStack().iterator();
@@ -249,16 +255,22 @@ public class Partie {
 						if(carteSuivante.getCouleur() == Couleur.TREFLE) {
 							j.setPointsPourRecupererTrophee(j.getPointsPourRecupererTrophee() + 1);
 						}
+						if (carteSuivante.getCouleur()== Couleur.TREFLE && carteSuivante.getValeur()== Valeur.AS) {
+							j.setPossessionAs(true);
+						}
+						if (carteSuivante.getCouleur()== Couleur.TREFLE && carteSuivante.getValeur()== Valeur.QUATRE) {
+							j.setPossessionQuatre(true);
+						}
 					}
 					//if joueur a as et seulement as 
-					Cartes asDeTrefle = new Cartes (EnumTrophee.HighestPique, Couleur.TREFLE,Valeur.AS);
-					if (j.getStack().contains(asDeTrefle) && j.getPointsPourRecupererTrophee()==1) {
+					
+					if (j.isPossessionAs()==true && j.getPointsPourRecupererTrophee()==1) {
 						JoueurQuiALePlusHautTrefle = j;
 						sortirht = true;
 					}
 					//sinon on donne � celui qui a quatre de carreau automatiquement
-					Cartes quatreDeTrefle = new Cartes (EnumTrophee.LowestPique, Couleur.TREFLE,Valeur.QUATRE);
-					if (j.getStack().contains(quatreDeTrefle)) {
+					
+					if (j.isPossessionQuatre()) {
 						JoueurQuiALePlusHautTrefle = j;
 					}
 				}
@@ -381,16 +393,22 @@ public class Partie {
 						if(carteSuivante.getCouleur() == Couleur.PIQUE) {
 							j.setPointsPourRecupererTrophee(j.getPointsPourRecupererTrophee() + 1);
 						}
+						if (carteSuivante.getCouleur()== Couleur.PIQUE && carteSuivante.getValeur()== Valeur.AS) {
+							j.setPossessionAs(true);
+						}
+						if (carteSuivante.getCouleur()== Couleur.PIQUE && carteSuivante.getValeur()== Valeur.QUATRE) {
+							j.setPossessionQuatre(true);
+						}
 					}
 					//if joueur a as et seulement as 
-					Cartes asDePique = new Cartes (EnumTrophee.HighestTrefle, Couleur.PIQUE,Valeur.AS);
-					if (j.getStack().contains(asDePique) && j.getPointsPourRecupererTrophee()==1) {
+					
+					if (j.isPossessionAs()==true && j.getPointsPourRecupererTrophee()==1) {
 						JoueurQuiALePlusHautPique = j;
 						sortirhp =true;
 					}
 					//sinon on donne � celui qui a quatre de carreau automatiquement
-					Cartes quatreDePique = new Cartes (EnumTrophee.LowestTrefle, Couleur.PIQUE,Valeur.QUATRE);
-					if (j.getStack().contains(quatreDePique)) {
+					
+					if (j.isPossessionQuatre()==true) {
 						JoueurQuiALePlusHautPique = j;
 					}
 				}
