@@ -191,5 +191,5 @@ public class Joueur {
 	public void setScoreFinal(int scoreFinal) {
 		this.scoreFinal = scoreFinal;
 	}
-	
+
 }

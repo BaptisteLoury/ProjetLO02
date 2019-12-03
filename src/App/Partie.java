@@ -691,7 +691,7 @@ public class Partie {
 						//Sinon le joker ne vaut aucun point
 					break;
 				}
-			}			
+			}
 			j.setScoreFinal(scoreJ);
 		}
 	}
