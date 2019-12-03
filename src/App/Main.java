@@ -17,8 +17,8 @@ public class Main {
 		}
 		partie.dernierTour();
 		partie.attribuerTrophees();
-		 
-
+		partie.calculDesPoints();
+		partie.donnerLesResultats();
 
 	}
 

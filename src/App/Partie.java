@@ -549,7 +549,7 @@ public class Partie {
 		Iterator<Joueur> itfin = joueurs.iterator();
 		while (itfin.hasNext()){
 			Joueur j = (Joueur) itfin.next();
-			System.out.println(j.getStack());
+			System.out.println(j.toString());
 			
 		}
 	}
@@ -558,7 +558,7 @@ public class Partie {
 		while (itj.hasNext()) {
 			Joueur j = itj.next();
 			Iterator<Cartes> itCompter = j.getStack().iterator();
-			int scoreJ = j.getScoreFinal();
+			int scoreJ =0;
 			int nbCoeur =0;
 			int nbTrefle =0;
 			int nbCarreau =0;
@@ -579,92 +579,93 @@ public class Partie {
 					case COEUR:
 						nbCoeur++;
 					break;
-					// Joker
 					case JOKER:
 						possedeJoker =true;
 					break;
 				}
-				Iterator<Cartes> itCalcul = j.getStack().iterator();
-				while (itCalcul.hasNext()) {
-					Cartes cj = itCalcul.next();
-					switch(cj.getCouleur()) {
-						case CARREAU:
-							if (cj.getValeur()==Valeur.AS) {
-								if (nbCarreau==1) {
-									scoreJ = -5;
-								}
-								else {
-									scoreJ--;
-								}
+			}
+			Iterator<Cartes> itCalcul = j.getStack().iterator();
+			while (itCalcul.hasNext()) {
+				Cartes cj = itCalcul.next();
+				switch(cj.getCouleur()) {
+					case CARREAU:
+						if (cj.getValeur()==Valeur.AS) {
+							if (nbCarreau==1) {
+								scoreJ = scoreJ-5;
 							}
 							else {
-								scoreJ = -cj.getValeur().ordinal();
+								scoreJ--;
 							}
-						break;
-						case PIQUE:
-							if (cj.getValeur()==Valeur.AS) {
-								if (nbPique==1) {
-									scoreJ = +5;
-								}
-								else {
-									scoreJ++;
-								}
+						}
+						else {
+							scoreJ = scoreJ-cj.getValeur().ordinal();
+						}
+					break;
+					case PIQUE:
+						if (cj.getValeur()==Valeur.AS) {
+							if (nbPique==1) {
+								scoreJ = scoreJ+5;
 							}
 							else {
-								scoreJ = +cj.getValeur().ordinal();
-							}
-							Cartes paire = cj.getPaire();
-							if (j.getStack().contains(paire)) {
 								scoreJ++;
 							}
-						break;
-						case TREFLE:
-							if (cj.getValeur()==Valeur.AS) {
-								if (nbTrefle==1) {
-									scoreJ = +5;
-								}
-								else {
-									scoreJ++;
-								}
+						}
+						else {
+							scoreJ = scoreJ+cj.getValeur().ordinal();
+						}
+					break;
+					case TREFLE:
+						if (cj.getValeur()==Valeur.AS) {
+							if (nbTrefle==1) {
+								scoreJ = scoreJ+5;
 							}
 							else {
-								scoreJ = +cj.getValeur().ordinal();
-							}
-							Cartes pair = cj.getPaire();
-							if (j.getStack().contains(pair)) {
 								scoreJ++;
 							}
-						break;
-						case COEUR:
-							if (possedeJoker) {
-								if (nbCoeur>=4) {
-									scoreJ = +cj.getValeur().ordinal();
-								}
-								else {
-									if (cj.getValeur()==Valeur.AS) {
-										if (nbCoeur==1) {
-											scoreJ = -5;
-										}
-										else {
-											scoreJ--;
-										}
+						}
+						else {
+							scoreJ = scoreJ+cj.getValeur().ordinal();
+						}
+					break;
+					case COEUR:
+						if (possedeJoker) {
+							if (nbCoeur>=4) {
+								scoreJ = scoreJ+cj.getValeur().ordinal();
+							}
+							else {
+								if (cj.getValeur()==Valeur.AS) {
+									if (nbCoeur==1) {
+										scoreJ = scoreJ-5;
 									}
 									else {
-										scoreJ = -cj.getValeur().ordinal();
+										scoreJ--;
 									}
 								}
+								else {
+									scoreJ = scoreJ-cj.getValeur().ordinal();
+								}
 							}
-							// Sinon une carte coeur ne vaut aucun point
-						break;
-						// Joker
-						case JOKER:
-							if (nbCoeur==0) {
-								scoreJ = +4;
-							}
-						break;
-					}
+						}
+						// Sinon une carte coeur ne vaut aucun point
+					break;
+					// Joker
+					case JOKER:
+						if (nbCoeur==0) {
+							scoreJ = scoreJ+4;
+						}
+						//Sinon le joker ne vaut aucun point
+					break;
 				}
-			}
+			}			
+			j.setScoreFinal(scoreJ);
+		}
+	}
+	public void donnerLesResultats() {
+		System.out.println("Résultats de la partie :");
+		Iterator<Joueur> itj = joueurs.iterator();
+		while (itj.hasNext()) {
+			Joueur j = itj.next();
+			System.out.println(j.getPseudo()+" : "+j.getScoreFinal());
 		}
 	}
 	public void creerPartie() {

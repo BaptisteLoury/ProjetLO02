@@ -154,7 +154,7 @@ public class Joueur {
 		StringBuffer sb = new StringBuffer();
 		sb.append(pseudo);
 		sb.append(" : ");
-		sb.append(main.toString());
+		sb.append(stack.toString());
 		return sb.toString();
 	}
 	public LinkedList<Cartes> getStack() {
