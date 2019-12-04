@@ -771,7 +771,7 @@ public class Partie {
 			System.out.println(deck.getNombreCartes());
 			break;
 		default:
-			System.out.println("La syntaxe de la rï¿½ponse n'est pas correcte. Je pars du principe que tu ne veux pas ajouter l'extension !") ; 
+			System.out.println("La syntaxe de la reponse n'est pas correcte. Je pars du principe que tu ne veux pas ajouter l'extension !") ; 
 			
 		}
 		this.constituerTrophee();

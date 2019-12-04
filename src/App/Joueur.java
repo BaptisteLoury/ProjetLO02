@@ -36,7 +36,7 @@ public class Joueur {
 		System.out.println("Au tour de "+ this.getPseudo() +" de proposer une offre.");
 
 		System.out.println(this.afficherIndiceCartes());
-		System.out.println("Donner l'indice de la carte � mettre en recto. (0 ou 1)");
+		System.out.println("Donner l'indice de la carte a mettre en recto. (0 ou 1)");
 		Scanner scCarteOffre = new Scanner(System.in);
 		int indiceRecto = scCarteOffre.nextInt();
 		if (indiceRecto ==0){
@@ -50,7 +50,7 @@ public class Joueur {
 
 		}
 		else {
-			System.out.println("Les indices renseign�s ne sont pas correctes, veuillez � nouveau compl�ter votre offre.");
+			System.out.println("Les indices renseignes ne sont pas correctes, veuillez � nouveau compl�ter votre offre.");
 			this.faireOffre();
 		}
 		
@@ -68,7 +68,7 @@ public class Joueur {
 			}
 		}
 		if (nombreOffreSuffisante == 0) {
-			System.out.println("Le joueur "+this.getPseudo()+" doit r�cup�rer une carte de sa propre offre.");
+			System.out.println("Le joueur "+this.getPseudo()+" doit recuperer une carte de sa propre offre.");
 			this.choisirCarte(this);
 			return this;
 			//this.setOffreChoisie(this.getOffre());
@@ -84,7 +84,7 @@ public class Joueur {
 				//this.setOffreChoisie(joueurs.get(choixOffre).getOffre());
 			}
 			else {
-				System.out.println("Mauvais indice entr�.");
+				System.out.println("Mauvais indice entre.");
 				this.choisirOffre(joueurs);
 				return this.choisirOffre(joueurs);
 			}
@@ -94,10 +94,10 @@ public class Joueur {
 	public void choisirCarte(Joueur joueur) {
 		Scanner scCarte = new Scanner(System.in);
 		System.out.println(joueur.getOffre().toString());
-		System.out.println("Tapez 1 pour r�cup�rer la carte recto et 2 pour la carte verso.");
+		System.out.println("Tapez 1 pour recuperer la carte recto et 2 pour la carte verso.");
 		int choixCartes = scCarte.nextInt();
 		if (choixCartes != 1 && choixCartes != 2) {
-			System.out.println("Mauvais indice entr�.");
+			System.out.println("Mauvais indice entre.");
 			this.choisirCarte(joueur);
 		}
 		else {
