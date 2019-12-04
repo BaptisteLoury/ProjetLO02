@@ -1,14 +1,12 @@
 package App;
 import java.util.Scanner;
 import java.util.LinkedList;
-import java.util.HashSet;
 import java.util.Iterator;
 
 public class Partie {
 
 	private LinkedList<Joueur> joueurs;
-	
-	private HashSet<Cartes> trophees;
+	private LinkedList<Cartes> trophees;
 	private Deck deck;
 	
 	public Partie() {
@@ -786,7 +784,7 @@ public class Partie {
 		scExtension.close();*/
 	}
 	public void constituerTrophee() {
-		trophees = new HashSet<Cartes>();
+		trophees = new LinkedList<Cartes>();
 		// Le nombre de trophee depend du nombre de joueurs
 		if (Joueur.getNbJoueurs()==3) {
 			// Il change egalement si l extension est utilisee
@@ -818,7 +816,7 @@ public class Partie {
 	public void setDeck(Deck deck) {
 		this.deck = deck;
 	}
-	public HashSet<Cartes> getTrophees() {
+	public LinkedList<Cartes> getTrophees() {
 		return trophees;
 	}
 	
