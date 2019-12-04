@@ -735,7 +735,7 @@ public class Partie {
 			System.out.println("Il y'a un probleme avec le nombre de joueurs. relance le programme. \n");
 	
 		}
-		System.out.println("Combien de joueurs humains serez-vous ? (Il doit Ãªtre infÃ©rieur ou Ã©gal au nombre de joueurs totals");
+		System.out.println("Combien de joueurs humains serez-vous ? (Il doit etre inferieur ou Ã©gal au nombre de joueurs totals");
 		int nombreJoueurReel = sc.nextInt();
 		joueurs = new LinkedList<Joueur>();
 		for (int i = 1;i<=nombreJoueurReel;i++) {
@@ -743,14 +743,14 @@ public class Partie {
 			String pseudo = scannerPseudo.nextLine();
 			Joueur j = new Joueur(pseudo);
 			joueurs.add(j);
-			System.out.println("Le joueur " + j.getPseudo() + " a ï¿½tï¿½ ajoutï¿½ ï¿½ la partie !");
+			System.out.println("Le joueur " + j.getPseudo() + " a ete ajoute dans la partie !");
 		}
 		
 		for (int i = nombreJoueurReel + 1;i<=nombreJoueur;i++) {
 			JoueurVirtuel jv = new JoueurVirtuel("Joueur Virtuel " + i);
 			joueurs.add(jv);
 			
-			System.out.println("Le Joueur Virtuel " + i + " a bien ï¿½tï¿½ ajoutï¿½ ï¿½ la partie !");
+			System.out.println("Le Joueur Virtuel " + i + " a bien a ete ajoute dans la partie !!");
 		}
 		// Crï¿½ation du jeu de cartes de base + mï¿½lange automatique
 		deck = new Deck();
@@ -763,7 +763,7 @@ public class Partie {
 		switch(extension) {
 		case 'O':
 			deck.ajouterExtension();
-			System.out.println("Okay, tu as dÃ©cidÃ© de jouer Ã  l'extension. \n") ; 
+			System.out.println("Okay, tu as decide de jouer Ã  l'extension. \n") ; 
 			System.out.println(deck.toString());
 			System.out.println(deck.getNombreCartes());
 			break;
