@@ -599,6 +599,8 @@ public class Partie {
 			int nbTrefle =0;
 			int nbCarreau =0;
 			int nbPique =0;
+			int nbPaire =0;
+			LinkedList<Valeur> paires = new LinkedList<Valeur>();
 			boolean possedeJoker =false;
 			while (itCompter.hasNext()) {
 				Cartes c = itCompter.next();
@@ -623,7 +625,6 @@ public class Partie {
 			Iterator<Cartes> itCalcul = j.getStack().iterator();
 			while (itCalcul.hasNext()) {
 				Cartes cj = itCalcul.next();
-				Cartes paire;
 				switch(cj.getCouleur()) {
 					case CARREAU:
 						if (cj.getValeur()==Valeur.AS) {
@@ -650,18 +651,10 @@ public class Partie {
 						else {
 							scoreJ = scoreJ+cj.getValeur().ordinal();
 						}
-						if (cj.getValeur()!=Valeur.CINQ) {
-							paire = new Cartes(EnumTrophee.values()[cj.getValeur().ordinal()+4],Couleur.TREFLE,cj.getValeur());
-							if (j.getStack().contains(paire)) {
-								scoreJ++;
-							}
+						if (paires.contains(cj.getValeur())) {
+							nbPaire++;
 						}
-						else {
-							paire = new Cartes(EnumTrophee.Joker,Couleur.TREFLE,Valeur.CINQ);
-							if (j.getStack().contains(paire)) {
-								scoreJ++;
-							}
-						}
+						paires.add(cj.getValeur());
 					break;
 					case TREFLE:
 						if (cj.getValeur()==Valeur.AS) {
@@ -675,19 +668,11 @@ public class Partie {
 						else {
 							scoreJ = scoreJ+cj.getValeur().ordinal();
 						}
-						if (cj.getValeur()!=Valeur.CINQ) {
-							paire = new Cartes(EnumTrophee.values()[cj.getValeur().ordinal()],Couleur.PIQUE,cj.getValeur());
-							if (j.getStack().contains(paire)) {
-								scoreJ++;
-							}
+						if (paires.contains(cj.getValeur())) {
+							nbPaire++;
 						}
-						else {
-							paire = new Cartes(EnumTrophee.Joker,Couleur.PIQUE,Valeur.CINQ);
-							if (j.getStack().contains(paire)) {
-								scoreJ++;
-							}
-						}
-					break;
+						paires.add(cj.getValeur());
+						break;
 					case COEUR:
 						if (possedeJoker) {
 							if (nbCoeur>=4) {
@@ -718,6 +703,8 @@ public class Partie {
 					break;
 				}
 			}
+			scoreJ = scoreJ+2*nbPaire;
+			System.out.println(nbPaire);
 			j.setScoreFinal(scoreJ);
 		}
 	}
