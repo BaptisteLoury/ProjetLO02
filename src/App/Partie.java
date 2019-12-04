@@ -32,8 +32,6 @@ public class Partie {
 		Cartes plusForteRecto = new Cartes(EnumTrophee.Joker,Couleur.JOKER,Valeur.JOKER);
 		while (itj.hasNext()) {
 			Joueur j =  itj.next();
-			System.out.println(j.getOffre());
-			
 			if (j.getOffre().estOffreSuffisante())
 				if (j.getOffre().getRecto().getValeur().ordinal() > plusForteRecto.getValeur().ordinal()) {
 					plusForteOffre = j.getOffre();

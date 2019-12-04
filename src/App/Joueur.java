@@ -8,15 +8,15 @@ public class Joueur {
 	private String pseudo;
 
 	private static int nbJoueurs = 0;
-	private LinkedList<Cartes> main;
-	private LinkedList<Cartes> stack;
-	private Offre offre;
-	private Offre offreChoisie;
-	private int pointsPourRecupererTrophee;
-	private boolean possessionAs = false;
-	private boolean possessionQuatre = false;
-	private boolean possessionDeux = false;
-	private int scoreFinal = 0;
+	protected LinkedList<Cartes> main;
+	protected LinkedList<Cartes> stack;
+	protected Offre offre;
+	protected Offre offreChoisie;
+	protected int pointsPourRecupererTrophee;
+	protected boolean possessionAs = false;
+	protected boolean possessionQuatre = false;
+	protected boolean possessionDeux = false;
+	protected int scoreFinal = 0;
 	
 	public Joueur() {
 		
@@ -92,7 +92,6 @@ public class Joueur {
 	}
 	
 	public void choisirCarte(Joueur joueur) {
-		Cartes carteRestante = new Cartes();
 		Scanner scCarte = new Scanner(System.in);
 		System.out.println(joueur.getOffre().toString());
 		System.out.println("Tapez 1 pour r�cup�rer la carte recto et 2 pour la carte verso.");
