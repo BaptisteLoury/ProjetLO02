@@ -191,5 +191,33 @@ public class Joueur {
 	public void setScoreFinal(int scoreFinal) {
 		this.scoreFinal = scoreFinal;
 	}
-
+	public int getNbPaire() {
+		int nbPaire =0;
+		Cartes c1 = new Cartes(EnumTrophee.HighestTrefle,Couleur.PIQUE,Valeur.AS);
+		Cartes c2 = new Cartes(EnumTrophee.HighestPique,Couleur.TREFLE,Valeur.AS);
+		if (this.stack.contains(c1) && this.stack.contains(c2)) {
+			nbPaire++;
+		}
+		c1 = new Cartes(EnumTrophee.MajorityTrois,Couleur.PIQUE,Valeur.DEUX);
+		c2 = new Cartes(EnumTrophee.LowestCoeur,Couleur.TREFLE,Valeur.DEUX);
+		if (this.stack.contains(c1) && this.stack.contains(c2)) {
+			nbPaire++;
+		}
+		c1 = new Cartes(EnumTrophee.MajorityDeux,Couleur.PIQUE,Valeur.TROIS);
+		c2 = new Cartes(EnumTrophee.HighestCoeur,Couleur.TREFLE,Valeur.TROIS);
+		if (this.stack.contains(c1) && this.stack.contains(c2)) {
+			nbPaire++;
+		}
+		c1 = new Cartes(EnumTrophee.LowestTrefle,Couleur.PIQUE,Valeur.QUATRE);
+		c2 = new Cartes(EnumTrophee.LowestPique,Couleur.TREFLE,Valeur.QUATRE);
+		if (this.stack.contains(c1) && this.stack.contains(c2)) {
+			nbPaire++;
+		}
+		c1 = new Cartes(EnumTrophee.Joker,Couleur.PIQUE,Valeur.CINQ);
+		c2 = new Cartes(EnumTrophee.Joker,Couleur.TREFLE,Valeur.CINQ);
+		if (this.stack.contains(c1) && this.stack.contains(c2)) {
+			nbPaire++;
+		}
+		return nbPaire;
+	}
 }

@@ -47,5 +47,5 @@ public class Cartes {
 		sb.append(this.couleur.toString());
 		return sb.toString();
 	}
-
+	
 }

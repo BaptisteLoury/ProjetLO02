@@ -692,6 +692,8 @@ public class Partie {
 					break;
 				}
 			}
+			scoreJ = scoreJ+2*j.getNbPaire();
+			System.out.println(j.getNbPaire());
 			j.setScoreFinal(scoreJ);
 		}
 	}
