@@ -8,7 +8,6 @@ import java.util.LinkedList;
 
 public class JoueurVirtuel extends Joueur {
 
-	private Offre offre;
 	
 	JoueurVirtuel(String pseudo) {
 		super(pseudo);
@@ -33,14 +32,15 @@ public class JoueurVirtuel extends Joueur {
 			}
 		}
 		offre = new Offre(carteLaPlusHaute,carteLaPlusBasse,this);
-		getMain().clear();
+		main.clear();
 		
 	}
 	public Joueur choisirOffre(LinkedList<Joueur> joueurs) {
 		//choisir carte qui fait gagner le plus de points  
 		//sinon carte aleatoire sur les joueurs 
 
-		System.out.println(this.getPseudo()+" prend une carte");
+		System.out.println("Au tour de "+this.getPseudo()+" de prendre une carte");
+
 		Iterator<Joueur> itj = joueurs.iterator();
 		int nombreOffreSuffisante = 0;
 		Offre meilleureOffre = joueurs.getFirst().getOffre();
@@ -58,7 +58,8 @@ public class JoueurVirtuel extends Joueur {
 		if (nombreOffreSuffisante==0) {
 			this.getStack().add(offre.getVerso());
 			this.getOffre().setVerso(null);
-			System.out.println(this.getPseudo()+" a pris une carte");
+			System.out.println(this.getPseudo()+" a pris la carte verso de sa propre offre.");
+			this.offre.setOffreSuffisante(false);
 			return this;
 		}
 		else {
@@ -70,18 +71,21 @@ public class JoueurVirtuel extends Joueur {
 					if (j2.getOffre().estOffreSuffisante()) {
 						continuerBoucle = false;
 						this.getStack().add(j2.getOffre().getVerso());
+						System.out.println(this.getPseudo()+" a pris la carte verso du joueur "+meilleureOffre.getOffrant().getPseudo());
 						j2.getOffre().setVerso(null);
 						meilleureOffre = j2.getOffre();
-						System.out.println(this.getPseudo()+" a pris une carte");
 					}
 				}
+				meilleureOffre.getOffrant().getOffre().setOffreSuffisante(false);
 				return meilleureOffre.getOffrant();
 			}
 			else {
 				this.getStack().add(meilleureOffre.getRecto());
-			//	System.out.println(this.getPseudo()+" a pris la carte "+meilleureOffre.getRecto()+"");
-				meilleureOffre.setRecto(null);
-				System.out.println(this.getPseudo()+" a pris une carte");
+
+				System.out.println(this.getPseudo()+" a pris la carte recto "+meilleureOffre.getRecto()+" du joueur "+meilleureOffre.getOffrant().getPseudo());
+				meilleureOffre.getOffrant().getOffre().setRecto(null);
+				meilleureOffre.getOffrant().getOffre().setOffreSuffisante(false);
+
 				return meilleureOffre.getOffrant();
 				
 			}

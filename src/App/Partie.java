@@ -35,8 +35,7 @@ public class Partie {
 			//System.out.println(j.getOffre());
 			
 			if (j.getOffre().estOffreSuffisante())
-				System.out.println("test");
-				System.out.println(j.getOffre().getRecto());
+				
 				if (j.getOffre().getRecto().getValeur().ordinal() > plusForteRecto.getValeur().ordinal()) {
 					plusForteOffre = j.getOffre();
 					plusForteRecto = plusForteOffre.getRecto();
