@@ -1,4 +1,6 @@
 package App;
+import java.util.LinkedList;
+import java.util.Iterator;
 
 public class Cartes {
 
@@ -38,7 +40,6 @@ public class Cartes {
 	public void setValeur(Valeur valeur) {
 		this.valeur = valeur;
 	}
-
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		sb.append(this.valeur.toString());
@@ -46,5 +47,5 @@ public class Cartes {
 		sb.append(this.couleur.toString());
 		return sb.toString();
 	}
-
+	
 }

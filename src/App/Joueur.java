@@ -16,6 +16,7 @@ public class Joueur {
 	private boolean possessionAs = false;
 	private boolean possessionQuatre = false;
 	private boolean possessionDeux = false;
+	private int scoreFinal = 0;
 	
 	public Joueur() {
 		
@@ -154,7 +155,7 @@ public class Joueur {
 		StringBuffer sb = new StringBuffer();
 		sb.append(pseudo);
 		sb.append(" : ");
-		sb.append(main.toString());
+		sb.append(stack.toString());
 		return sb.toString();
 	}
 	public LinkedList<Cartes> getStack() {
@@ -183,6 +184,12 @@ public class Joueur {
 	}
 	public void setPossessionDeux(boolean possessionDeux) {
 		this.possessionDeux = possessionDeux;
+	}
+	public int getScoreFinal() {
+		return scoreFinal;
+	}
+	public void setScoreFinal(int scoreFinal) {
+		this.scoreFinal = scoreFinal;
 	}
 	
 }
