@@ -7,6 +7,7 @@ import java.util.Iterator;
 public class Partie {
 
 	private LinkedList<Joueur> joueurs;
+	private LinkedList<Joueur> joueursvirtuels;
 	private HashSet<Cartes> trophees;
 	private Deck deck;
 	
