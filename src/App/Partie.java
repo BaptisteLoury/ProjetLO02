@@ -704,7 +704,6 @@ public class Partie {
 				}
 			}
 			scoreJ = scoreJ+2*nbPaire;
-			System.out.println(nbPaire);
 			j.setScoreFinal(scoreJ);
 		}
 	}
