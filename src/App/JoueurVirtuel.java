@@ -80,7 +80,7 @@ public class JoueurVirtuel extends Joueur {
 			else {
 				this.getStack().add(meilleureOffre.getRecto());
 			//	System.out.println(this.getPseudo()+" a pris la carte "+meilleureOffre.getRecto()+"");
-				meilleureOffre.getOffrant().getOffre().setRecto(null);
+				meilleureOffre.setRecto(null);
 				System.out.println(this.getPseudo()+" a pris une carte");
 				return meilleureOffre.getOffrant();
 				
