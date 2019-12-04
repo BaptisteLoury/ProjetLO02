@@ -5,6 +5,7 @@ public class Offre {
 	private Cartes recto;
 	private Cartes verso;
 	private Joueur offrant;
+	private JoueurVirtuel offrantVirtuel ; 
 	//private Joueur preneur;
 	private boolean offreSuffisante;
 	

@@ -7,7 +7,7 @@ import java.util.Iterator;
 public class Partie {
 
 	private LinkedList<Joueur> joueurs;
-	private LinkedList<Joueur> joueursvirtuels;
+	
 	private HashSet<Cartes> trophees;
 	private Deck deck;
 	
@@ -32,7 +32,9 @@ public class Partie {
 		Cartes plusForteRecto = new Cartes(EnumTrophee.Joker,Couleur.JOKER,Valeur.JOKER);
 		while (itj.hasNext()) {
 			Joueur j = itj.next();
-			if (j.getOffre().estOffreSuffisante())
+			System.out.println(j.getOffre());
+			//if (j.getOffre().estOffreSuffisante())
+			
 				if (j.getOffre().getRecto().getValeur().ordinal() > plusForteRecto.getValeur().ordinal()) {
 					plusForteOffre = j.getOffre();
 					plusForteRecto = plusForteOffre.getRecto();
@@ -619,8 +621,9 @@ public class Partie {
 		}
 		
 		for (int i = nombreJoueurReel + 1;i<=nombreJoueur;i++) {
-			Joueur jv = new JoueurVirtuel("Joueur Virtuel " + i);
+			JoueurVirtuel jv = new JoueurVirtuel("Joueur Virtuel " + i);
 			joueurs.add(jv);
+			
 			System.out.println("Le Joueur Virtuel " + i + " a bien ï¿½tï¿½ ajoutï¿½ ï¿½ la partie !");
 		}
 		// Crï¿½ation du jeu de cartes de base + mï¿½lange automatique
