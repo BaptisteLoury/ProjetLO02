@@ -1,6 +1,7 @@
 package App;
 
 import java.util.Iterator;
+import java.util.LinkedList;
 
 public class JoueurVirtuel extends Joueur {
 
@@ -34,9 +35,10 @@ public class JoueurVirtuel extends Joueur {
 
 		
 	}
-	public void choisirOffre() {
+	public Joueur choisirOffre(LinkedList<Joueur> joueurs) {
 		//choisir carte qui fait gagner le plus de points  
 		//sinon carte aleatoire sur les joueurs 
+		
 	}
 	public Offre getOffre() {
 		return offre;
