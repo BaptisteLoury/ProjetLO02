@@ -598,6 +598,8 @@ public class Partie {
 			int nbTrefle =0;
 			int nbCarreau =0;
 			int nbPique =0;
+			int nbPaire =0;
+			LinkedList<Valeur> paires = new LinkedList<Valeur>();
 			boolean possedeJoker =false;
 			while (itCompter.hasNext()) {
 				Cartes c = itCompter.next();
@@ -647,7 +649,11 @@ public class Partie {
 						}
 						else {
 							scoreJ = scoreJ+cj.getValeur().ordinal();
-						}					
+						}
+						if (paires.contains(cj.getValeur())) {
+							nbPaire++;
+						}
+						paires.add(cj.getValeur());
 					break;
 					case TREFLE:
 						if (cj.getValeur()==Valeur.AS) {
@@ -661,6 +667,10 @@ public class Partie {
 						else {
 							scoreJ = scoreJ+cj.getValeur().ordinal();
 						}
+						if (paires.contains(cj.getValeur())) {
+							nbPaire++;
+						}
+						paires.add(cj.getValeur());
 						break;
 					case COEUR:
 						if (possedeJoker) {
@@ -692,8 +702,8 @@ public class Partie {
 					break;
 				}
 			}
-			scoreJ = scoreJ+2*j.getNbPaire();
-			System.out.println(j.getNbPaire());
+			scoreJ = scoreJ+2*nbPaire;
+			System.out.println(nbPaire);
 			j.setScoreFinal(scoreJ);
 		}
 	}
