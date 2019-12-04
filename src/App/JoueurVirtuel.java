@@ -28,7 +28,7 @@ public class JoueurVirtuel extends Joueur {
 				carteLaPlusHaute = carteSuivante ;
 			}
 		}
-		Offre offre = new Offre(carteLaPlusHaute,carteLaPlusBasse,this);
+		offre = new Offre(carteLaPlusHaute,carteLaPlusBasse,this);
 		getMain().clear();
 		System.out.println(offre.toString());
 
