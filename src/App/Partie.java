@@ -1,16 +1,25 @@
 package App;
+import Strategies.* ;
+
+import Joueurs.*;
+
 import java.util.Scanner;
+
+import Joueurs.Joueur;
+import Joueurs.JoueurReel;
+import Joueurs.JoueurVirtuel;
+
 import java.util.LinkedList;
 import java.util.Iterator;
 
 public class Partie {
 
-	private LinkedList<Joueur> joueurs;
+	protected LinkedList<Joueur> joueurs;
 	private LinkedList<Cartes> trophees;
 	private Deck deck;
 	
 	public Partie() {
-		this.creerPartie();
+		
 	}
 	//Singleton
 	private static Partie INSTANCE= null; 
@@ -23,7 +32,99 @@ public class Partie {
 		}
 		return INSTANCE ;
 	}
+	
+	public void creerPartie() {
+		
+		Scanner sc = new Scanner(System.in);
+		Scanner scannerPseudo = new Scanner(System.in);
+		System.out.println("A combien de joueurs allez vous jouer la partie ?");
+		int nombreJoueur = sc.nextInt();
+		switch (nombreJoueur) {
+		case 3:
+			System.out.println("parfait");
+			break;
+		case 4:
+			System.out.println("parfait");
+			break;
+		default:
+			System.out.println("Il y'a un probleme avec le nombre de joueurs. relance le programme. \n");
+	
+		}
+		System.out.println("Combien de joueurs humains serez-vous ? (Il doit etre inferieur ou Ã©gal au nombre de joueurs totals");
+		int nombreJoueurReel = sc.nextInt();
+		joueurs = new LinkedList<Joueur>();
+		for (int i = 1;i<=nombreJoueurReel;i++) {
+			System.out.println("Donner le pseudo du joueur "+ i +" :");
+			String pseudo = scannerPseudo.nextLine();
+			Joueur j = new JoueurReel(pseudo);
+			joueurs.add(j);
+			System.out.println("Le joueur " + j.getPseudo() + " a ete ajoute dans la partie !");
+		}
+		
+		for (int i = nombreJoueurReel + 1;i<=nombreJoueur;i++) {
+			JoueurVirtuel jv = new JoueurVirtuel("Joueur Virtuel " + i);
+			joueurs.add(jv);
+			
+			System.out.println("Le Joueur Virtuel " + i + " a bien a ete ajoute dans la partie !!");
+		}
+		// Crï¿½ation du jeu de cartes de base + mï¿½lange automatique
+		deck = new Deck();
+		
+		//Paragraphe pour dÃ©terminer si oui ou non on joue Ã  l'extension
+		 
+		Scanner scExtension = new Scanner(System.in);
+		System.out.println("Voulez vous jouer Ã  l'extension? (O/N)");
+		char extension = scExtension.nextLine().charAt(0);
+		switch(extension) {
+		case 'O':
+			deck.ajouterExtension();
+			System.out.println("Okay, tu as decide de jouer Ã  l'extension. \n") ; 
+			System.out.println(deck.toString());
+			System.out.println(deck.getNombreCartes());
+			break;
+		case 'N':
+			System.out.println("Okay tu ne veux pas jouer Ã  l'extension. J'en prends note ! \n") ; 
+			System.out.println(deck.toString());
+			System.out.println(deck.getNombreCartes());
+			break;
+		default:
+			System.out.println("La syntaxe de la reponse n'est pas correcte. Je pars du principe que tu ne veux pas ajouter l'extension !") ; 
+			
+		}
+		Scanner scVariante = new Scanner(System.in);
+		System.out.println("Voulez vous jouer à  une variante ? (O/N)");
+		char variante = scVariante.nextLine().charAt(0);
+		switch (variante) {
+		case 'O':
+			Scanner scQuellevariante = new Scanner(System.in);
+			System.out.println("A quelle variante veux tu jouer ? (1 ou 2)");
+			int quelleVariante = scQuellevariante.nextInt();
+			
+			switch (quelleVariante) {
+			case 1: 
+				Variante1 variante1 = new Variante1();
+				
+				System.out.println("okay on va jouer a la variante 1");
+				
+				//System.out.println("test2");
+				 
+			case 2: System.out.println("test");	
+			}
+		case 'N':
+			System.out.println("Okay, tu ne veux pas joueur à une variante. J'en prends note");
+		default:
+			System.out.println("La syntaxe de la reponse n'est pas correcte. Je pars du principe que tu ne veux pas jouer à une variante!") ;	
+		}
+		this.constituerTrophee();
+			
 
+
+		/*scannerPseudo.close();
+
+		sc.close();
+		scExtension.close();*/
+	}
+	
 	public Joueur recupererPlusForteOffre() {
 		Iterator<Joueur> itj = joueurs.iterator();
 		Offre plusForteOffre = joueurs.getFirst().getOffre();
@@ -118,10 +219,10 @@ public class Partie {
 			}
 		}
 	}
-	public void attribuerTrophees() {
+public void attribuerTrophees() {
 		
 		//faire iterator sur stackintermediaire. Tant que pas empty, on continue
-	
+		
 		Iterator<Cartes> itc = getTrophees().iterator();
 		getTrophees();
 		while (itc.hasNext()) {
@@ -132,8 +233,8 @@ public class Partie {
 			case MajorityQuatre :
 				//iterator sur chaque joueur. On compte pour chacun nombre de 4 dans leur stack.
 				//CarteTrophee va vers ce joueur 
-				Joueur joueurQuiALePlusDeQuatre = new Joueur();
-				joueurQuiALePlusDeQuatre = joueurs.getFirst();
+				
+				Joueur joueurQuiALePlusDeQuatre = joueurs.getFirst();
 				Iterator<Joueur> itj = joueurs.iterator();
 				while(itj.hasNext()) {
 					Joueur j = (Joueur) itj.next();
@@ -167,8 +268,8 @@ public class Partie {
 			case HighestCarreau :
 				//gagnat est celui qui a as de carreau seulement 
 				//sinon gagnant est celui qui a quatre de carreau
-				Joueur JoueurQuiALePlusHautCarreau = new Joueur();
-				JoueurQuiALePlusHautCarreau = joueurs.getFirst();
+				
+				Joueur JoueurQuiALePlusHautCarreau = joueurs.getFirst();
 				Iterator<Joueur> itjhc = joueurs.iterator();
 				boolean sortirhc = false;
 				while(itjhc.hasNext() && sortirhc == false) {
@@ -205,8 +306,8 @@ public class Partie {
 				
 				break;
 			case HighestTrefle :
-				Joueur JoueurQuiALePlusHautTrefle = new Joueur();
-				JoueurQuiALePlusHautTrefle = joueurs.getFirst();
+				
+				Joueur JoueurQuiALePlusHautTrefle = joueurs.getFirst();
 				Iterator<Joueur> itjht = joueurs.iterator();
 				boolean sortirht =false ; 
 				
@@ -244,8 +345,8 @@ public class Partie {
 				break;
 			
 			case HighestPique :
-				Joueur JoueurQuiALePlusHautPique = new Joueur();
-				JoueurQuiALePlusHautPique = joueurs.getFirst();
+				 
+				Joueur JoueurQuiALePlusHautPique = joueurs.getFirst();
 				Iterator<Joueur> itjhp = joueurs.iterator();
 				boolean sortirhp = false;
 				while(itjhp.hasNext()&&sortirhp ==false) {
@@ -280,8 +381,8 @@ public class Partie {
 				System.out.println("Le joueur "+JoueurQuiALePlusHautPique.getPseudo()+" remporte le trophee HighestPique");
 				break;
 			case HighestCoeur :
-				Joueur JoueurQuiALePlusHautCoeur = new Joueur();
-				JoueurQuiALePlusHautCoeur = joueurs.getFirst();
+				 
+				Joueur JoueurQuiALePlusHautCoeur = joueurs.getFirst();
 				Iterator<Joueur> itjhcoeur = joueurs.iterator();
 				boolean sortirhcoeur = false;
 				while(itjhcoeur.hasNext()&& sortirhcoeur==false) {
@@ -320,8 +421,8 @@ public class Partie {
 				break;
 			
 			case MajorityTrois :
-				Joueur joueurQuiALePlusDeTrois= new Joueur();
-				joueurQuiALePlusDeTrois= joueurs.getFirst();
+				
+				Joueur joueurQuiALePlusDeTrois= joueurs.getFirst();
 				Iterator<Joueur> itjm3 = joueurs.iterator();
 				while(itjm3.hasNext()) {
 					Joueur j = (Joueur) itjm3.next();
@@ -353,8 +454,8 @@ public class Partie {
 				System.out.println("Le joueur "+joueurQuiALePlusDeTrois.getPseudo()+"remporte le trophee MajorityTrois");
 				break;
 			case MajorityDeux :
-				Joueur joueurQuiALePlusDeDeux= new Joueur();
-				joueurQuiALePlusDeDeux= joueurs.getFirst();
+				
+				Joueur joueurQuiALePlusDeDeux= joueurs.getFirst();
 				Iterator<Joueur> itjm2 = joueurs.iterator();
 				while(itjm2.hasNext()) {
 					Joueur j = (Joueur) itjm2.next();
@@ -387,8 +488,8 @@ public class Partie {
 				
 				break;
 			case LowestCarreau :
-				Joueur JoueurQuiALePlusBasCarreau = new Joueur();
-				JoueurQuiALePlusBasCarreau = joueurs.getFirst();
+				
+				Joueur JoueurQuiALePlusBasCarreau = joueurs.getFirst();
 				Iterator<Joueur> itjlc = joueurs.iterator();
 				boolean sortirlc = false;
 				while(itjlc.hasNext() && sortirlc ==false) {
@@ -428,8 +529,8 @@ public class Partie {
 				
 				break;
 			case LowestTrefle :
-				Joueur JoueurQuiALePlusBasTrefle = new Joueur();
-				JoueurQuiALePlusBasTrefle = joueurs.getFirst();
+				
+				Joueur JoueurQuiALePlusBasTrefle = joueurs.getFirst();
 				Iterator<Joueur> itjlt = joueurs.iterator();
 				boolean sortirlt = false;
 				while(itjlt.hasNext() && sortirlt ==false) {
@@ -470,8 +571,8 @@ public class Partie {
 				break;
 			
 			case LowestCoeur :
-				Joueur JoueurQuiALePlusBasCoeur = new Joueur();
-				JoueurQuiALePlusBasCoeur = joueurs.getFirst();
+				 
+				Joueur JoueurQuiALePlusBasCoeur = joueurs.getFirst();
 				Iterator<Joueur> itjlcoeur = joueurs.iterator();
 				boolean sortirlcoeur = false;
 				while(itjlcoeur.hasNext() && sortirlcoeur ==false) {
@@ -512,8 +613,8 @@ public class Partie {
 				break;
 			
 			case LowestPique :
-				Joueur JoueurQuiALePlusBasPique = new Joueur();
-				JoueurQuiALePlusBasPique = joueurs.getFirst();
+				
+				Joueur JoueurQuiALePlusBasPique = joueurs.getFirst();
 				Iterator<Joueur> itjlp = joueurs.iterator();
 				boolean sortirlp = false;
 				while(itjlp.hasNext() && sortirlp ==false) {
@@ -553,8 +654,8 @@ public class Partie {
 				
 				break;
 			case Joker :
-				Joueur joueurQuiALeJoker = new Joueur();
-				joueurQuiALeJoker = joueurs.getFirst();
+				
+				Joueur joueurQuiALeJoker = joueurs.getFirst();
 				Iterator<Joueur> itjJ = joueurs.iterator();
 				boolean sortieJoker = false ; 
 				while (itjJ.hasNext() && sortieJoker == false) {
@@ -590,6 +691,8 @@ public class Partie {
 			
 		}
 	}
+
+
 	public void calculDesPoints() {
 		Iterator<Joueur> itj = joueurs.iterator();
 		while (itj.hasNext()) {
@@ -716,73 +819,7 @@ public class Partie {
 			System.out.println(j.getPseudo()+" : "+j.getScoreFinal());
 		}
 	}
-	public void creerPartie() {
 	
-		Scanner sc = new Scanner(System.in);
-		Scanner scannerPseudo = new Scanner(System.in);
-		System.out.println("A combien de joueurs allez vous jouer la partie ?");
-		int nombreJoueur = sc.nextInt();
-		switch (nombreJoueur) {
-		case 3:
-			System.out.println("parfait");
-			break;
-		case 4:
-			System.out.println("parfait");
-			break;
-		default:
-			System.out.println("Il y'a un probleme avec le nombre de joueurs. relance le programme. \n");
-	
-		}
-		System.out.println("Combien de joueurs humains serez-vous ? (Il doit etre inferieur ou Ã©gal au nombre de joueurs totals");
-		int nombreJoueurReel = sc.nextInt();
-		joueurs = new LinkedList<Joueur>();
-		for (int i = 1;i<=nombreJoueurReel;i++) {
-			System.out.println("Donner le pseudo du joueur "+ i +" :");
-			String pseudo = scannerPseudo.nextLine();
-			Joueur j = new Joueur(pseudo);
-			joueurs.add(j);
-			System.out.println("Le joueur " + j.getPseudo() + " a ete ajoute dans la partie !");
-		}
-		
-		for (int i = nombreJoueurReel + 1;i<=nombreJoueur;i++) {
-			JoueurVirtuel jv = new JoueurVirtuel("Joueur Virtuel " + i);
-			joueurs.add(jv);
-			
-			System.out.println("Le Joueur Virtuel " + i + " a bien a ete ajoute dans la partie !!");
-		}
-		// Crï¿½ation du jeu de cartes de base + mï¿½lange automatique
-		deck = new Deck();
-		
-		//Paragraphe pour dÃ©terminer si oui ou non on joue Ã  l'extension
-		 
-		Scanner scExtension = new Scanner(System.in);
-		System.out.println("Voulez vous jouer Ã  l'extension? (O/N)");
-		char extension = scExtension.nextLine().charAt(0);
-		switch(extension) {
-		case 'O':
-			deck.ajouterExtension();
-			System.out.println("Okay, tu as decide de jouer Ã  l'extension. \n") ; 
-			System.out.println(deck.toString());
-			System.out.println(deck.getNombreCartes());
-			break;
-		case 'N':
-			System.out.println("Okay tu ne veux pas jouer Ã  l'extension. J'en prends note ! \n") ; 
-			System.out.println(deck.toString());
-			System.out.println(deck.getNombreCartes());
-			break;
-		default:
-			System.out.println("La syntaxe de la reponse n'est pas correcte. Je pars du principe que tu ne veux pas ajouter l'extension !") ; 
-			
-		}
-		this.constituerTrophee();
-			
-
-
-		/*scannerPseudo.close();
-
-		sc.close();
-		scExtension.close();*/
-	}
 	public void constituerTrophee() {
 		trophees = new LinkedList<Cartes>();
 		// Le nombre de trophee depend du nombre de joueurs

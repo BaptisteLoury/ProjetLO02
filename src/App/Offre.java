@@ -1,5 +1,8 @@
 package App;
 
+import Joueurs.Joueur;
+import Joueurs.JoueurVirtuel;
+
 public class Offre {
 
 	private Cartes recto;

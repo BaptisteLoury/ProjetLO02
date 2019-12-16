@@ -1,9 +1,13 @@
-package App;
+package Joueurs;
 import java.util.LinkedList;
 import java.util.Scanner;
+
+import App.Cartes;
+import App.Offre;
+
 import java.util.Iterator;
 
-public class Joueur {
+public abstract class Joueur {
 
 	private String pseudo;
 
@@ -18,9 +22,9 @@ public class Joueur {
 	protected boolean possessionDeux = false;
 	protected int scoreFinal = 0;
 	
-	public Joueur() {
-		
-	}
+	
+	public Joueur () {}	
+	
 	public Joueur(String pseudo) {
 		nbJoueurs++;
 		this.pseudo = pseudo;
@@ -30,7 +34,7 @@ public class Joueur {
 
 	}
 
-	public void faireOffre()  {
+	public abstract void faireOffre() ; /*{
 		//Pour ne pas voir les cartes des autres
 		System.out.println("\n\n\n\n\n\n\n\n");
 		System.out.println("Au tour de "+ this.getPseudo() +" de proposer une offre.");
@@ -54,8 +58,8 @@ public class Joueur {
 			this.faireOffre();
 		}
 		
-	}
-	public Joueur choisirOffre(LinkedList<Joueur> joueurs) {
+	}*/
+	public abstract Joueur choisirOffre(LinkedList<Joueur> joueurs); /*{ 
 		Scanner scOffre = new Scanner(System.in);
 		Iterator<Joueur> itj = joueurs.iterator();
 		int nombreOffreSuffisante = 0;
@@ -89,9 +93,9 @@ public class Joueur {
 				return this.choisirOffre(joueurs);
 			}
 		}
-	}
+	}*/
 	
-	public void choisirCarte(Joueur joueur) {
+	/*public abstract void choisirCarte(Joueur joueur); {
 		Scanner scCarte = new Scanner(System.in);
 		System.out.println(joueur.getOffre().toString());
 		System.out.println("Tapez 1 pour recuperer la carte recto et 2 pour la carte verso.");
@@ -113,7 +117,7 @@ public class Joueur {
 			
 		}
 		joueur.getOffre().setOffreSuffisante(false);
-	}
+	}*/
 	
 	public Offre getOffre() {
 		return offre;

@@ -1,15 +1,21 @@
-package App;
+package Joueurs;
 
 import java.util.Iterator;
 
 import java.util.Scanner;
+
+import App.Cartes;
+import App.Couleur;
+import App.EnumTrophee;
+import App.Offre;
+import App.Valeur;
 
 import java.util.LinkedList;
 
 public class JoueurVirtuel extends Joueur {
 
 	
-	JoueurVirtuel(String pseudo) {
+	public JoueurVirtuel(String pseudo) {
 		super(pseudo);
 	}
 	public void faireOffre() {
@@ -93,6 +99,7 @@ public class JoueurVirtuel extends Joueur {
 		}
 
 	}
+	
 	
 	public Offre getOffre() {
 		return offre;
