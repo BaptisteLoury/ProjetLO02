@@ -38,7 +38,7 @@ public class Partie implements Visitable{
 		visitorItem.visit(INSTANCE);
 		
 	}
-	
+	int quelleVariante=0 ; 
 	public void creerPartie() {
 		
 		Scanner sc = new Scanner(System.in);
@@ -104,17 +104,17 @@ public class Partie implements Visitable{
 		case 'O':
 			Scanner scQuellevariante = new Scanner(System.in);
 			System.out.println("A quelle variante veux tu jouer ? (1 ou 2)");
-			int quelleVariante = scQuellevariante.nextInt();
+			quelleVariante = scQuellevariante.nextInt();
 			
 			switch (quelleVariante) {
 			case 1: 
 				Variante1 variante1 = new Variante1();
-				
 				System.out.println("okay on va jouer a la variante 1");
 				
 				//System.out.println("test2");
 				 
-			case 2: System.out.println("test");	
+			case 2:	
+				
 			}
 		case 'N':
 			System.out.println("Okay, tu ne veux pas joueur à une variante. J'en prends note");
@@ -122,6 +122,9 @@ public class Partie implements Visitable{
 			System.out.println("La syntaxe de la reponse n'est pas correcte. Je pars du principe que tu ne veux pas jouer à une variante!") ;	
 		}
 		this.constituerTrophee();
+	}
+	public int getQuelleVariante() {
+		return quelleVariante ;
 	}
 	
 	public Joueur recupererPlusForteOffre() {

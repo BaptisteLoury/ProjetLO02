@@ -23,11 +23,19 @@ public class Main {
 			}
 			partie.tour();
 			nbTour++;
-		}
+			
 		partie.dernierTour();
 		partie.attribuerTrophees();
-		partie.calculDesPoints();
-		partie.donnerLesResultats();
+		if (partie.getQuelleVariante()==0) {
+			partie.calculDesPoints();
+			partie.donnerLesResultats();
+		}
+		else if (partie.getQuelleVariante()==2) {
+			Variante2 variante2 = new Variante2();
+			variante2.ajouterVariante2();
+			variante2.donnerLesResultats();
+		}
+		}
 
 	}
 

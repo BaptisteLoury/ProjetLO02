@@ -21,8 +21,17 @@ public abstract class Joueur {
 	protected boolean possessionQuatre = false;
 	protected boolean possessionDeux = false;
 	protected int scoreFinal = 0;
+	protected int scoreDevine;
 	
 	
+	public int getScoreDevine() {
+		return scoreDevine;
+	}
+
+	public void setScoreDevine(int scoreDevine) {
+		this.scoreDevine = scoreDevine;
+	}
+
 	public Joueur () {}	
 	
 	public Joueur(String pseudo) {
