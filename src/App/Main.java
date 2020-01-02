@@ -1,12 +1,16 @@
 package App;
 
 import Joueurs.Joueur;
+import Visit.*;
+import java.io.*;
 
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		VisitorJest monVisiteur = new VisitorJest();
 		Partie partie = Partie.getInstance();
+		partie.accept(monVisiteur);
 		partie.creerPartie();
 		
 		

@@ -1,8 +1,6 @@
 package App;
-import java.util.LinkedList;
-import java.util.Iterator;
 
-public class Cartes {
+public class Cartes  {
 
 	private EnumTrophee trophee;
 	private Couleur couleur;
@@ -16,6 +14,8 @@ public class Cartes {
 		this.trophee = trophee;
 		this.valeur = valeur;
 	}
+	
+	
 
 	public EnumTrophee getTrophee() {
 		return trophee;
@@ -47,5 +47,7 @@ public class Cartes {
 		sb.append(this.couleur.toString());
 		return sb.toString();
 	}
+	
+	
 	
 }

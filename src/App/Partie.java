@@ -1,5 +1,6 @@
 package App;
 import Strategies.* ;
+import Visit.* ;
 
 import Joueurs.*;
 
@@ -12,7 +13,7 @@ import Joueurs.JoueurVirtuel;
 import java.util.LinkedList;
 import java.util.Iterator;
 
-public class Partie {
+public class Partie implements Visitable{
 
 	protected LinkedList<Joueur> joueurs;
 	private LinkedList<Cartes> trophees;
@@ -33,6 +34,11 @@ public class Partie {
 		return INSTANCE ;
 	}
 	
+	public void accept(Visitor visitorItem) {
+		visitorItem.visit(INSTANCE);
+		
+	}
+	
 	public void creerPartie() {
 		
 		Scanner sc = new Scanner(System.in);
@@ -50,7 +56,7 @@ public class Partie {
 			System.out.println("Il y'a un probleme avec le nombre de joueurs. relance le programme. \n");
 	
 		}
-		System.out.println("Combien de joueurs humains serez-vous ? (Il doit etre inferieur ou Ã©gal au nombre de joueurs totals");
+		System.out.println("Combien de joueurs humains serez-vous ? (Il doit etre inferieur ou egal au nombre de joueurs totals");
 		int nombreJoueurReel = sc.nextInt();
 		joueurs = new LinkedList<Joueur>();
 		for (int i = 1;i<=nombreJoueurReel;i++) {
@@ -116,13 +122,6 @@ public class Partie {
 			System.out.println("La syntaxe de la reponse n'est pas correcte. Je pars du principe que tu ne veux pas jouer à une variante!") ;	
 		}
 		this.constituerTrophee();
-			
-
-
-		/*scannerPseudo.close();
-
-		sc.close();
-		scExtension.close();*/
 	}
 	
 	public Joueur recupererPlusForteOffre() {
@@ -856,5 +855,6 @@ public void attribuerTrophees() {
 	public LinkedList<Cartes> getTrophees() {
 		return trophees;
 	}
+
 	
 }
