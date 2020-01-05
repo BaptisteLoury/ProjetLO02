@@ -15,7 +15,11 @@ import java.util.Iterator;
 
 public class Partie implements Visitable{
 
-	protected LinkedList<Joueur> joueurs;
+	protected static LinkedList<Joueur> joueurs;
+	
+	public static LinkedList<Joueur> getJoueurs() {
+		return joueurs;
+	}
 	private LinkedList<Cartes> trophees;
 	private Deck deck;
 	
@@ -38,7 +42,10 @@ public class Partie implements Visitable{
 		visitorItem.visit(INSTANCE);
 		
 	}
-	int quelleVariante=0 ; 
+	int quelleVariante=0 ;
+	private char  quelleStrategie='B';
+	
+
 	public void creerPartie() {
 		
 		Scanner sc = new Scanner(System.in);
@@ -64,15 +71,43 @@ public class Partie implements Visitable{
 			String pseudo = scannerPseudo.nextLine();
 			Joueur j = new JoueurReel(pseudo);
 			joueurs.add(j);
+			
 			System.out.println("Le joueur " + j.getPseudo() + " a ete ajoute dans la partie !");
 		}
 		
-		for (int i = nombreJoueurReel + 1;i<=nombreJoueur;i++) {
+		//STRATEGIES
+		if (nombreJoueurReel != nombreJoueur) {
+			System.out.println("Quelle strategie voulez vous implementez ?\n  Basique (B) ou Avancee (A)");
+			Scanner scannerStrategie = new Scanner(System.in);
+			quelleStrategie= scannerStrategie.nextLine().charAt(0);
+			switch (quelleStrategie) {
+			case 'B':
+				for (int i = nombreJoueurReel + 1;i<=nombreJoueur;i++) {
+					JoueurVirtuel jv = new JoueurVirtuel("Joueur Virtuel " + i);
+					joueurs.add(jv);
+					jv.effectuerStrategie(new StrategieBasique());
+					System.out.println("Le Joueur Virtuel " + i + " a bien a ete ajoute dans la partie !!");
+				}
+				break;
+			case 'A':
+				for (int i = nombreJoueurReel + 1;i<=nombreJoueur;i++) {
+					JoueurVirtuel jv = new JoueurVirtuel("Joueur Virtuel " + i);
+					joueurs.add(jv);
+					jv.effectuerStrategie(new StrategieAvancee());
+					System.out.println("Le Joueur Virtuel " + i + " a bien a ete ajoute dans la partie !!");
+				}
+				break;
+			default:
+				System.out.println("Oh non tu as fait une erreur de frappe !") ;
+			}
+		}
+		/*for (int i = nombreJoueurReel + 1;i<=nombreJoueur;i++) {
 			JoueurVirtuel jv = new JoueurVirtuel("Joueur Virtuel " + i);
 			joueurs.add(jv);
 			
 			System.out.println("Le Joueur Virtuel " + i + " a bien a ete ajoute dans la partie !!");
 		}
+		*/
 		// Crï¿½ation du jeu de cartes de base + mï¿½lange automatique
 		deck = new Deck();
 		
@@ -123,9 +158,7 @@ public class Partie implements Visitable{
 		}
 		this.constituerTrophee();
 	}
-	public int getQuelleVariante() {
-		return quelleVariante ;
-	}
+	
 	
 	public Joueur recupererPlusForteOffre() {
 		Iterator<Joueur> itj = joueurs.iterator();
@@ -858,6 +891,16 @@ public void attribuerTrophees() {
 	public LinkedList<Cartes> getTrophees() {
 		return trophees;
 	}
+	public int getQuelleVariante() {
+		return quelleVariante ;
+	}
+	public  char getQuelleStrategie() {
+		return quelleStrategie;
+	}
+	public void setQuelleStrategie(char quelleStrategie) {
+		this.quelleStrategie = quelleStrategie;
+	}
 
+	
 	
 }

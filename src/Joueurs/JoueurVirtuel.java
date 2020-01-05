@@ -2,22 +2,22 @@ package Joueurs;
 
 import java.util.Iterator;
 
+
 import java.util.Scanner;
 
-import App.Cartes;
-import App.Couleur;
-import App.EnumTrophee;
-import App.Offre;
-import App.Valeur;
+import App.*;
 
 import java.util.LinkedList;
-
+import Strategies.*;
 public class JoueurVirtuel extends Joueur {
 
 	
 	public JoueurVirtuel(String pseudo) {
 		super(pseudo);
 	}
+	
+	
+	
 	public void faireOffre() {
 		//faire iterator sur les cartes de la main 
 		//selectionner carte qui a plus haute valeur 
@@ -46,7 +46,8 @@ public class JoueurVirtuel extends Joueur {
 		//sinon carte aleatoire sur les joueurs 
 
 		System.out.println("Au tour de "+this.getPseudo()+" de prendre une carte");
-
+		
+		
 		Iterator<Joueur> itj = joueurs.iterator();
 		int nombreOffreSuffisante = 0;
 		Offre meilleureOffre = joueurs.getFirst().getOffre();
@@ -99,7 +100,11 @@ public class JoueurVirtuel extends Joueur {
 		}
 
 	}
-	
+	public void effectuerStrategie(Strategie strategieJV) {
+		LinkedList<Joueur> joueurs = Partie.getJoueurs();
+		strategieJV.effectuerStrategie(joueurs);
+		
+	}
 	
 	public Offre getOffre() {
 		return offre;

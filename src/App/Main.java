@@ -33,6 +33,7 @@ public class Main {
 		else if (partie.getQuelleVariante()==2) {
 			Variante2 variante2 = new Variante2();
 			variante2.ajouterVariante2();
+			//A REDEFINIR	
 			variante2.donnerLesResultats();
 		}
 		}
