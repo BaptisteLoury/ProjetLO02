@@ -69,7 +69,8 @@ public class Partie implements Visitable{
 		for (int i = 1;i<=nombreJoueurReel;i++) {
 			System.out.println("Donner le pseudo du joueur "+ i +" :");
 			String pseudo = scannerPseudo.nextLine();
-			Joueur j = new JoueurReel(pseudo);
+			Joueur j = new Joueur(pseudo);
+			j.effectuerStrategie(new StrategieHumain(j));
 			joueurs.add(j);
 			
 			System.out.println("Le joueur " + j.getPseudo() + " a ete ajoute dans la partie !");
@@ -83,17 +84,17 @@ public class Partie implements Visitable{
 			switch (quelleStrategie) {
 			case 'B':
 				for (int i = nombreJoueurReel + 1;i<=nombreJoueur;i++) {
-					JoueurVirtuel jv = new JoueurVirtuel("Joueur Virtuel " + i);
+					Joueur jv = new Joueur("Joueur Virtuel " + i);
 					joueurs.add(jv);
-					jv.effectuerStrategie(new StrategieBasique());
+					jv.effectuerStrategie(new StrategieBasique(jv));
 					System.out.println("Le Joueur Virtuel " + i + " a bien a ete ajoute dans la partie !!");
 				}
 				break;
 			case 'A':
 				for (int i = nombreJoueurReel + 1;i<=nombreJoueur;i++) {
-					JoueurVirtuel jv = new JoueurVirtuel("Joueur Virtuel " + i);
+					Joueur jv = new Joueur("Joueur Virtuel " + i);
 					joueurs.add(jv);
-					jv.effectuerStrategie(new StrategieAvancee());
+					jv.effectuerStrategie(new StrategieAvancee(jv));
 					System.out.println("Le Joueur Virtuel " + i + " a bien a ete ajoute dans la partie !!");
 				}
 				break;

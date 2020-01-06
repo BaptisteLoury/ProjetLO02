@@ -1,10 +1,11 @@
 package Joueurs;
 import java.util.LinkedList;
+
 import java.util.Scanner;
 
 import App.Cartes;
 import App.Offre;
-
+import Strategies.*;
 import java.util.Iterator;
 
 public class JoueurReel extends Joueur{
@@ -21,6 +22,7 @@ public class JoueurReel extends Joueur{
 	protected boolean possessionQuatre = false;
 	protected boolean possessionDeux = false;
 	protected int scoreFinal = 0;
+	protected Strategie strategieJoueur;
 	
 	
 	public JoueurReel(String pseudo) {

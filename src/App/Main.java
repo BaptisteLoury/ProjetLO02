@@ -23,7 +23,7 @@ public class Main {
 			}
 			partie.tour();
 			nbTour++;
-			
+		}
 		partie.dernierTour();
 		partie.attribuerTrophees();
 		if (partie.getQuelleVariante()==0) {
@@ -36,7 +36,7 @@ public class Main {
 			//A REDEFINIR	
 			variante2.donnerLesResultats();
 		}
-		}
+		
 
 	}
 

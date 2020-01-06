@@ -4,10 +4,11 @@ import java.util.Scanner;
 
 import App.Cartes;
 import App.Offre;
-
+import Strategies.*;
 import java.util.Iterator;
 
-public abstract class Joueur {
+
+public class Joueur {
 
 	private String pseudo;
 
@@ -22,6 +23,7 @@ public abstract class Joueur {
 	protected boolean possessionDeux = false;
 	protected int scoreFinal = 0;
 	protected int scoreDevine;
+	protected Strategie strategieJoueur;
 	
 	
 	public int getScoreDevine() {
@@ -43,12 +45,20 @@ public abstract class Joueur {
 
 	}
 
-	public abstract void faireOffre() ;
+	public void faireOffre() {
+		this.strategieJoueur.strategieFaireOffre();
+	}
 	
-	public abstract Joueur choisirOffre(LinkedList<Joueur> joueurs); 
+	public Joueur choisirOffre(LinkedList<Joueur> joueurs) {
+		Joueur joueurPioche = this.strategieJoueur.strategieChoisirOffre(joueurs);
+		return joueurPioche;
+	}
 	
 	public Offre getOffre() {
 		return offre;
+	}
+	public void setOffre(Offre offre) {
+		this.offre = offre;
 	}
 	public LinkedList<Cartes> getMain() {
 		return main;
@@ -123,5 +133,7 @@ public abstract class Joueur {
 	public void setScoreFinal(int scoreFinal) {
 		this.scoreFinal = scoreFinal;
 	}
-	
+	public void effectuerStrategie(Strategie strategieJ) {
+		this.strategieJoueur = strategieJ;	
+	}
 }

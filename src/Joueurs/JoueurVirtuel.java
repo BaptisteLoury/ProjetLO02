@@ -100,11 +100,11 @@ public class JoueurVirtuel extends Joueur {
 		}
 
 	}
-	public void effectuerStrategie(Strategie strategieJV) {
+	/*public void effectuerStrategie(Strategie strategieJV) {
 		LinkedList<Joueur> joueurs = Partie.getJoueurs();
 		strategieJV.effectuerStrategie(joueurs);
 		
-	}
+	}*/
 	
 	public Offre getOffre() {
 		return offre;
