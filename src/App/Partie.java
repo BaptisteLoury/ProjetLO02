@@ -162,7 +162,9 @@ public class Partie implements Visitable{
 		this.constituerTrophee();
 	}
 	public void init() {
+		joueurs = new LinkedList<Joueur>();
 		JestControleur.debuterPartie();
+		
 	}
 	
 	

@@ -31,6 +31,8 @@ public class VuePartie implements Observer {
 	
 	private LinkedList<Joueur> joueurs;
 	
+	private LinkedList<VueJoueur> vueJoueurs;
+	
 	private JFrame fenetre;
 	
 	private JLabel deck;
