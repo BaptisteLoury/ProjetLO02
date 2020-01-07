@@ -5,8 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.CheckboxGroup;
+import java.awt.Checkbox;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -32,6 +35,11 @@ public class FenetreDebutPartie extends JDialog {
 	private JPanel fenetre;
 	
 	private JButton ok;
+	private JButton ok2;
+	
+	private Checkbox jeuBase;
+	private Checkbox variante1;
+	private Checkbox variante2;
 	
 	private int nbTotal;
 	private int nbReel;
@@ -47,12 +55,19 @@ public class FenetreDebutPartie extends JDialog {
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		this.init();
+		//this.creationJoueur();
 	}
 	public void init() {
 		fenetre = new JPanel();
 		fenetre.setLayout(new GridLayout(0, 2, 10, 10));
 		
-	    JPanel top = new JPanel();
+	   // JPanel top = new JPanel();
+	    
+	    JLabel variante = new JLabel("Quelle version jouer :");
+	    CheckboxGroup cbg = new CheckboxGroup();
+	    add(jeuBase = new Checkbox("Jeu de base",cbg,true));
+	    add(variante1 = new Checkbox("Variante 1",cbg,false));
+	    add(variante2 = new Checkbox("Variante 2",cbg,false));
 	    
 	    JLabel nb1 = new JLabel("Nombre de joueur :");
 	    choixNbTotal.setPreferredSize(new Dimension(100, 20));
@@ -68,25 +83,56 @@ public class FenetreDebutPartie extends JDialog {
 	    choixNbReel.addItem(4);
 	    
 	    ok = new JButton("Ok");
-	    ok.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+	    ok.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent me) {
 			    nbTotal = (int)choixNbTotal.getSelectedItem();
 			    nbReel = (int)choixNbReel.getSelectedItem();
 
 			    System.out.println(nbTotal + " " + nbReel);
 			    setVisible(false);
-			    setVisible(false);
 			}
+			
 		});
 	    
+	    fenetre.add(variante);
+	    fenetre.add(jeuBase);
+	    fenetre.add(variante1);
+	    fenetre.add(variante2);
 	    fenetre.add(nb1);
 	    fenetre.add(choixNbTotal);
 	    fenetre.add(nb2);
 	    fenetre.add(choixNbReel);
 	    fenetre.add(ok);
 	    
-	    top.add(fenetre);
-	    this.getContentPane().add(top);
+	    //top.add(fenetre);
+	    this.getContentPane().add(fenetre);
+		this.pack();
+		this.setVisible(true);
+		
+	}
+	public void creationJoueur() {
+	
+	    JPanel bot = new JPanel();
+	    bot.setVisible(true);
+	    
+	    JLabel n = new JLabel("Nombre de joueur :");
+	    nom = new JTextArea();
+		nom.setEditable(true);
+
+	    
+	    ok2 = new JButton("Ok");
+	    ok2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+			}
+		});
+	    
+	    bot.add(n);
+	    bot.add(nom);
+	    bot.add(ok2);
+	    
+	    fenetre.add( bot);
+	    this.getContentPane().add(fenetre);
 		this.pack();
 		
 	}
