@@ -3,9 +3,9 @@ import Visit.VisitorJest;
 import Vue.*;
 import controleur.JestControleur;
 
-public class JeuAvecInterfaceGraphique implements Runnable {
+public class MainInterfaceGraphique implements Runnable {
 	
-	public JeuAvecInterfaceGraphique() {
+	public MainInterfaceGraphique() {
 		
 		VisitorJest monVisiteur = new VisitorJest();
 		Partie partie = Partie.getInstance();
@@ -17,16 +17,16 @@ public class JeuAvecInterfaceGraphique implements Runnable {
 	
 	@Override
 	public void run() {
-		new JeuAvecInterfaceGraphique();
+		new MainInterfaceGraphique();
 		
 	}
 	
 	public static void main(String[] args) {
-		Thread partie = new Thread(new JeuAvecInterfaceGraphique());
+		Thread partie = new Thread(new MainInterfaceGraphique());
 		partie.start();
 		javax.swing.SwingUtilities.invokeLater (new Runnable () {
 			public void run () {
-				new JeuAvecInterfaceGraphique();
+				new MainInterfaceGraphique();
 			}
 		});
 
