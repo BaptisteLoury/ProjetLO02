@@ -74,28 +74,31 @@ public class Partie implements Visitable{
 		
 		//STRATEGIES
 		if (nombreJoueurReel != nombreJoueur) {
-			System.out.println("Quelle strategie voulez vous implementez ?\n  Basique (B) ou Avancee (A)");
-			Scanner scannerStrategie = new Scanner(System.in);
-			quelleStrategie= scannerStrategie.nextLine().charAt(0);
-			switch (quelleStrategie) {
-			case 'B':
-				for (int i = nombreJoueurReel + 1;i<=nombreJoueur;i++) {
-					Joueur jv = new Joueur("Joueur Virtuel " + i);
-					joueurs.add(jv);
-					jv.effectuerStrategie(new StrategieBasique(jv));
-					System.out.println("Le Joueur Virtuel " + i + " a bien a ete ajoute dans la partie !!");
+			
+			for (int i = nombreJoueurReel + 1;i<=nombreJoueur;i++) {
+				System.out.println("Quelle strategie voulez vous implementezau joueur" +i+ " Basique (B) ou Avancee (A) ");
+				Scanner scannerStrategie = new Scanner(System.in);
+				quelleStrategie= scannerStrategie.nextLine().charAt(0);
+				switch (quelleStrategie) {
+				case 'B':
+					
+						Joueur jvB = new Joueur("Joueur Virtuel " + i);
+						joueurs.add(jvB);
+						jvB.effectuerStrategie(new StrategieBasique(jvB));
+						System.out.println("Le Joueur Virtuel " + i + " a bien a ete ajoute dans la partie !!");
+					
+					break;
+				case 'A':
+					
+						Joueur jvA = new Joueur("Joueur Virtuel " + i);
+						joueurs.add(jvA);
+						jvA.effectuerStrategie(new StrategieAvancee(jvA));
+						System.out.println("Le Joueur Virtuel " + i + " a bien a ete ajoute dans la partie !!");
+					
+					break;
+				default:
+					System.out.println("Oh non tu as fait une erreur de frappe !") ;
 				}
-				break;
-			case 'A':
-				for (int i = nombreJoueurReel + 1;i<=nombreJoueur;i++) {
-					Joueur jv = new Joueur("Joueur Virtuel " + i);
-					joueurs.add(jv);
-					jv.effectuerStrategie(new StrategieAvancee(jv));
-					System.out.println("Le Joueur Virtuel " + i + " a bien a ete ajoute dans la partie !!");
-				}
-				break;
-			default:
-				System.out.println("Oh non tu as fait une erreur de frappe !") ;
 			}
 		}
 		/*for (int i = nombreJoueurReel + 1;i<=nombreJoueur;i++) {
