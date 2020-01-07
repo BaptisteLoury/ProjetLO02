@@ -1,7 +1,7 @@
 package App;
 import Strategies.* ;
 import Visit.* ;
-
+import controleur.JestControleur;
 
 import java.util.Scanner;
 
@@ -148,12 +148,17 @@ public class Partie implements Visitable{
 			case 2:	
 				
 			}
+		break;
 		case 'N':
 			System.out.println("Okay, tu ne veux pas joueur à une variante. J'en prends note");
+		break;
 		default:
 			System.out.println("La syntaxe de la reponse n'est pas correcte. Je pars du principe que tu ne veux pas jouer à une variante!") ;	
 		}
 		this.constituerTrophee();
+	}
+	public void init() {
+		JestControleur.debuterPartie();
 	}
 	
 	
