@@ -2,14 +2,10 @@ package App;
 import Strategies.* ;
 import Visit.* ;
 
-import Joueurs.*;
 
 import java.util.Scanner;
 
 import Joueurs.Joueur;
-import Joueurs.JoueurReel;
-import Joueurs.JoueurVirtuel;
-
 import java.util.LinkedList;
 import java.util.Iterator;
 

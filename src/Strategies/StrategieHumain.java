@@ -60,7 +60,7 @@ public class StrategieHumain implements Strategie{
 			
 			System.out.println("Quelle offre avez vous choisi ? (indice du joueur)");
 			int choixOffre = scOffre.nextInt();
-			if(choixOffre<=joueurs.size() && choixOffre != joueurs.indexOf(this)) {
+			if(choixOffre<=joueurs.size() && choixOffre != joueurs.indexOf(joueur)) {
 				System.out.println("Vous avez choisi l'offre de "+ joueurs.get(choixOffre).getPseudo());
 				this.strategieChoisirCarte(joueurs.get(choixOffre));
 				return joueurs.get(choixOffre);

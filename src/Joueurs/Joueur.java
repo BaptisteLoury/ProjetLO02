@@ -1,11 +1,8 @@
 package Joueurs;
 import java.util.LinkedList;
-import java.util.Scanner;
-
 import App.Cartes;
 import App.Offre;
 import Strategies.*;
-import java.util.Iterator;
 
 
 public class Joueur {

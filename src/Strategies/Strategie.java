@@ -1,5 +1,4 @@
 package Strategies;
-import Joueurs.*;
 
 import java.util.LinkedList;
 
