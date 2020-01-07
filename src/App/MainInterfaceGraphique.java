@@ -8,11 +8,23 @@ public class MainInterfaceGraphique implements Runnable {
 	public MainInterfaceGraphique() {
 		
 		VisitorJest monVisiteur = new VisitorJest();
-		Partie partie = Partie.getInstance();
-		partie.accept(monVisiteur);
-		partie.creerPartie();
-		VuePartie vuePartie = new VuePartie(partie);
-		JestControleur jestControleur = new JestControleur(partie,vuePartie);
+		FenetreVariante variante = new FenetreVariante(null,"Choix du mode de jeu",true);
+		if (variante.getJeuBase().getState()) {
+			Partie partie = Partie.getInstance();
+			System.out.println("base");
+		}
+		else if (variante.getVariante1().getState()) {
+			Variante1 partie = Variante1.getInstance();
+			System.out.println("1");
+		}
+		else {
+			Variante2 partie = Variante2.getInstance();
+			System.out.println("2");
+		}
+		//partie.accept(monVisiteur);
+		Partie.getInstance().init();
+		VuePartie vuePartie = new VuePartie(Partie.getInstance());
+		JestControleur jestControleur = new JestControleur(Partie.getInstance(),vuePartie);
 	}
 	
 	@Override
@@ -23,12 +35,6 @@ public class MainInterfaceGraphique implements Runnable {
 	
 	public static void main(String[] args) {
 		Thread partie = new Thread(new MainInterfaceGraphique());
-		partie.start();
-		javax.swing.SwingUtilities.invokeLater (new Runnable () {
-			public void run () {
-				new MainInterfaceGraphique();
-			}
-		});
 
 	}
 
