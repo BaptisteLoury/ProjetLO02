@@ -38,7 +38,7 @@ public class Partie implements Visitable{
 		visitorItem.visit(INSTANCE);
 		
 	}
-	int quelleVariante=0 ;
+	
 	private char  quelleStrategie='B';
 	
 
@@ -129,7 +129,8 @@ public class Partie implements Visitable{
 			System.out.println("La syntaxe de la reponse n'est pas correcte. Je pars du principe que tu ne veux pas ajouter l'extension !") ; 
 			
 		}
-		Scanner scVariante = new Scanner(System.in);
+		
+		/*Scanner scVariante = new Scanner(System.in);
 		System.out.println("Voulez vous jouer à  une variante ? (O/N)");
 		char variante = scVariante.nextLine().charAt(0);
 		switch (variante) {
@@ -140,7 +141,7 @@ public class Partie implements Visitable{
 			
 			switch (quelleVariante) {
 			case 1: 
-				Variante1 variante1 = new Variante1();
+				
 				System.out.println("okay on va jouer a la variante 1");
 				
 				//System.out.println("test2");
@@ -154,7 +155,7 @@ public class Partie implements Visitable{
 		break;
 		default:
 			System.out.println("La syntaxe de la reponse n'est pas correcte. Je pars du principe que tu ne veux pas jouer à une variante!") ;	
-		}
+		}*/
 		this.constituerTrophee();
 	}
 	public void init() {
@@ -893,9 +894,7 @@ public void attribuerTrophees() {
 	public LinkedList<Cartes> getTrophees() {
 		return trophees;
 	}
-	public int getQuelleVariante() {
-		return quelleVariante ;
-	}
+	
 	public  char getQuelleStrategie() {
 		return quelleStrategie;
 	}

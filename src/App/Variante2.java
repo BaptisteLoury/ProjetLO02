@@ -7,6 +7,17 @@ import Joueurs.Joueur;
 
 public class Variante2 extends Partie{
 
+	private static Variante2 INSTANCE= null;
+	public static Variante2  getInstance() {
+		if (INSTANCE== null) {
+			INSTANCE = new Variante2(); 
+		}
+		else {
+			return INSTANCE;
+		}
+		return INSTANCE ;
+	}
+	
 	public void ajouterVariante2(){
 		Iterator<Joueur> itj = joueurs.iterator();
 		while (itj.hasNext()) {
@@ -18,8 +29,8 @@ public class Variante2 extends Partie{
 			j.setScoreDevine(scScoreDevine.nextInt());
 		}
 		Iterator<Joueur> itj2 = joueurs.iterator();
-		while (itj.hasNext()) {
-			Joueur j =  itj.next();
+		while (itj2.hasNext()) {
+			Joueur j =  itj2.next();
 			if (j.getScoreDevine()>j.getScoreFinal()) {
 				j.setScoreFinal(j.getScoreFinal()-(j.getScoreDevine()-j.getScoreFinal()));
 			}
@@ -27,12 +38,22 @@ public class Variante2 extends Partie{
 			else if (j.getScoreDevine()<j.getScoreFinal()) {
 				j.setScoreFinal(j.getScoreFinal()-(j.getScoreFinal()-j.getScoreDevine()));
 			}
-			else {
-				System.out.println("bravo tu as devine ton score!!!\n");
+			else if(j.getScoreDevine()==j.getScoreFinal()){
+				System.out.println(j.getPseudo()+"bravo tu as devine ton score!!!\n");
 			}
-			
+			else {
+				System.out.println("petite erreur. je reviens");
+			}
 		}
-		
+		Variante2.getInstance().donnerLesResultats();
 	}
-		
+	
+	public void donnerLesResultats() {
+		System.out.println("Résultats de la partie :");
+		Iterator<Joueur> itj = joueurs.iterator();
+		while (itj.hasNext()) {
+			Joueur j = itj.next();
+			System.out.println(j.getPseudo()+" : "+j.getScoreFinal());
+		}
+	}
 }

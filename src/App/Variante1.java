@@ -5,14 +5,24 @@ import java.util.LinkedList;
 
 import Joueurs.Joueur;
 
-public class Variante1 extends Partie{
+public class Variante1 extends Partie {
 	
 	public Variante1() {
-		
 	}
+	private static Variante1 INSTANCE= null;
+	public static Variante1  getInstance() {
+		if (INSTANCE== null) {
+			INSTANCE = new Variante1(); 
+		}
+		else {
+			return INSTANCE;
+		}
+		return INSTANCE ;
+	}
+	
 	public void calculDesPoints() {
 		System.out.println("tu es dans la variante1");
-		System.out.println("\n\n\\n\\n\\n\\n\\n\\n\\n\\n");
+		
 		Iterator<Joueur> itj = joueurs.iterator();
 		while (itj.hasNext()) {
 			Joueur j = itj.next();
@@ -28,7 +38,7 @@ public class Variante1 extends Partie{
 			while (itCompter.hasNext()) {
 				Cartes c = itCompter.next();
 				switch (c.getCouleur()) {
-					case CARREAU:
+					case COEUR:
 						nbCarreau++;			
 					break;
 					case PIQUE:
@@ -37,7 +47,7 @@ public class Variante1 extends Partie{
 					case TREFLE:
 						nbTrefle++;
 					break;
-					case COEUR:
+					case CARREAU:
 						nbCoeur++;
 					break;
 					case JOKER:
@@ -49,7 +59,7 @@ public class Variante1 extends Partie{
 			while (itCalcul.hasNext()) {
 				Cartes cj = itCalcul.next();
 				switch(cj.getCouleur()) {
-					case CARREAU:
+					case COEUR:
 						if (cj.getValeur()==Valeur.AS) {
 							if (nbCarreau==1) {
 								scoreJ = scoreJ-5;
@@ -96,7 +106,7 @@ public class Variante1 extends Partie{
 						}
 						paires.add(cj.getValeur());
 						break;
-					case COEUR:
+					case CARREAU:
 						if (possedeJoker) {
 							if (nbCoeur>=4) {
 								scoreJ = scoreJ+cj.getValeur().ordinal();
