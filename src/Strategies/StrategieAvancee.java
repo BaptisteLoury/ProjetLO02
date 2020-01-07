@@ -56,6 +56,11 @@ public class StrategieAvancee implements Strategie{
 					meilleureOffre = j.getOffre();
 					plusForteRecto = j.getOffre().getRecto();
 				}
+				//deuxieme if qui voit les cartes verso de tout le monde. Strategie Avancée
+				if (j.getOffre().getVerso().getValeur().ordinal()>plusForteRecto.getValeur().ordinal() && j.getOffre().getVerso().getCouleur()!=Couleur.CARREAU && j.getOffre().getRecto().getCouleur()!=Couleur.COEUR) {
+					meilleureOffre = j.getOffre();
+					plusForteRecto = j.getOffre().getRecto();
+				}
 				nombreOffreSuffisante++;
 			}
 		}
