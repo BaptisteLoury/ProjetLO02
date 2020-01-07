@@ -6,17 +6,18 @@ import controleur.JestControleur;
 public class JeuAvecInterfaceGraphique implements Runnable {
 	
 	public JeuAvecInterfaceGraphique() {
+		
 		VisitorJest monVisiteur = new VisitorJest();
 		Partie partie = Partie.getInstance();
 		partie.accept(monVisiteur);
-		partie.init();
+		partie.creerPartie();
 		VuePartie vuePartie = new VuePartie(partie);
 		JestControleur jestControleur = new JestControleur(partie,vuePartie);
 	}
 	
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		new JeuAvecInterfaceGraphique();
 		
 	}
 	

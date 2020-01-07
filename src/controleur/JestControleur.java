@@ -15,8 +15,8 @@ public class JestControleur {
 	
 	public static void debuterPartie() {
 		FenetreDebutPartie dialog = new FenetreDebutPartie(null,"Paramètres de la partie",true);
-		dialog.setVisible(true);
-		//int nbTotal = dialog.getNbTotal();
+		int nbTotal = dialog.getNbTotal();
+		int nbReel = dialog.getNbTotal();
 	}
 
 	public static Partie getPartie() {

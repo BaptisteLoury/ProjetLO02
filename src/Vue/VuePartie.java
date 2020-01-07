@@ -47,15 +47,20 @@ public class VuePartie implements Observer {
 		fenetre.setResizable(true);
 		
 		JPanel panelTapis = new JPanel();
-		JLabel imgTapis = new JLabel(new ImageIcon("img/Tapis.jpg"));
+		JLabel imgTapis = new JLabel();
+		
 		
 		deck = new JLabel(new ImageIcon("img/deckRempli.png"));
 		stackIntermediaire = new JLabel(new ImageIcon("img/deckVide.png")); 
 		
-		imgTapis.setLayout(new GridLayout()); 
-		imgTapis.add(deck);
-		imgTapis.add(stackIntermediaire);
-		panelTapis.add(imgTapis);
+		fenetre.setLayout(new GridLayout());
+		fenetre.add(imgTapis);
+		fenetre.add(deck);
+		fenetre.add(stackIntermediaire);
+		
+		fenetre.pack();
+		fenetre.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		fenetre.setVisible(true);
 	}
 
 	@Override
