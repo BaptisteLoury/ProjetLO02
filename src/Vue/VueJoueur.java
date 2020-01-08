@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Joueurs.Joueur;
+import App.*;
 
 public class VueJoueur implements Observer {
 	
@@ -25,7 +26,7 @@ public class VueJoueur implements Observer {
 	
 	public VueJoueur(Joueur joueur) {
 		this.joueur= joueur;
-		//this.nom = new JLabel(joueur.getNom());
+		main = new JPanel();
 	}
 
 	@Override
@@ -33,5 +34,25 @@ public class VueJoueur implements Observer {
 		// TODO Auto-generated method stub
 		
 	}
+	public void recupererCarteMain() {
+		JLabel typeCarte = new JLabel(joueur.getPseudo());
+		main.add(typeCarte);
+		LinkedList<Cartes> carteJoueur = joueur.getMain();
+		Iterator<Cartes> it = carteJoueur.iterator();
+		while (it.hasNext()) {
+			VueCartes vc = new VueCartes(it.next());
+			carteGraphique.add(vc);
+			final JLabel carte = vc.getImage();
+			main.add(carte);
+		}
+	}
 
+	public JPanel getMain() {
+		return main;
+	}
+
+	public void setMain(JPanel main) {
+		this.main = main;
+	}
+	
 }

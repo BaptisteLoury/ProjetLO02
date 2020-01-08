@@ -163,6 +163,7 @@ public class Partie implements Visitable{
 	}
 	public void init() {
 		joueurs = new LinkedList<Joueur>();
+		deck = new Deck();
 		JestControleur.debuterPartie();
 		
 	}

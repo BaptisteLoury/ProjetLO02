@@ -35,6 +35,9 @@ public class VuePartie implements Observer {
 	
 	private JFrame fenetre;
 	
+	private JTextArea log;
+	private JScrollPane scrollPane;
+	
 	private JLabel deck;
 	
 	private JLabel stackIntermediaire;
@@ -48,21 +51,28 @@ public class VuePartie implements Observer {
 		fenetre.setLayout(new BorderLayout());
 		fenetre.setResizable(true);
 		
-		JPanel panelTapis = new JPanel();
-		JLabel imgTapis = new JLabel();
+		log = new JTextArea();
+		log.setEditable(false);
+		log.setRows(5);
+		scrollPane = new JScrollPane(log);
 		
 		
-		deck = new JLabel(new ImageIcon("img/deckRempli.png"));
-		stackIntermediaire = new JLabel(new ImageIcon("img/deckVide.png")); 
+		joueurs = Partie.getJoueurs();
+		vueJoueurs = new LinkedList<VueJoueur>();
+		Iterator<Joueur> it = joueurs.iterator();
+		while (it.hasNext()){
+			VueJoueur vueJoueur = new VueJoueur(it.next());
+			vueJoueurs.add(vueJoueur);
+		}
+	
 		
-		fenetre.setLayout(new GridLayout());
-		fenetre.add(imgTapis);
-		fenetre.add(deck);
-		fenetre.add(stackIntermediaire);
+		fenetre.add(scrollPane, BorderLayout.NORTH);
+
 		
 		fenetre.pack();
 		fenetre.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		fenetre.setVisible(true);
+		fenetre.setLocationRelativeTo(null);
 	}
 
 	@Override
@@ -70,13 +80,23 @@ public class VuePartie implements Observer {
 		// TODO Auto-generated method stub
 		
 	}
-
+	public void prompt(String msg) {
+		log.append(msg + "\n");
+	}
 	public Partie getModele() {
 		return modele;
 	}
 
 	public void setModele(Partie modele) {
 		this.modele = modele;
+	}
+
+	public JTextArea getLog() {
+		return log;
+	}
+
+	public void setLog(JTextArea log) {
+		this.log = log;
 	}
 	
 	
