@@ -13,9 +13,7 @@ public class Partie implements Visitable{
 
 	protected static LinkedList<Joueur> joueurs;
 	
-	public static LinkedList<Joueur> getJoueurs() {
-		return joueurs;
-	}
+	
 	private LinkedList<Cartes> trophees;
 	private Deck deck;
 	
@@ -906,7 +904,9 @@ public void attribuerTrophees() {
 	public void setQuelleStrategie(char quelleStrategie) {
 		this.quelleStrategie = quelleStrategie;
 	}
-
+	public static LinkedList<Joueur> getJoueurs() {
+		return joueurs;
+	}
 	
 	
 }
