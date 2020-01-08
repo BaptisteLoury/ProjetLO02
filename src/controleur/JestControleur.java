@@ -114,12 +114,7 @@ public class JestControleur {
 		
 	}
 	public void donnerLesResultatsGraphique() {
-		System.out.println("Résultats de la partie :");
-		Iterator<Joueur> itj = Partie.getJoueurs().iterator();
-		while (itj.hasNext()) {
-			Joueur j = itj.next();
-			//vuePartie.prompt(j.getPseudo()+" : "+j.getScoreFinal());
-		}
+		FenetreResultat resultat = new FenetreResultat(null,"Resultat",true);
 	}
 	public static Partie getPartie() {
 		return partie;
