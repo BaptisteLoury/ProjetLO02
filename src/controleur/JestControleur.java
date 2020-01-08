@@ -70,19 +70,22 @@ public class JestControleur {
 				j.faireOffre();
 			}
 			else {
+				FenetreAttente attenteFaireOffre = new FenetreAttente(null,"En attente...",true,j);
 				DialogFaireOffre faireOffre = new DialogFaireOffre(null,"Faire une offre",true,j);
 				j.setOffre(new Offre(faireOffre.getRecto(),faireOffre.getVerso(),j));
 				j.getMain().clear();
+				
 			}
 			
 		}
 		System.out.println("\n\n\n\n\n\n\n\n");
 		Joueur joueurPlusFort = Partie.getInstance().recupererPlusForteOffre();
-		Joueur joueurSuivant;
+		Joueur joueurSuivant = joueurPlusFort;
 		DialogChoisirOffre choisirOffre;
 		if (joueurPlusFort.isHumain()) {
 			choisirOffre = new DialogChoisirOffre(null,"Choisir une offre",true,joueurPlusFort);
 			joueurSuivant = choisirOffre.getJoueurPioche();
+			FenetreAttente attente = new FenetreAttente(null,"En attente...",true,joueurSuivant);
 		}
 		else {
 			joueurSuivant = joueurPlusFort.choisirOffre(Partie.getJoueurs());
@@ -90,9 +93,9 @@ public class JestControleur {
 		
 		for (int i=2;i<=Partie.getJoueurs().size();i++) {
 			if (joueurSuivant.isHumain()) {
-				
 				choisirOffre = new DialogChoisirOffre(null,"Choisir une offre",true,joueurSuivant);
 				joueurSuivant = choisirOffre.getJoueurPioche();
+				FenetreAttente attente = new FenetreAttente(null,"En attente...",true,joueurSuivant);
 			}
 			else {
 				joueurSuivant = joueurSuivant.choisirOffre(Partie.getJoueurs());
@@ -115,7 +118,7 @@ public class JestControleur {
 		Iterator<Joueur> itj = Partie.getJoueurs().iterator();
 		while (itj.hasNext()) {
 			Joueur j = itj.next();
-			vuePartie.prompt(j.getPseudo()+" : "+j.getScoreFinal());
+			//vuePartie.prompt(j.getPseudo()+" : "+j.getScoreFinal());
 		}
 	}
 	public static Partie getPartie() {

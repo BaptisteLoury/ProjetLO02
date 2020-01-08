@@ -38,7 +38,6 @@ public class DialogFaireOffre extends JDialog {
 		super(parent, title, modal);
 		this.joueur = joueur;
 		this.carteAJouer = new LinkedList<>();
-		//this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		this.init();

@@ -38,7 +38,6 @@ public class DialogChoisirOffre extends JDialog {
 		super(parent, title, modal);
 		this.joueur = joueur;
 		this.carteAJouer = new LinkedList<>();
-		//this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		this.init();
@@ -52,13 +51,13 @@ public class DialogChoisirOffre extends JDialog {
 		
 		JPanel offreDisponible = new JPanel();
 		offreDisponible.setLayout(new BorderLayout());
+		JPanel offreJ = new JPanel();
 		Iterator<Joueur> itj = Partie.getJoueurs().iterator();
 		int nombreOffreSuffisante = 0;
 		while (itj.hasNext()) {
 			Joueur j = (Joueur) itj.next();
 			if (j.getOffre().estOffreSuffisante() == true && j != joueur) {
-				JPanel offreJ = new JPanel();
-				JLabel pseudoJ = new JLabel("Offre du joueur "+j);
+				JLabel pseudoJ = new JLabel("Offre du joueur "+j.getPseudo());
 				VueCartes vueRectoj = new VueCartes(j.getOffre().getRecto());
 				
 				final JButton okRecto = new JButton("Prendre carte recto");
@@ -69,6 +68,7 @@ public class DialogChoisirOffre extends JDialog {
 						joueur.getStack().add(j.getOffre().getRecto());
 						j.getOffre().setRecto(null);
 						j.getOffre().setOffreSuffisante(false);
+						joueurPioche = j;
 						setVisible(false);
 					}
 						
@@ -82,6 +82,7 @@ public class DialogChoisirOffre extends JDialog {
 						joueur.getStack().add(j.getOffre().getVerso());
 						j.getOffre().setVerso(null);
 						j.getOffre().setOffreSuffisante(false);
+						joueurPioche = j;
 						setVisible(false);
 					}
 						
@@ -91,12 +92,47 @@ public class DialogChoisirOffre extends JDialog {
 				offreJ.add(vueRectoj.getImage());
 				offreJ.add(okRecto);
 				offreJ.add(okVerso);
-				offreDisponible.add(offreJ);
 			}
 		}
+		offreDisponible.add(offreJ);
 		if (nombreOffreSuffisante == 0) {
+			JPanel offrePropre = new JPanel();
+			JLabel pseudoJ1 = new JLabel("Vous devez choisir parmis les cartes de votre offre.");
+			VueCartes vueRectoPropre = new VueCartes(joueur.getOffre().getRecto());
 			
+			final JButton okRecto2 = new JButton("Prendre carte recto");
+			
+		    okRecto2.addActionListener(new ActionListener() {		
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					joueur.getStack().add(joueur.getOffre().getRecto());
+					joueur.getOffre().setRecto(null);
+					joueur.getOffre().setOffreSuffisante(false);
+					joueurPioche = joueur;
+					setVisible(false);
+				}
+					
+			});
+		    final JButton okVerso2 = new JButton("Prendre carte verso");
+		    
+		    okVerso2.addActionListener(new ActionListener() {	
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					joueur.getStack().add(joueur.getOffre().getVerso());
+					joueur.getOffre().setVerso(null);
+					joueur.getOffre().setOffreSuffisante(false);
+					joueurPioche = joueur;
+					setVisible(false);
+				}
+					
+			});
+			offrePropre.add(pseudoJ1);
+			offrePropre.add(vueRectoPropre.getImage());
+			offrePropre.add(okRecto2);
+			offrePropre.add(okVerso2);
+			offreDisponible.add(offrePropre);
 		}
+		
 		
 	    //fenetre.add(main, BorderLayout.NORTH);
 	    fenetre.add(pseudo, BorderLayout.NORTH);

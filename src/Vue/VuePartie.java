@@ -3,6 +3,7 @@ package Vue;
 import java.util.LinkedList;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
+import java.awt.color.*;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -51,26 +53,10 @@ public class VuePartie implements Observer {
 		fenetre.setLayout(new BorderLayout());
 		fenetre.setResizable(true);
 		
-		log = new JTextArea();
-		log.setEditable(false);
-		log.setRows(5);
-		scrollPane = new JScrollPane(log);
-		
-		
-		joueurs = Partie.getJoueurs();
-		vueJoueurs = new LinkedList<VueJoueur>();
-		Iterator<Joueur> it = joueurs.iterator();
-		while (it.hasNext()){
-			VueJoueur vueJoueur = new VueJoueur(it.next());
-			vueJoueurs.add(vueJoueur);
-		}
-	
-		
-		fenetre.add(scrollPane, BorderLayout.NORTH);
 
-		
 		fenetre.pack();
 		fenetre.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		fenetre.setBackground(Color.ORANGE);
 		fenetre.setVisible(true);
 		fenetre.setLocationRelativeTo(null);
 	}
