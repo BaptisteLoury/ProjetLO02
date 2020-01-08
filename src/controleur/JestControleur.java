@@ -1,6 +1,10 @@
 package controleur;
+import java.util.Scanner;
+
 import App.*;
 import Joueurs.Joueur;
+import Strategies.StrategieAvancee;
+import Strategies.StrategieBasique;
 import Vue.*;
 
 public class JestControleur {
@@ -24,10 +28,30 @@ public class JestControleur {
 			Joueur j = new Joueur(nom);
 			Partie.getJoueurs().add(j);
 		}
-		if (nbReel!=nbTotal) {
-			
+		for (int i = nbReel + 1;i<=nbTotal;i++) {
+			FenetreJoueurVirtuel fjv = new FenetreJoueurVirtuel(null,"Stratégie",true);
+			String strategie = fjv.getStringStrategie();
+			switch (strategie) {
+			case "Basique":
+				
+					Joueur jvB = new Joueur("Joueur Virtuel " + i);
+					Partie.getJoueurs().add(jvB);
+					jvB.effectuerStrategie(new StrategieBasique(jvB));
+					System.out.println("Le Joueur Virtuel " + i + " a bien a ete ajoute dans la partie !!");
+				
+				break;
+			case "Avancee":
+				
+					Joueur jvA = new Joueur("Joueur Virtuel " + i);
+					Partie.getJoueurs().add(jvA);
+					jvA.effectuerStrategie(new StrategieAvancee(jvA));
+					System.out.println("Le Joueur Virtuel " + i + " a bien a ete ajoute dans la partie !!");
+				
+				break;
+			default:
+				System.out.println("Oh non tu as fait une erreur de frappe !") ;
+			}
 		}
-		FenetreJoueurVirtuel fjv = new FenetreJoueurVirtuel(null,"Stratégie",true);
 		
 	}
 

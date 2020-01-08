@@ -44,7 +44,7 @@ public class FenetreJoueurVirtuel extends JDialog {
 		fenetre.setLayout(new GridLayout(0, 2, 10, 10));
 	
 	    
-		 JLabel nomStrategie = new JLabel("Avec quelle stratégie joueront les joueurs virtuels ?");
+		 JLabel nomStrategie = new JLabel("Avec quelle stratégie ce joueur virtuel jouera ?");
 		 strategie.setPreferredSize(new Dimension(100, 20));
 		 strategie.addItem("Avancee");
 		 strategie.addItem("Basique");
@@ -52,7 +52,7 @@ public class FenetreJoueurVirtuel extends JDialog {
 	    ok = new JButton("Ok");
 	    ok.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent me) {
-				
+				stringStrategie = (String)strategie.getSelectedItem();
 			    setVisible(false);
 			}
 			
@@ -68,6 +68,12 @@ public class FenetreJoueurVirtuel extends JDialog {
 	}
 	public String getStringStrategie() {
 		return stringStrategie;
+	}
+	public JComboBox<String> getStrategie() {
+		return strategie;
+	}
+	public void setStrategie(JComboBox<String> strategie) {
+		this.strategie = strategie;
 	}
 	public void setStringStrategie(String stringStrategie) {
 		this.stringStrategie = stringStrategie;

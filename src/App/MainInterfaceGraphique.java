@@ -25,6 +25,9 @@ public class MainInterfaceGraphique implements Runnable {
 		Partie.getInstance().init();
 		VuePartie vuePartie = new VuePartie(Partie.getInstance());
 		JestControleur jestControleur = new JestControleur(Partie.getInstance(),vuePartie);
+		if (variante.isExtension()) {
+			Partie.getInstance().getDeck().ajouterExtension();
+		}
 	}
 	
 	@Override
