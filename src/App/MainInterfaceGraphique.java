@@ -1,4 +1,7 @@
 package App;
+import java.util.Iterator;
+
+import Joueurs.Joueur;
 import Visit.VisitorJest;
 import Vue.*;
 import controleur.JestControleur;
@@ -28,6 +31,17 @@ public class MainInterfaceGraphique implements Runnable {
 		if (variante.isExtension()) {
 			Partie.getInstance().getDeck().ajouterExtension();
 		}
+		Partie.getInstance().constituerTrophee();
+		int nbTour = 1;
+		while (Partie.getInstance().getDeck().getDeckCartes().size()>=Joueur.getNbJoueurs()) {
+			System.out.println("TOUR # "+ nbTour);
+			if (nbTour!=1) {
+				Partie.getInstance().remettreEnJeuCarteOffre();
+			}
+			jestControleur.tour();
+			nbTour++;
+		}
+		jestControleur.finPartie();
 	}
 	
 	@Override
