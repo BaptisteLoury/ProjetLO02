@@ -19,7 +19,7 @@ public class Partie implements Visitable{
 	private LinkedList<Cartes> trophees;
 	private Deck deck;
 	
-	public Partie() {
+	protected Partie() {
 		
 	}
 	//Singleton
