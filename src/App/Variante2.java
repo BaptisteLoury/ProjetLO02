@@ -7,6 +7,7 @@ import Joueurs.Joueur;
 
 public class Variante2 extends Partie{
 
+	private Variante2() {}
 	private static Variante2 INSTANCE= null;
 	public static Variante2  getInstance() {
 		if (INSTANCE== null) {

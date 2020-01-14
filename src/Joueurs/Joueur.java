@@ -21,6 +21,7 @@ public class Joueur {
 	protected int scoreFinal = 0;
 	protected int scoreDevine;
 	protected Strategie strategieJoueur;
+	protected Boolean humain;
 	
 	
 	public int getScoreDevine() {
@@ -133,4 +134,18 @@ public class Joueur {
 	public void effectuerStrategie(Strategie strategieJ) {
 		this.strategieJoueur = strategieJ;	
 	}
+
+	public Strategie getStrategieJoueur() {
+		return strategieJoueur;
+	}
+
+	public Boolean isHumain() {
+		return humain;
+	}
+
+	public void setHumain(Boolean humain) {
+		this.humain = humain;
+	}
+	
+	
 }

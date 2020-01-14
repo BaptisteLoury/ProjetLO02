@@ -17,67 +17,57 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 import java.awt.Dimension;
+import java.awt.BorderLayout;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 import App.*;
-public class FenetreJoueurVirtuel extends JDialog {
+import Joueurs.Joueur;
 
+public class FenetreAttente extends JDialog {
+
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
-	
-	private JComboBox<String> strategie = new JComboBox<String>();
-	private String stringStrategie;
 	private JPanel fenetre;
-	private JButton ok;
+	//private JPanel fenetreJoueur;
 	
-	public FenetreJoueurVirtuel(JFrame parent, String title, boolean modal) {
+	private JButton ok;
+	private Joueur joueur;
+
+	
+	public FenetreAttente(JFrame parent, String title, boolean modal,Joueur joueur) {
 		super(parent, title, modal);
+		this.joueur = joueur;
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		this.init();
 		//this.creationJoueur();
 	}
 	public void init() {
-
 		fenetre = new JPanel();
-		fenetre.setLayout(new GridLayout(0, 2, 10, 10));
-	
+		fenetre.setLayout(new BorderLayout());
+		
+	  JLabel message = new JLabel("Au tour du joueur "+joueur.getPseudo());
 	    
-		 JLabel nomStrategie = new JLabel("Avec quelle stratégie ce joueur virtuel jouera ?");
-		 strategie.setPreferredSize(new Dimension(100, 20));
-		 strategie.addItem("Avancee");
-		 strategie.addItem("Basique");
 	    
 	    ok = new JButton("Ok");
 	    ok.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent me) {
-				stringStrategie = (String)strategie.getSelectedItem();
-			    setVisible(false);
+				setVisible(false);
 			}
 			
 		});
+	    fenetre.add(message, BorderLayout.NORTH);
+	    fenetre.add(ok, BorderLayout.SOUTH);
 	    
-	    fenetre.add(nomStrategie);
-	    fenetre.add(strategie);
-	    fenetre.add(ok);
-	    
+	    //top.add(fenetre);
 	    this.getContentPane().add(fenetre);
 		this.pack();
 		this.setVisible(true);
+		
 	}
-	public String getStringStrategie() {
-		return stringStrategie;
-	}
-	public JComboBox<String> getStrategie() {
-		return strategie;
-	}
-	public void setStrategie(JComboBox<String> strategie) {
-		this.strategie = strategie;
-	}
-	public void setStringStrategie(String stringStrategie) {
-		this.stringStrategie = stringStrategie;
-	}
-	
-	
+
 }

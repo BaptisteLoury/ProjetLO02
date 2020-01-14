@@ -3,6 +3,7 @@ package Vue;
 import java.util.LinkedList;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
+import java.awt.color.*;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -35,6 +37,9 @@ public class VuePartie implements Observer {
 	
 	private JFrame fenetre;
 	
+	private JTextArea log;
+	private JScrollPane scrollPane;
+	
 	private JLabel deck;
 	
 	private JLabel stackIntermediaire;
@@ -48,21 +53,12 @@ public class VuePartie implements Observer {
 		fenetre.setLayout(new BorderLayout());
 		fenetre.setResizable(true);
 		
-		JPanel panelTapis = new JPanel();
-		JLabel imgTapis = new JLabel();
-		
-		
-		deck = new JLabel(new ImageIcon("img/deckRempli.png"));
-		stackIntermediaire = new JLabel(new ImageIcon("img/deckVide.png")); 
-		
-		fenetre.setLayout(new GridLayout());
-		fenetre.add(imgTapis);
-		fenetre.add(deck);
-		fenetre.add(stackIntermediaire);
-		
+
 		fenetre.pack();
 		fenetre.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		fenetre.setBackground(Color.ORANGE);
 		fenetre.setVisible(true);
+		fenetre.setLocationRelativeTo(null);
 	}
 
 	@Override
@@ -70,13 +66,23 @@ public class VuePartie implements Observer {
 		// TODO Auto-generated method stub
 		
 	}
-
+	public void prompt(String msg) {
+		log.append(msg + "\n");
+	}
 	public Partie getModele() {
 		return modele;
 	}
 
 	public void setModele(Partie modele) {
 		this.modele = modele;
+	}
+
+	public JTextArea getLog() {
+		return log;
+	}
+
+	public void setLog(JTextArea log) {
+		this.log = log;
 	}
 	
 	

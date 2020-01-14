@@ -17,7 +17,7 @@ public class Partie implements Visitable{
 	private LinkedList<Cartes> trophees;
 	private Deck deck;
 	
-	public Partie() {
+	protected Partie() {
 		
 	}
 	//Singleton
@@ -161,6 +161,7 @@ public class Partie implements Visitable{
 	}
 	public void init() {
 		joueurs = new LinkedList<Joueur>();
+		deck = new Deck();
 		JestControleur.debuterPartie();
 		
 	}
