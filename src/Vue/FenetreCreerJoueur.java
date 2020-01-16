@@ -1,27 +1,16 @@
 package Vue;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.CheckboxGroup;
-import java.awt.Checkbox;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JComboBox;
-import java.awt.Dimension;
 
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-
-import App.*;
 public class FenetreCreerJoueur extends JDialog {
 
 	private static final long serialVersionUID = 1L;

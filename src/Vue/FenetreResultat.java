@@ -23,8 +23,8 @@ import java.awt.BorderLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import App.*;
-import Joueurs.Joueur;
+import modele.Joueur;
+import modele.Partie;
 
 public class FenetreResultat extends JDialog {
 

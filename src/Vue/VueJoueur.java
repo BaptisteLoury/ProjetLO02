@@ -13,8 +13,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import Joueurs.Joueur;
-import App.*;
+import modele.Cartes;
+import modele.Joueur;
 
 public class VueJoueur implements Observer {
 	

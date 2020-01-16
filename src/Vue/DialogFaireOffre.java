@@ -1,26 +1,18 @@
 package Vue;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import App.*;
-import Joueurs.Joueur;
+import modele.Cartes;
+import modele.Joueur;
 
 public class DialogFaireOffre extends JDialog {
 
