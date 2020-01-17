@@ -1,6 +1,6 @@
 
 /*
- *La variante 1 modifie le comptage des scores. Les Coeurs et les Carreaux sont inversés. 
+ *La variante 1 modifie le comptage des scores. Les Coeurs et les Carreaux sont inverses. 
  */
 package modele;
 

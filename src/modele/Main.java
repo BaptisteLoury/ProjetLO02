@@ -19,7 +19,7 @@ public class Main {
 		//Choix de la variante
 		
 		Scanner scVariante = new Scanner(System.in);
-		System.out.println("Voulez vous jouer ра une variante ? (O/N)");
+		System.out.println("Voulez vous jouer a une variante ? (O/N)");
 		char variante = scVariante.nextLine().charAt(0);
 		switch (variante) {
 		case 'O':
@@ -78,7 +78,7 @@ public class Main {
 			}
 		break;
 		case 'N':
-			System.out.println("Okay, tu ne veux pas joueur р une variante. J'en prends note");
+			System.out.println("Okay, tu ne veux pas joueur a une variante. J'en prends note");
 			Partie partie = Partie.getInstance();
 			partie.accept(monVisiteur);
 			partie.creerPartie();
@@ -101,7 +101,7 @@ public class Main {
 			
 		break;
 		default:
-			System.out.println("La syntaxe de la reponse n'est pas correcte. Je pars du principe que tu ne veux pas jouer р une variante!") ;
+			System.out.println("La syntaxe de la reponse n'est pas correcte. Je pars du principe que tu ne veux pas jouer a une variante!") ;
 			Partie partieDefault = Partie.getInstance();
 			partieDefault.accept(monVisiteur);
 			partieDefault.creerPartie();

@@ -4,8 +4,8 @@
 
  *  A la fin de la partie, avant d'annoncer les scores, chaque joueur doit deviner son propre score.
 	 * <ul>
-	 * <li>S'il a juste, il n'est pas pénalisé.</li>
-	 * <li>S'il majore ou minore son score, il verra ses points diminuer proportionnellement à la réponse fausse equ'il a donner.</li>
+	 * <li>S'il a juste, il n'est pas penalise.</li>
+	 * <li>S'il majore ou minore son score, il verra ses points diminuer proportionnellement a la reponse fausse equ'il a donner.</li>
 	 * </ul>
  */
 package modele;
@@ -55,7 +55,7 @@ public class Variante2 extends Partie{
 			j.setScoreDevine(scScoreDevine.nextInt());
 		}
 		Iterator<Joueur> itj2 = joueurs.iterator();
-		//Change les scores en fonction des réponses données par chacun.
+		//Change les scores en fonction des reponses donnees par chacun.
 		while (itj2.hasNext()) {
 			Joueur j =  itj2.next();
 			if (j.getScoreDevine()>j.getScoreFinal()) {
@@ -79,7 +79,7 @@ public class Variante2 extends Partie{
 	 * Donner les resultats.
 	 */
 	public void donnerLesResultats() {
-		System.out.println("Résultats de la partie :");
+		System.out.println("Resultats de la partie :");
 		Iterator<Joueur> itj = joueurs.iterator();
 		while (itj.hasNext()) {
 			Joueur j = itj.next();

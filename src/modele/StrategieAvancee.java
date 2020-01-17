@@ -1,6 +1,6 @@
 
 /*
- *La stratégie avancée pour un bot a accés à toutes les cartes sur le plateau (Recto et Verso) 
+ *La strategie avancee pour un bot a acces a toutes les cartes sur le plateau (Recto et Verso) 
  */
 package modele;
 
@@ -61,7 +61,7 @@ public class StrategieAvancee implements Strategie{
 					meilleureOffre = j.getOffre();
 					plusForteRecto = j.getOffre().getRecto();
 				}
-				//deuxieme if qui voit les cartes verso de tout le monde. Strategie Avancée
+				//deuxieme if qui voit les cartes verso de tout le monde. Strategie Avancee
 				if (j.getOffre().getVerso().getValeur().ordinal()>plusForteRecto.getValeur().ordinal() && j.getOffre().getVerso().getCouleur()!=Couleur.CARREAU && j.getOffre().getRecto().getCouleur()!=Couleur.COEUR) {
 					meilleureOffre = j.getOffre();
 					plusForteRecto = j.getOffre().getRecto();

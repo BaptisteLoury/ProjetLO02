@@ -29,7 +29,7 @@ public class VueCartes {
 	}
 	/**
 	 * Getter de carte
-	 * @return la carte à représenter
+	 * @return la carte a representer
 	 */
 	public Cartes getCarte() {
 		return carte;
@@ -37,7 +37,7 @@ public class VueCartes {
 
 	/**
 	 * Getter de l'image
-	 * @return l'image (Jlabel) associée à la carte
+	 * @return l'image (Jlabel) associee a la carte
 	 */
 	public JLabel getImage() {
 		return image;

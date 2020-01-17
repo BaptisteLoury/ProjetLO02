@@ -22,7 +22,7 @@ public class Offre {
 	private Joueur offrantVirtuel ; 
 	
 	/** L'offre suffisante.
-	 * L'offres suffisante sert à déterminer si un joueur a assez de cartes pour piocher chez lui.
+	 * L'offres suffisante sert a determiner si un joueur a assez de cartes pour piocher chez lui.
 	 * Si son offre n'est pas suffisante, personne ne peut piocher chez lui.
 	 *  */
 	//private Joueur preneur;

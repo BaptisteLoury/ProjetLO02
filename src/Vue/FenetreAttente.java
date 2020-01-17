@@ -1,6 +1,6 @@
 /*
- * Cette fenêtre permet de faire attendre les joueurs afin qu'ils ne voient le jeu des autres joeuurs.
- * Pour sortir de cette fenêtre, il suffit de cliquer sur le bouton Ok.
+ * Cette fenetre permet de faire attendre les joueurs afin qu'ils ne voient le jeu des autres joeuurs.
+ * Pour sortir de cette fenetre, il suffit de cliquer sur le bouton Ok.
  */
 package Vue;
 

@@ -1,6 +1,6 @@
 
 /*
- *La stratégie avancée pour un bot a accés uniquement aux cartes Recto sur le plateau. 
+ *La strategie avancee pour un bot a acces uniquement aux cartes Recto sur le plateau. 
  */
 package modele;
 

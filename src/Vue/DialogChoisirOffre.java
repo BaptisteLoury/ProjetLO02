@@ -1,5 +1,5 @@
 /*
- * Cette fenêtre permet de choisir une carte chez un joueur.
+ * Cette fenetre permet de choisir une carte chez un joueur.
  */
 package Vue;
 

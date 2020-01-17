@@ -1,6 +1,6 @@
 
 /*
- *Cette stratégie concerne les joueurs humains. C'est bien à eux de chosir la carte qu'ils désirent prendre. 
+ *Cette strategie concerne les joueurs humains. C'est bien a eux de chosir la carte qu'ils desirent prendre. 
  */
 package modele;
 

@@ -66,7 +66,7 @@ public class FenetreResultat extends JDialog {
 		fenetre = new JPanel();
 		fenetre.setLayout(new BorderLayout());
 	
-	  JLabel message = new JLabel("Résultats de la partie");
+	  JLabel message = new JLabel("Resultats de la partie");
 	  JPanel result = new JPanel();
 	  fenetre.add(message, BorderLayout.NORTH);
 	   Iterator<Joueur> itj = Partie.getJoueurs().iterator();

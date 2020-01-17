@@ -1,6 +1,6 @@
 
 	/**
-	 * Cette fenêtre permet d'initialiser la partie avec :
+	 * Cette fenetre permet d'initialiser la partie avec :
 	 * <ul>
 	 *<li>le nombre de joueurs </li>
 	 *<li>le nombre de joueurs humains</li>

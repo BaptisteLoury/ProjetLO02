@@ -1,5 +1,5 @@
 /*
- *  Cette fenêtre permet de rentrer les noms pour chaque joueur réel.
+ *  Cette fenetre permet de rentrer les noms pour chaque joueur reel.
  */
 
 package Vue;

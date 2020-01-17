@@ -36,12 +36,12 @@ public class JestControleur {
 	 * Debuter partie.
 	 */
 	public static void debuterPartie() {
-		FenetreDebutPartie dialog = new FenetreDebutPartie(null,"Paramètres de la partie",true);
+		FenetreDebutPartie dialog = new FenetreDebutPartie(null,"Parametres de la partie",true);
 		int nbTotal = dialog.getNbTotal();
 		int nbReel = dialog.getNbReel();
 		for (int i=1;i<=nbReel;i++) {
 			System.out.println("i");
-			FenetreCreerJoueur fjoueur = new FenetreCreerJoueur(null,"Création d'un joueur",true);
+			FenetreCreerJoueur fjoueur = new FenetreCreerJoueur(null,"Creation d'un joueur",true);
 			String nom = fjoueur.getNom().getText();
 			Joueur j = new Joueur(nom);
 			j.effectuerStrategie(new StrategieHumain(j));
@@ -49,7 +49,7 @@ public class JestControleur {
 			Partie.getJoueurs().add(j);
 		}
 		for (int i = nbReel + 1;i<=nbTotal;i++) {
-			FenetreJoueurVirtuel fjv = new FenetreJoueurVirtuel(null,"Stratégie",true);
+			FenetreJoueurVirtuel fjv = new FenetreJoueurVirtuel(null,"Strategie",true);
 			String strategie = fjv.getStringStrategie();
 			switch (strategie) {
 			case "Basique":

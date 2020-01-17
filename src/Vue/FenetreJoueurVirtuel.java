@@ -65,7 +65,7 @@ public class FenetreJoueurVirtuel extends JDialog {
 		fenetre.setLayout(new GridLayout(0, 2, 10, 10));
 	
 	    
-		 JLabel nomStrategie = new JLabel("Avec quelle stratégie ce joueur virtuel jouera ?");
+		 JLabel nomStrategie = new JLabel("Avec quelle strategie ce joueur virtuel jouera ?");
 		 strategie.setPreferredSize(new Dimension(100, 20));
 		 strategie.addItem("Avancee");
 		 strategie.addItem("Basique");

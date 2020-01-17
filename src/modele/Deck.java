@@ -12,7 +12,7 @@ public class Deck {
 	protected LinkedList<Cartes> deckCartes;
 	
 	/** Le stack intermediaire.
-	 * Le stack intermediaire est un ensemble de cartes composé des cartes non-piochées pendant le tour précédent et des cartes ajoutées depuis le deck
+	 * Le stack intermediaire est un ensemble de cartes compose des cartes non-piochees pendant le tour precedent et des cartes ajoutees depuis le deck
 	 *  */
 	protected LinkedList<Cartes> stackIntermediaire;
 

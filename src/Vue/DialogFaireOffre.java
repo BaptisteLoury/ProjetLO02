@@ -1,5 +1,5 @@
 /*
- *  Cette fenêtre permet de choisir quelle carte mettre en recto au début de chaque tour.
+ *  Cette fenetre permet de choisir quelle carte mettre en recto au debut de chaque tour.
  */
 package Vue;
 

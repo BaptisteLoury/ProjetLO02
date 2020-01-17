@@ -28,11 +28,11 @@ public class Joueur {
 	protected Offre offreChoisie;
 	
 	/** Le points pour recuperer trophee.
-	 * Il s'agit d'un compteur propre à chaque qui est incrémenté quand les trophées concernent le nombre de cartes spécifiques.
+	 * Il s'agit d'un compteur propre a chaque qui est incremente quand les trophees concernent le nombre de cartes specifiques.
 	 *  */
 	protected int pointsPourRecupererTrophee;
 	/*
-	 * Les attributs booleans qui suivent sont utiles pour l'attribution des trophées.
+	 * Les attributs booleans qui suivent sont utiles pour l'attribution des trophees.
 	 */
 	/**  possession as. */
 	protected boolean possessionAs = false;
