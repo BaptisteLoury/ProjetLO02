@@ -2,7 +2,9 @@
  * 
  */
 package Vue;
-import App.*;
+
+import modele.Cartes;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 

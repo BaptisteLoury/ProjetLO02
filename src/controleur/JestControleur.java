@@ -5,12 +5,13 @@ package controleur;
 import java.util.Iterator;
 import java.util.Scanner;
 
-import App.*;
-import Joueurs.Joueur;
-import Strategies.StrategieAvancee;
-import Strategies.StrategieHumain;
-import Strategies.StrategieBasique;
 import Vue.*;
+import modele.Joueur;
+import modele.Offre;
+import modele.Partie;
+import modele.StrategieAvancee;
+import modele.StrategieBasique;
+import modele.StrategieHumain;
 
 public class JestControleur {
 

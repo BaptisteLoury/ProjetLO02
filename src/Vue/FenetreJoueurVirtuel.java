@@ -24,7 +24,6 @@ import java.awt.Dimension;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import App.*;
 public class FenetreJoueurVirtuel extends JDialog {
 
 	/** The Constant serialVersionUID. */
