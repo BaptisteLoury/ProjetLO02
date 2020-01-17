@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package Vue;
 import App.*;
 import javax.swing.ImageIcon;
@@ -5,10 +8,18 @@ import javax.swing.JLabel;
 
 public class VueCartes {
 
+	/** La carte. */
 	private Cartes carte;
+	
+	/** L'image. */
 	private JLabel image;
 	
 
+	/**
+	 * Instantiates a new vue cartes.
+	 *
+	 * @param carte the carte
+	 */
 	public VueCartes(Cartes carte) {
 		this.carte = carte;
 		String cheminImage = "img/" + carte.getValeur() + "_" + carte.getCouleur() + ".png";

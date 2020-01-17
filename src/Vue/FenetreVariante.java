@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package Vue;
 
 import java.awt.Checkbox;
@@ -20,22 +23,46 @@ public class FenetreVariante extends JDialog {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	/** Le jeu base. */
 	private Checkbox jeuBase;
+	
+	/** La variante 1. */
 	private Checkbox variante1;
+	
+	/** La variante 2. */
 	private Checkbox variante2;
+	
+	/** Le ok. */
 	private JButton ok;
+	
+	/** La fenetre. */
 	private JPanel fenetre;
+	
+	/** L'extension. */
 	private boolean extension;
+	
+	/** Le choix extension. */
 	private JComboBox<String> choixExtension = new JComboBox<String>();
 
+	/**
+	 * Instantiates a new fenetre variante.
+	 *
+	 * @param parent le parent
+	 * @param title le title
+	 * @param modal le modal
+	 */
 	public FenetreVariante(JFrame parent, String title, boolean modal) {
 		super(parent, title, modal);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		this.init();
-		//this.creationJoueur();
+		
 	}
 	
+	/**
+	 * Inits le.
+	 */
 	public void init() {
 		fenetre = new JPanel();
 		fenetre.setLayout(new GridLayout(0, 2, 10, 10));
@@ -81,34 +108,74 @@ public class FenetreVariante extends JDialog {
 		this.setVisible(true);
 	}
 
+	/**
+	 * Gets le jeu de base.
+	 *
+	 * @return le jeu de base
+	 */
 	public Checkbox getJeuBase() {
 		return jeuBase;
 	}
 
+	/**
+	 * Sets le jeu de base.
+	 *
+	 * @param jeuBase le new jeu de base
+	 */
 	public void setJeuBase(Checkbox jeuBase) {
 		this.jeuBase = jeuBase;
 	}
 
+	/**
+	 * Gets la variante 1.
+	 *
+	 * @return la variante 1
+	 */
 	public Checkbox getVariante1() {
 		return variante1;
 	}
 
+	/**
+	 * Sets la variante 1.
+	 *
+	 * @param variante1 la new variante 1
+	 */
 	public void setVariante1(Checkbox variante1) {
 		this.variante1 = variante1;
 	}
 
+	/**
+	 * Gets la variante 2.
+	 *
+	 * @return la variante 2
+	 */
 	public Checkbox getVariante2() {
 		return variante2;
 	}
 
+	/**
+	 * Sets la variante 2.
+	 *
+	 * @param variante2 la new variante 2
+	 */
 	public void setVariante2(Checkbox variante2) {
 		this.variante2 = variante2;
 	}
 
+	/**
+	 * Checks if is extension.
+	 *
+	 * @return true, if is extension
+	 */
 	public boolean isExtension() {
 		return extension;
 	}
 
+	/**
+	 * Sets l'extension.
+	 *
+	 * @param extension l'new extension
+	 */
 	public void setExtension(boolean extension) {
 		this.extension = extension;
 	}

@@ -1,3 +1,6 @@
+/*
+ * @author Baptiste Loury et Pierre Groshens
+ */
 package App;
 
 import Joueurs.Joueur;
@@ -7,11 +10,17 @@ import java.util.Scanner;
 
 public class Main {
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		VisitorJest monVisiteur = new VisitorJest();
 		
 		//Choix de la variante
+		
 		Scanner scVariante = new Scanner(System.in);
 		System.out.println("Voulez vous jouer ра une variante ? (O/N)");
 		char variante = scVariante.nextLine().charAt(0);
@@ -116,25 +125,7 @@ public class Main {
 		}
 		
 		
-		/*
 		
-		//partie ne s arrete pas quand deck empty ! Ni lorsqu il reste plus de 3 cartes, cela depend du nombre de joueur.  
-		int nbTour = 1;
-		while (Partie.getInstance().getDeck().getDeckCartes().size()>=Joueur.getNbJoueurs()) {
-			System.out.println("TOUR # "+ nbTour);
-			if (nbTour!=1) {
-				Partie.getInstance().remettreEnJeuCarteOffre();
-			}
-			Partie.getInstance().tour();
-			nbTour++;
-		}
-		Partie.getInstance().dernierTour();
-		Partie.getInstance().attribuerTrophees();
-		Partie.getInstance().calculDesPoints();
-		Partie.getInstance().donnerLesResultats();
-		
-		
-		*/
 
 	}
 

@@ -1,3 +1,6 @@
+/*
+ * Cette fenêtre permet de choisir une carte chez un joueur.
+ */
 package Vue;
 
 import java.awt.BorderLayout;
@@ -29,11 +32,26 @@ public class DialogChoisirOffre extends JDialog {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	/** The joueur. */
 	private Joueur joueur;
+	
+	/** The joueur pioche. */
 	private Joueur joueurPioche;
+	
+	/** The carte A jouer. */
 	private LinkedList<Cartes> carteAJouer;
+	
+	/** The carte choisie. */
 	private Cartes carteChoisie;
 	
+	/**
+	 * Instantiates a new dialog choisir offre.
+	 *
+	 * @param parent the parent
+	 * @param title the title
+	 * @param modal the modal
+	 * @param joueur the joueur
+	 */
 	public DialogChoisirOffre(JFrame parent, String title, boolean modal, Joueur joueur) {
 		super(parent, title, modal);
 		this.joueur = joueur;
@@ -42,6 +60,10 @@ public class DialogChoisirOffre extends JDialog {
 		this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		this.init();
 	}
+	
+	/**
+	 * Inits the.
+	 */
 	public void init() {
 		JPanel fenetre = new JPanel();
 		fenetre.setLayout(new BorderLayout(0, 1));
@@ -143,9 +165,21 @@ public class DialogChoisirOffre extends JDialog {
 		this.pack();
 		this.setVisible(true);
 	}
+	
+	/**
+	 * Gets the joueur pioche.
+	 *
+	 * @return the joueur pioche
+	 */
 	public Joueur getJoueurPioche() {
 		return joueurPioche;
 	}
+	
+	/**
+	 * Sets the joueur pioche.
+	 *
+	 * @param joueurPioche the new joueur pioche
+	 */
 	public void setJoueurPioche(Joueur joueurPioche) {
 		this.joueurPioche = joueurPioche;
 	}

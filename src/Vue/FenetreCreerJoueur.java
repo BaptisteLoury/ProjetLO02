@@ -1,3 +1,7 @@
+/*
+ *  Cette fenêtre permet de rentrer les noms pour chaque joueur réel.
+ */
+
 package Vue;
 
 import java.awt.GridLayout;
@@ -24,20 +28,36 @@ import java.awt.event.ItemListener;
 import App.*;
 public class FenetreCreerJoueur extends JDialog {
 
+	/** Le Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
+	/** Le nom. */
 	private JTextArea nom;
 	
+	/** Le fenetre. */
 	private JPanel fenetre;
+	
+	/** Le ok. */
 	private JButton ok;
 	
+	/**
+	 * Instantiates a new fenetre creer joueur.
+	 *
+	 * @param parent le parent
+	 * @param title le title
+	 * @param modal le modal
+	 */
 	public FenetreCreerJoueur(JFrame parent, String title, boolean modal) {
 		super(parent, title, modal);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		this.init();
-		//this.creationJoueur();
+		
 	}
+	
+	/**
+	 * Inits le.
+	 */
 	public void init() {
 
 		fenetre = new JPanel();
@@ -66,9 +86,21 @@ public class FenetreCreerJoueur extends JDialog {
 		this.pack();
 		this.setVisible(true);
 	}
+	
+	/**
+	 * Gets le nom.
+	 *
+	 * @return le nom
+	 */
 	public JTextArea getNom() {
 		return nom;
 	}
+	
+	/**
+	 * Sets le nom.
+	 *
+	 * @param nom le new nom
+	 */
 	public void setNom(JTextArea nom) {
 		this.nom = nom;
 	}

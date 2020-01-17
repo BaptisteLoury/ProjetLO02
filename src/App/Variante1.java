@@ -1,3 +1,6 @@
+/*
+ *La variante 1 modifie le comptage des scores. Les Coeurs et les Carreaux sont inversés. 
+ */
 package App;
 
 import java.util.Iterator;
@@ -7,8 +10,19 @@ import Joueurs.Joueur;
 
 public class Variante1 extends Partie {
 	
+	/**
+	 * Instantiates a new variante 1.
+	 */
 	private Variante1() {}
+	
+	/** L' instance. */
 	private static Variante1 INSTANCE= null;
+	
+	/**
+	 * Gets the single instance of Variante1.
+	 *
+	 * @return single instance of Variante1
+	 */
 	public static Variante1  getInstance() {
 		if (INSTANCE== null) {
 			INSTANCE = new Variante1(); 
@@ -19,6 +33,9 @@ public class Variante1 extends Partie {
 		return INSTANCE ;
 	}
 	
+	/**
+	 * Calcul des points.
+	 */
 	public void calculDesPoints() {
 		System.out.println("tu es dans la variante1");
 		

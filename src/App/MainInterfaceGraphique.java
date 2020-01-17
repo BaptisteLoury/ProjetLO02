@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package App;
 import java.util.Iterator;
 
@@ -8,6 +11,9 @@ import controleur.JestControleur;
 
 public class MainInterfaceGraphique implements Runnable {
 	
+	/**
+	 * Instantie un nouveau main interface graphique.
+	 */
 	public MainInterfaceGraphique() {
 		
 		VisitorJest monVisiteur = new VisitorJest();
@@ -44,12 +50,20 @@ public class MainInterfaceGraphique implements Runnable {
 		jestControleur.finPartie();
 	}
 	
+	/**
+	 * Run.
+	 */
 	@Override
 	public void run() {
 		new MainInterfaceGraphique();
 		
 	}
 	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		Thread partie = new Thread(new MainInterfaceGraphique());
 

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package controleur;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -11,14 +14,26 @@ import Vue.*;
 
 public class JestControleur {
 
+	/** La partie. */
 	private static Partie partie;
+	
+	/** La vue partie. */
 	private static VuePartie vuePartie;
 	
+	/**
+	 * Instantiates a new jest controleur.
+	 *
+	 * @param partie the partie
+	 * @param vuePartie the vue partie
+	 */
 	public JestControleur(Partie partie, VuePartie vuePartie) {
 		setPartie(partie);
 		setVuePartie(vuePartie);
 	}
 	
+	/**
+	 * Debuter partie.
+	 */
 	public static void debuterPartie() {
 		FenetreDebutPartie dialog = new FenetreDebutPartie(null,"Paramètres de la partie",true);
 		int nbTotal = dialog.getNbTotal();
@@ -60,6 +75,10 @@ public class JestControleur {
 		}
 		
 	}
+	
+	/**
+	 * Tour.
+	 */
 	public void tour() {
 		Partie.getInstance().distribuer();
 		//Dans l'ordre, les joueurs font leur offre
@@ -106,6 +125,10 @@ public class JestControleur {
 			
 		}
 	}
+	
+	/**
+	 * Fin partie.
+	 */
 	public void finPartie() {
 		Partie.getInstance().dernierTour();
 		Partie.getInstance().attribuerTrophees();
@@ -113,21 +136,46 @@ public class JestControleur {
 		donnerLesResultatsGraphique();
 		
 	}
+	
+	/**
+	 * Donner les resultats graphique.
+	 */
 	public void donnerLesResultatsGraphique() {
 		FenetreResultat resultat = new FenetreResultat(null,"Resultat",true);
 	}
+	
+	/**
+	 * Gets the partie.
+	 *
+	 * @return the partie
+	 */
 	public static Partie getPartie() {
 		return partie;
 	}
 
+	/**
+	 * Sets the partie.
+	 *
+	 * @param partie the new partie
+	 */
 	public static void setPartie(Partie partie) {
 		JestControleur.partie = partie;
 	}
 
+	/**
+	 * Gets the vue partie.
+	 *
+	 * @return the vue partie
+	 */
 	public static VuePartie getVuePartie() {
 		return vuePartie;
 	}
 
+	/**
+	 * Sets the vue partie.
+	 *
+	 * @param vuePartie the new vue partie
+	 */
 	public static void setVuePartie(VuePartie vuePartie) {
 		JestControleur.vuePartie = vuePartie;
 	}

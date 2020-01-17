@@ -1,3 +1,13 @@
+
+	/**
+	 * Cette fenêtre permet d'initialiser la partie avec :
+	 * <ul>
+	 *<li>le nombre de joueurs </li>
+	 *<li>le nombre de joueurs humains</li>
+	 *<li>Le choix d'une extension ou d'une variante</li> 
+
+	 * </ul>
+	 */
 package Vue;
 
 import java.awt.GridLayout;
@@ -25,31 +35,46 @@ import App.*;
 
 public class FenetreDebutPartie extends JDialog {
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
+	/** The nom. */
 	private JTextArea nom;
 	
 	
 	
+	/** The fenetre. */
 	private JPanel fenetre;
 	//private JPanel fenetreJoueur;
 	
+	/** The ok. */
 	private JButton ok;
+	
+	/** The ok 2. */
 	private JButton ok2;
 	
 	
+	/** The nb total. */
 	private int nbTotal;
+	
+	/** The nb reel. */
 	private int nbReel;
 	
+	/** The choix nb total. */
 	private JComboBox<Integer> choixNbTotal = new JComboBox<Integer>();
 	
+	/** The choix nb reel. */
 	private JComboBox<Integer> choixNbReel = new JComboBox<Integer>();
 	
 
 	
+	/**
+	 * Instantiates a new fenetre debut partie.
+	 *
+	 * @param parent the parent
+	 * @param title the title
+	 * @param modal the modal
+	 */
 	public FenetreDebutPartie(JFrame parent, String title, boolean modal) {
 		super(parent, title, modal);
 		this.setLocationRelativeTo(null);
@@ -57,6 +82,10 @@ public class FenetreDebutPartie extends JDialog {
 		this.init();
 		//this.creationJoueur();
 	}
+	
+	/**
+	 * Inits the.
+	 */
 	public void init() {
 		fenetre = new JPanel();
 		fenetre.setLayout(new GridLayout(0, 2, 10, 10));
@@ -106,6 +135,10 @@ public class FenetreDebutPartie extends JDialog {
 		this.setVisible(true);
 		
 	}
+	
+	/**
+	 * Creation joueur.
+	 */
 	public void creationJoueur() {
 		
 		fenetre = new JPanel();
@@ -133,15 +166,39 @@ public class FenetreDebutPartie extends JDialog {
 		this.setVisible(true);
 		
 	}
+	
+	/**
+	 * Gets the nb total.
+	 *
+	 * @return the nb total
+	 */
 	public int getNbTotal() {
 		return nbTotal;
 	}
+	
+	/**
+	 * Sets the nb total.
+	 *
+	 * @param nbTotal the new nb total
+	 */
 	public void setNbTotal(int nbTotal) {
 		this.nbTotal = nbTotal;
 	}
+	
+	/**
+	 * Gets the nb reel.
+	 *
+	 * @return the nb reel
+	 */
 	public int getNbReel() {
 		return nbReel;
 	}
+	
+	/**
+	 * Sets the nb reel.
+	 *
+	 * @param nbReel the new nb reel
+	 */
 	public void setNbReel(int nbReel) {
 		this.nbReel = nbReel;
 	}

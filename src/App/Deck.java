@@ -1,19 +1,35 @@
+/*
+ * 
+ */
 package App;
 import java.util.LinkedList;
 
 
 public class Deck {
 	
+	/** Le deck cartes. */
 	protected LinkedList<Cartes> deckCartes;
+	
+	/** Le stack intermediaire.
+	 * Le stack intermediaire est un ensemble de cartes composé des cartes non-piochées pendant le tour précédent et des cartes ajoutées depuis le deck
+	 *  */
 	protected LinkedList<Cartes> stackIntermediaire;
 
+	/** Le nombre cartes. */
 	private int nombreCartes;
 	
+	/**
+	 * Instantie un nouveau deck.
+	 */
 	public Deck() {
 		this.creerJeuDeBase();
 		this.melanger();
 		stackIntermediaire = new LinkedList<Cartes>();
 	}
+	
+	/**
+	 * Creer un jeu de base.
+	 */
 	public void creerJeuDeBase() {
 		int trophee = 0;
 		deckCartes = new LinkedList<Cartes>();
@@ -36,9 +52,9 @@ public class Deck {
 		nombreCartes = deckCartes.size();
 	}
 /**
- * 
+ * Ajoute l'extension au jeu de base
  */
-	// Pour le moment, ajoute les cinqs de chaque couleur, ils ont tous un trophee JOKER
+	
 	public void ajouterExtension() {
 		for (Couleur c : Couleur.values()) {
 			if (c != Couleur.JOKER) {
@@ -52,6 +68,9 @@ public class Deck {
 		
 	}
 	
+	/**
+	 * Melanger.
+	 */
 	public void melanger() {
 		for (int i = 0;i < nombreCartes; i++) {
 			int position = (int) (Math.round(nombreCartes)*Math.random());
@@ -60,35 +79,67 @@ public class Deck {
 		}
 	}
 
-	public void distribuer() {
-		/*joueurs = new HashSet<Joueur>();
-		
-		for (int i=1; i<= joueurs.size() ;i++) {
-			main  =deckCartes.pop();
-		*/}
 
+	/**
+	 * Recuperer carte restante.
+	 *
+	 * @param carteRestante the carte restante
+	 */
 	public void recupererCarteRestante(Cartes carteRestante) {
 		stackIntermediaire.add(carteRestante);
 	}
+	
+	/**
+	 * Gets le deck de cartes.
+	 *
+	 * @return le deck de cartes
+	 */
 	public LinkedList<Cartes> getDeckCartes() {
 		return deckCartes;
 
 	}
+	
+	/**
+	 * Checks if is empty.
+	 *
+	 * @return the boolean
+	 */
 	public Boolean isEmpty() {
 		return deckCartes.isEmpty();
 	}
 	
+	/**
+	 * Gets le nombre de cartes.
+	 *
+	 * @return le nombre de cartes
+	 */
 	public int getNombreCartes() {
 		return nombreCartes;
 	}
 
+	/**
+	 * Sets le nombre de cartes.
+	 *
+	 * @param nombreCartes le nouveau nombre de cartes 
+	 */
 	public void setNombreCartes(int nombreCartes) {
 		this.nombreCartes = nombreCartes;
 	}
+	
+	/**
+	 * Gets le stack intermediaire.
+	 *
+	 * @return le stack intermediaire
+	 */
 	public LinkedList<Cartes> getStackIntermediaire() {
 		return stackIntermediaire;
 	}
 
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	public String toString() {
 		return deckCartes.toString();
 	}

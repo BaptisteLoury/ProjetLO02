@@ -1,3 +1,6 @@
+/*
+ *
+ */
 package Vue;
 
 import java.awt.GridLayout;
@@ -32,12 +35,22 @@ public class FenetreResultat extends JDialog {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	/** La fenetre. */
 	private JPanel fenetre;
 	//private JPanel fenetreJoueur;
 	
+	/** Le ok. */
 	private JButton ok;
 
 	
+	/**
+	 * Instantiates a new fenetre resultat.
+	 *
+	 * @param parent le parent
+	 * @param title le title
+	 * @param modal le modal
+	 */
 	public FenetreResultat(JFrame parent, String title, boolean modal) {
 		super(parent, title, modal);
 		this.setLocationRelativeTo(null);
@@ -45,6 +58,10 @@ public class FenetreResultat extends JDialog {
 		this.init();
 		//this.creationJoueur();
 	}
+	
+	/**
+	 * Inits le.
+	 */
 	public void init() {
 		fenetre = new JPanel();
 		fenetre.setLayout(new BorderLayout());

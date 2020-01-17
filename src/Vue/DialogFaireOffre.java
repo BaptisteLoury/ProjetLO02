@@ -1,3 +1,6 @@
+/*
+ *  Cette fenêtre permet de choisir quelle carte mettre en recto au début de chaque tour.
+ */
 package Vue;
 
 import java.awt.BorderLayout;
@@ -29,11 +32,26 @@ public class DialogFaireOffre extends JDialog {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	/** Le joueur. */
 	private Joueur joueur;
+	
+	/** Le carte A jouer. */
 	private LinkedList<Cartes> carteAJouer;
+	
+	/** Le recto. */
 	private Cartes recto;
+	
+	/** Le verso. */
 	private Cartes verso;
 	
+	/**
+	 * Instantiates a new dialog faire offre.
+	 *
+	 * @param parent le parent
+	 * @param title le title
+	 * @param modal le modal
+	 * @param joueur le joueur
+	 */
 	public DialogFaireOffre(JFrame parent, String title, boolean modal, Joueur joueur) {
 		super(parent, title, modal);
 		this.joueur = joueur;
@@ -42,17 +60,15 @@ public class DialogFaireOffre extends JDialog {
 		this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		this.init();
 	}
+	
+	/**
+	 * Inits le.
+	 */
 	public void init() {
 		JPanel fenetre = new JPanel();
 		fenetre.setLayout(new BorderLayout(0, 1));
 		
-		/*JPanel main = new JPanel();
-		main.setLayout(new GridLayout(0, 3));
-		Iterator<Cartes> itc1 = joueur.getMain().iterator();
-		while (itc1.hasNext()) {
-			VueCartes vc = new VueCartes(itc1.next());
-			main.add(vc.getImage());
-		}*/
+	
 		JLabel pseudo = new JLabel("Offre de " +joueur.getPseudo());
 		JLabel question = new JLabel("Quelle carte mettez-vous en recto ?");
 		
@@ -103,15 +119,39 @@ public class DialogFaireOffre extends JDialog {
 		this.pack();
 		this.setVisible(true);
 	}
+	
+	/**
+	 * Gets le recto.
+	 *
+	 * @return le recto
+	 */
 	public Cartes getRecto() {
 		return recto;
 	}
+	
+	/**
+	 * Sets le recto.
+	 *
+	 * @param recto le new recto
+	 */
 	public void setRecto(Cartes recto) {
 		this.recto = recto;
 	}
+	
+	/**
+	 * Gets le verso.
+	 *
+	 * @return le verso
+	 */
 	public Cartes getVerso() {
 		return verso;
 	}
+	
+	/**
+	 * Sets le verso.
+	 *
+	 * @param verso le new verso
+	 */
 	public void setVerso(Cartes verso) {
 		this.verso = verso;
 	}

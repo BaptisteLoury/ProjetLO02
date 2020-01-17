@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package Vue;
 
 import java.awt.GridLayout;
@@ -24,13 +27,28 @@ import java.awt.event.ItemListener;
 import App.*;
 public class FenetreJoueurVirtuel extends JDialog {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
+	/** The strategie. */
 	private JComboBox<String> strategie = new JComboBox<String>();
+	
+	/** The string strategie. */
 	private String stringStrategie;
+	
+	/** The fenetre. */
 	private JPanel fenetre;
+	
+	/** The ok. */
 	private JButton ok;
 	
+	/**
+	 * Instantiates a new fenetre joueur virtuel.
+	 *
+	 * @param parent the parent
+	 * @param title the title
+	 * @param modal the modal
+	 */
 	public FenetreJoueurVirtuel(JFrame parent, String title, boolean modal) {
 		super(parent, title, modal);
 		this.setLocationRelativeTo(null);
@@ -38,6 +56,10 @@ public class FenetreJoueurVirtuel extends JDialog {
 		this.init();
 		//this.creationJoueur();
 	}
+	
+	/**
+	 * Inits the.
+	 */
 	public void init() {
 
 		fenetre = new JPanel();
@@ -66,15 +88,39 @@ public class FenetreJoueurVirtuel extends JDialog {
 		this.pack();
 		this.setVisible(true);
 	}
+	
+	/**
+	 * Gets the string strategie.
+	 *
+	 * @return the string strategie
+	 */
 	public String getStringStrategie() {
 		return stringStrategie;
 	}
+	
+	/**
+	 * Gets the strategie.
+	 *
+	 * @return the strategie
+	 */
 	public JComboBox<String> getStrategie() {
 		return strategie;
 	}
+	
+	/**
+	 * Sets the strategie.
+	 *
+	 * @param strategie the new strategie
+	 */
 	public void setStrategie(JComboBox<String> strategie) {
 		this.strategie = strategie;
 	}
+	
+	/**
+	 * Sets the string strategie.
+	 *
+	 * @param stringStrategie the new string strategie
+	 */
 	public void setStringStrategie(String stringStrategie) {
 		this.stringStrategie = stringStrategie;
 	}

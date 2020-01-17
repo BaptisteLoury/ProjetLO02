@@ -1,3 +1,6 @@
+/*
+ *Cette stratégie concerne les joueurs humains. C'est bien à eux de chosir la carte qu'ils désirent prendre. 
+ */
 package Strategies;
 
 import java.util.Iterator;
@@ -9,10 +12,22 @@ import Joueurs.Joueur;
 
 public class StrategieHumain implements Strategie{
 
+	/** Le joueur. */
 	private Joueur joueur;
+	
+	/**
+	 * Instantie une nouvelle strategie humain.
+	 *
+	 * @param joueur the joueur
+	 */
 	public StrategieHumain(Joueur joueur) {
 		this.joueur = joueur;
 	}
+	
+	/**
+	 * Strategie faire offre.
+	 * 
+	 */
 	@Override
 	public void strategieFaireOffre() {
 		System.out.println("\n\n\n\n\n\n\n\n");
@@ -37,6 +52,13 @@ public class StrategieHumain implements Strategie{
 			this.strategieFaireOffre();
 		}
 	}
+	
+	/**
+	 * Strategie choisir offre.
+	 *
+	 * @param joueurs the joueurs
+	 * @return the joueur
+	 */
 	@Override
 	public Joueur strategieChoisirOffre(LinkedList<Joueur> joueurs) {
 		Scanner scOffre = new Scanner(System.in);
@@ -73,6 +95,12 @@ public class StrategieHumain implements Strategie{
 			}
 		}
 	}
+	
+	/**
+	 * Strategie choisir carte.
+	 *
+	 * @param joueurPioche the joueur pioche
+	 */
 	public void strategieChoisirCarte(Joueur joueurPioche) {
 		Scanner scCarte = new Scanner(System.in);
 		System.out.println(joueurPioche.getOffre().toString());

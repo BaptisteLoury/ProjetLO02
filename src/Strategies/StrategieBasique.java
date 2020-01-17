@@ -1,3 +1,6 @@
+/*
+ *La stratégie avancée pour un bot a accés uniquement aux cartes Recto sur le plateau. 
+ */
 package Strategies;
 
 import java.util.Iterator;
@@ -7,16 +10,16 @@ import App.*;
 
 public class StrategieBasique implements Strategie{
 
+	/** The joueur. */
 	private Joueur joueur;
-	/*@Override
-	public void effectuerStrategie(LinkedList<Joueur> joueurs) {
-		// TODO Auto-generated method stub
-		System.out.println("je suis dans la strategie basique");
-		
-	}*/
+	
 	public StrategieBasique(Joueur joueur) {
 		this.joueur = joueur;
 	}
+	
+	/**
+	 * Strategie faire offre.
+	 */
 	@Override
 	public void strategieFaireOffre() {
 		Iterator <Cartes> itc =  joueur.getMain().iterator();
@@ -36,6 +39,12 @@ public class StrategieBasique implements Strategie{
 		joueur.getMain().clear();
 	}
 	
+	/**
+	 * Strategie choisir offre.
+	 *
+	 * @param joueurs la liste de joueurs
+	 * @return un joueur
+	 */
 	@Override
 	public Joueur strategieChoisirOffre(LinkedList<Joueur> joueurs) {
 		System.out.println("Au tour de "+joueur.getPseudo()+" de prendre une carte");

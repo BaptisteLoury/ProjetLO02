@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package App;
 import Strategies.* ;
 import Visit.* ;
@@ -11,17 +14,36 @@ import java.util.Iterator;
 
 public class Partie implements Visitable{
 
+	/** La collection de joueurs. */
 	protected static LinkedList<Joueur> joueurs;
 	
 	
+	/** La collection de trophees. */
 	private LinkedList<Cartes> trophees;
+	
+	/** Le deck. */
 	private Deck deck;
 	
+	/**
+	 * Instantie a new partie.
+	 * Le constructeur est protégé car c'est un singleton.
+	 */
 	protected Partie() {
 		
 	}
+	
+	/** L'instance. 
+	 * L'instance est un objet de type partie qui sert à déclarer au maximum une instance de Partie.
+	 * */
+	
 	//Singleton
 	private static Partie INSTANCE= null; 
+	
+	/**
+	 * Gets la seule instance of Partie.
+	 *
+	 * @return single instance of Partie
+	 */
 	public static Partie  getInstance() {
 		if (INSTANCE== null) {
 			INSTANCE = new Partie(); 
@@ -32,16 +54,28 @@ public class Partie implements Visitable{
 		return INSTANCE ;
 	}
 	
+	/**
+	 * Accept.
+	 *
+	 * @param visitorItem the visitor item
+	 */
 	public void accept(Visitor visitorItem) {
 		visitorItem.visit(INSTANCE);
 		
 	}
 	
+	/** quelleStrategie est un char renseigné par le joueur quand il lance la partie.  */
 	private char  quelleStrategie='B';
 	
 
+	/**
+	 * Creer partie.
+	 */
 	public void creerPartie() {
 		
+		/**
+		 * Choix nombre de joueurs totals
+		 */
 		Scanner sc = new Scanner(System.in);
 		Scanner scannerPseudo = new Scanner(System.in);
 		System.out.println("A combien de joueurs allez vous jouer la partie ?");
@@ -57,6 +91,9 @@ public class Partie implements Visitable{
 			System.out.println("Il y'a un probleme avec le nombre de joueurs. relance le programme. \n");
 	
 		}
+		/**
+		 * Choix nombre de joueurs humains
+		 */
 		System.out.println("Combien de joueurs humains serez-vous ? (Il doit etre inferieur ou egal au nombre de joueurs totals");
 		int nombreJoueurReel = sc.nextInt();
 		joueurs = new LinkedList<Joueur>();
@@ -99,13 +136,7 @@ public class Partie implements Visitable{
 				}
 			}
 		}
-		/*for (int i = nombreJoueurReel + 1;i<=nombreJoueur;i++) {
-			JoueurVirtuel jv = new JoueurVirtuel("Joueur Virtuel " + i);
-			joueurs.add(jv);
-			
-			System.out.println("Le Joueur Virtuel " + i + " a bien a ete ajoute dans la partie !!");
-		}
-		*/
+		
 		// Crï¿½ation du jeu de cartes de base + mï¿½lange automatique
 		deck = new Deck();
 		
@@ -131,34 +162,44 @@ public class Partie implements Visitable{
 			
 		}
 		
-		/*Scanner scVariante = new Scanner(System.in);
-		System.out.println("Voulez vous jouer à  une variante ? (O/N)");
-		char variante = scVariante.nextLine().charAt(0);
-		switch (variante) {
-		case 'O':
-			Scanner scQuellevariante = new Scanner(System.in);
-			System.out.println("A quelle variante veux tu jouer ? (1 ou 2)");
-			quelleVariante = scQuellevariante.nextInt();
-			
-			switch (quelleVariante) {
-			case 1: 
-				
-				System.out.println("okay on va jouer a la variante 1");
-				
-				//System.out.println("test2");
-				 
-			case 2:	
-				
-			}
-		break;
-		case 'N':
-			System.out.println("Okay, tu ne veux pas joueur à une variante. J'en prends note");
-		break;
-		default:
-			System.out.println("La syntaxe de la reponse n'est pas correcte. Je pars du principe que tu ne veux pas jouer à une variante!") ;	
-		}*/
 		this.constituerTrophee();
 	}
+	
+	/**
+	 * Constituer trophee.
+	 * Selon le nombre de joueurs, la méthode constituterTrophee sort plusieurs cartes du deck pour les mettre dans le tas trophées.
+	 */
+	
+	public void constituerTrophee() {
+		trophees = new LinkedList<Cartes>();
+		// Le nombre de trophee depend du nombre de joueurs
+		if (Joueur.getNbJoueurs()==3) {
+			// Il change egalement si l extension est utilisee
+			if (deck.getNombreCartes()==17) {
+				trophees.add(deck.getDeckCartes().pop());
+				trophees.add(deck.getDeckCartes().pop());
+			}
+			else {
+				trophees.add(deck.getDeckCartes().pop());
+				trophees.add(deck.getDeckCartes().pop());
+				trophees.add(deck.getDeckCartes().pop());
+			}
+		}
+		else {
+			trophees.add(deck.getDeckCartes().pop());
+		}
+		Iterator<Cartes> itTrophee = trophees.iterator();
+		System.out.print("Les trophées de la partie seront : ");
+		while (itTrophee.hasNext()) {
+			Cartes t = itTrophee.next();
+			System.out.print(t.getTrophee().toString()+"  ");
+		}
+		System.out.println();
+	}
+	
+	/**
+	 * Inits les joueurs, le deck et lance la partie.
+	 */
 	public void init() {
 		joueurs = new LinkedList<Joueur>();
 		deck = new Deck();
@@ -167,13 +208,17 @@ public class Partie implements Visitable{
 	}
 	
 	
+	/**
+	 * Recuperer plus forte offre.
+	 *La plus forte Offre sert à déterminer qui jouera en premier lors de chaque tour.
+	 * @return the joueur
+	 */
 	public Joueur recupererPlusForteOffre() {
 		Iterator<Joueur> itj = joueurs.iterator();
 		Offre plusForteOffre = joueurs.getFirst().getOffre();
 		Cartes plusForteRecto = new Cartes(EnumTrophee.Joker,Couleur.JOKER,Valeur.JOKER);
 		while (itj.hasNext()) {
 			Joueur j =  itj.next();
-			//System.out.println(j.getOffre());
 			
 			if (j.getOffre().estOffreSuffisante())
 				
@@ -192,6 +237,10 @@ public class Partie implements Visitable{
 		return plusForteOffre.getOffrant();
 
 	}
+	
+	/**
+	 * Remettre en jeu carte offre.
+	 */
 	public void remettreEnJeuCarteOffre() {
 		Iterator<Joueur> itj = joueurs.iterator();
 		while (itj.hasNext()) {
@@ -204,6 +253,10 @@ public class Partie implements Visitable{
 			}
 		}
 	}
+	
+	/**
+	 * Distribuer.
+	 */
 	public void distribuer() {
 		Iterator<Joueur> itj = joueurs.iterator();
 		//Cas oÃ¹ ce n'est pas le dernier tour 
@@ -227,6 +280,10 @@ public class Partie implements Visitable{
 			}
 		}
 	}
+	
+	/**
+	 * Tour.
+	 */
 	public void tour() {
 		this.distribuer();
 		//Dans l'ordre, les joueurs font leur offre
@@ -247,6 +304,10 @@ public class Partie implements Visitable{
 		}
 		
 	}
+	
+	/**
+	 * Dernier tour.
+	 */
 	public void dernierTour() {
 		//Les cartes du stack intermediaire sont redistribuees en debut de tour, au dernier tour il reste donc les cartes non choisie
 		//Ces cartes sont rendues a l offrant s il n y a plus de carte dans le deck
@@ -261,6 +322,10 @@ public class Partie implements Visitable{
 			}
 		}
 	}
+
+/**
+ * Attribuer trophees.
+ */
 public void attribuerTrophees() {
 		
 		//faire iterator sur stackintermediaire. Tant que pas empty, on continue
@@ -735,6 +800,9 @@ public void attribuerTrophees() {
 	}
 
 
+	/**
+	 * Calcul des points.
+	 */
 	public void calculDesPoints() {
 		Iterator<Joueur> itj = joueurs.iterator();
 		while (itj.hasNext()) {
@@ -853,6 +921,10 @@ public void attribuerTrophees() {
 			j.setScoreFinal(scoreJ);
 		}
 	}
+	
+	/**
+	 * Donner les resultats.
+	 */
 	public void donnerLesResultats() {
 		System.out.println("Résultats de la partie :");
 		Iterator<Joueur> itj = joueurs.iterator();
@@ -862,49 +934,58 @@ public void attribuerTrophees() {
 		}
 	}
 	
-	public void constituerTrophee() {
-		trophees = new LinkedList<Cartes>();
-		// Le nombre de trophee depend du nombre de joueurs
-		if (Joueur.getNbJoueurs()==3) {
-			// Il change egalement si l extension est utilisee
-			if (deck.getNombreCartes()==17) {
-				trophees.add(deck.getDeckCartes().pop());
-				trophees.add(deck.getDeckCartes().pop());
-			}
-			else {
-				trophees.add(deck.getDeckCartes().pop());
-				trophees.add(deck.getDeckCartes().pop());
-				trophees.add(deck.getDeckCartes().pop());
-			}
-		}
-		else {
-			trophees.add(deck.getDeckCartes().pop());
-		}
-		Iterator<Cartes> itTrophee = trophees.iterator();
-		System.out.print("Les trophées de la partie seront : ");
-		while (itTrophee.hasNext()) {
-			Cartes t = itTrophee.next();
-			System.out.print(t.getTrophee().toString()+"  ");
-		}
-		System.out.println();
-	}
 	
+	
+	/**
+	 * Gets le deck.
+	 *
+	 * @return le deck
+	 */
 	public Deck getDeck() {
 		return deck;
 	}
+	
+	/**
+	 * Sets le deck.
+	 *
+	 * @param deck le nouveaudeck
+	 */
 	public void setDeck(Deck deck) {
 		this.deck = deck;
 	}
+	
+	/**
+	 * Gets la liste de trophees.
+	 *
+	 * @return la liste de trophees
+	 */
 	public LinkedList<Cartes> getTrophees() {
 		return trophees;
 	}
 	
+	/**
+	 * Gets  quelle strategie.
+	 *
+	 * @return quelle strategie
+	 */
 	public  char getQuelleStrategie() {
 		return quelleStrategie;
 	}
+	
+	/**
+	 * Sets le quelle strategie.
+	 *
+	 * @param quelleStrategie le nouveauquelle strategie
+	 */
 	public void setQuelleStrategie(char quelleStrategie) {
 		this.quelleStrategie = quelleStrategie;
 	}
+	
+	/**
+	 * Gets la liste des joueurs.
+	 *
+	 * @return la liste de joueurs
+	 */
 	public static LinkedList<Joueur> getJoueurs() {
 		return joueurs;
 	}
