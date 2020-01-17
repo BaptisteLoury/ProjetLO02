@@ -1,8 +1,8 @@
-<<<<<<< HEAD:src/App/Couleur.java
+
 /*
  * 
  */
-package App;
+package modele;
 
 public enum Couleur {
 
@@ -21,15 +21,3 @@ public enum Couleur {
 	/** Le joker. */
 	JOKER,
 }
-=======
-package modele;
-
-public enum Couleur {
-
-	PIQUE,
-	TREFLE,
-	CARREAU,
-	COEUR,
-	JOKER,
-}
->>>>>>> master:src/modele/Couleur.java

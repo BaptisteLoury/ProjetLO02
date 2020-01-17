@@ -1,8 +1,8 @@
-<<<<<<< HEAD:src/App/Valeur.java
+
 /*
  * 
  */
-package App;
+package modele;
 
 public enum Valeur {
 
@@ -24,16 +24,3 @@ public enum Valeur {
 	/** The cinq. */
 	CINQ,
 }
-=======
-package modele;
-
-public enum Valeur {
-
-	JOKER,
-	AS,
-	DEUX,
-	TROIS,
-	QUATRE,
-	CINQ,
-}
->>>>>>> master:src/modele/Valeur.java

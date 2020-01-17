@@ -1,9 +1,6 @@
-<<<<<<< HEAD:src/Strategies/Strategie.java
 
-package Strategies;
-=======
 package modele;
->>>>>>> master:src/modele/Strategie.java
+
 
 import java.util.LinkedList;
 

@@ -1,11 +1,9 @@
-<<<<<<< HEAD:src/Strategies/StrategieBasique.java
+
 /*
  *La stratégie avancée pour un bot a accés uniquement aux cartes Recto sur le plateau. 
  */
-package Strategies;
-=======
 package modele;
->>>>>>> master:src/modele/StrategieBasique.java
+
 
 import java.util.Iterator;
 import java.util.LinkedList;

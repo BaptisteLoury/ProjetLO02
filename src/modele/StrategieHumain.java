@@ -1,11 +1,9 @@
-<<<<<<< HEAD:src/Strategies/StrategieHumain.java
+
 /*
  *Cette stratégie concerne les joueurs humains. C'est bien à eux de chosir la carte qu'ils désirent prendre. 
  */
-package Strategies;
-=======
 package modele;
->>>>>>> master:src/modele/StrategieHumain.java
+
 
 import java.util.Iterator;
 import java.util.LinkedList;

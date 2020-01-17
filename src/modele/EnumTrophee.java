@@ -1,8 +1,8 @@
-<<<<<<< HEAD:src/App/EnumTrophee.java
+
 /*
  * 
  */
-package App;
+package modele;
 
 public enum EnumTrophee {
 	
@@ -48,40 +48,3 @@ public enum EnumTrophee {
 	/** Le Best jest. */
 	BestJest,
 }
-=======
-package modele;
-
-public enum EnumTrophee {
-	/*
-	MajorityQuatre,
-	HighestCarreau,
-	LowestCarreau,
-	BestJestNoJoke,
-	HighestTrefle,
-	MajorityTrois,
-	MajorityDeux,
-	LowestTrefle,
-	HighestPique,
-	LowestCoeur,
-	HighestCoeur,
-	LowestPique,
-	Joker,
-	BestJest,
-	*/
-	
-	HighestTrefle,
-	MajorityTrois,
-	MajorityDeux,
-	LowestTrefle,
-	HighestPique,
-	LowestCoeur,
-	HighestCoeur,
-	LowestPique,
-	MajorityQuatre,
-	HighestCarreau,
-	LowestCarreau,
-	BestJestNoJoke,
-	Joker,
-	BestJest,
-}
->>>>>>> master:src/modele/EnumTrophee.java

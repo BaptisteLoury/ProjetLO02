@@ -1,11 +1,9 @@
-<<<<<<< HEAD:src/Strategies/StrategieAvancee.java
+
 /*
  *La stratégie avancée pour un bot a accés à toutes les cartes sur le plateau (Recto et Verso) 
  */
-package Strategies;
-=======
 package modele;
->>>>>>> master:src/modele/StrategieAvancee.java
+
 
 import java.util.Iterator;
 import java.util.LinkedList;
